@@ -29,6 +29,6 @@ Test share:
 # kubectl apply -f pihole.yaml
 # kubectl apply -f services/dns-tcp.yaml
 # kubectl apply -f services/dns-udp.yaml
-kubectl apply -f services/web.yaml
-kubectl apply -f services/dhcp.yaml
+# kubectl apply -f services/web.yaml
+# kubectl apply -f services/dhcp.yaml
 ```
