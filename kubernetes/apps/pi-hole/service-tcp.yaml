@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    metallb.universe.tf/address-pool: production-pihole
+    metallb.universe.tf/allow-shared-ip: pihole-svc
+  labels:
+    app: pihole
+  name: pihole-tcp
+  namespace: home-apps
+spec:
+  externalTrafficPolicy: Local
+  loadBalancerIP: <SERVER_IP>  # IP to access Pi-hole at
+  ports:
+  - name: pihole-http
+    port: 80
+    protocol: TCP
+    targetPort: pihole-http
+  - name: pihole-ssl
+    port: 443
+    protocol: TCP
+    targetPort: pihole-ssl
+  - name: dns
+    port: 53
+    protocol: TCP
+    targetPort: dns
+  selector:
+    app: pihole
+  sessionAffinity: None
+  type: LoadBalancer
