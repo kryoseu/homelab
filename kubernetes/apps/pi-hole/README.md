@@ -27,6 +27,8 @@ Test share:
 ```
 # kubectl apply -f provisioner.yaml
 # kubectl apply -f pihole.yaml
-# kubectl apply -f service-tcp.yaml
-# kubectl apply -f service-udp.yaml
+# kubectl apply -f services/dns-tcp.yaml
+# kubectl apply -f services/dns-udp.yaml
+kubectl apply -f services/web.yaml
+kubectl apply -f services/dhcp.yaml
 ```
