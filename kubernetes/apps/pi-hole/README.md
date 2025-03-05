@@ -2,7 +2,7 @@
 
 This allows sharing of data (e.g pi-hole config, db, password, etc) between replicas across multiple nodes by mounting and storing data to an NFS share, which is backed by a ZFS RAIDZ pool. 
 
-This created LoadBalancer services backed by L2Advertisement IP pools, therefore traffic is not balanced between replicas. I have not yet tested if this setup would work in such case.
+This creates LoadBalancer services backed by L2Advertisement IP pools, therefore traffic is not balanced between replicas. I have not yet tested if this setup would work in such case.
 
 Depends on: [nfs-subdir-external-provisioner](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner)
 
