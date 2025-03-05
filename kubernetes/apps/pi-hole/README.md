@@ -11,8 +11,8 @@ This creates the ZFS filesystem and share, restricting mount access to the clust
 
 ```
 # zfs create tank/pihole-share
-# zfs set sharenfs="rw=@<NODE-1-IP>,sync,no_subtree_check,no_root_squash,rw=@<NODE-2-IP>,sync,no_sub
-tree_check,no_root_squash" tank/pihole-share
+# zfs set quota=1G tank/pihole-share
+# zfs set sharenfs="rw=@<NODE-1-IP>,sync,no_subtree_check,no_root_squash,rw=@<NODE-2-IP>,sync,no_subtree_check,no_root_squash" tank/pihole-share
 ```
 
 Test share:
