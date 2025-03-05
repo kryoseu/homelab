@@ -76,11 +76,11 @@ spec:
             - name: PROVISIONER_NAME
               value: k8s-sigs.io/nfs-subdir-external-provisioner
             - name: NFS_SERVER
-              value: 10.22.0.10
+              value: <NFS_SERVER>
             - name: NFS_PATH
               value: /tank/pihole-share
       volumes:
         - name: nfs-client-root
           nfs:
-            server: 10.22.0.10
+            server: <NFS_SERVER>
             path: /tank/pihole-share
