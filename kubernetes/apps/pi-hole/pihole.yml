@@ -11,7 +11,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   nfs:
     path: /tank/pihole-share
-    server: <NFS_SERVER_IP>
+    server: <NFS_SERVER>
 
 ---
 
@@ -69,7 +69,7 @@ spec:
       containers:
       - env:
         - name: ServerIP
-          value: <SERVER_IP>
+          value: <PIHOLE_IP>
         - name: WEBPASSWORD
           valueFrom:
             secretKeyRef:
@@ -82,8 +82,8 @@ spec:
         - containerPort: 80
           name: pihole-http
           protocol: TCP
-        - containerPort: 537
-          name: dns
+        - containerPort: 53
+          name: dns-tcp
           protocol: TCP
         - containerPort: 53
           name: dns-udp
@@ -92,7 +92,7 @@ spec:
           name: pihole-ssl
           protocol: TCP
         - containerPort: 67
-          name: client-udp
+          name: client-dhcp
           protocol: UDP
         resources: {}
         terminationMessagePath: /dev/termination-log
@@ -100,9 +100,6 @@ spec:
         volumeMounts:
         - mountPath: /etc/pihole
           name: config
-        - mountPath: /etc/dnsmasq.d/02-custom.conf
-          name: custom-dnsmasq
-          subPath: 02-custom.conf
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler

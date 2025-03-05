@@ -6,24 +6,16 @@ metadata:
     metallb.universe.tf/allow-shared-ip: pihole-svc
   labels:
     app: pihole
-  name: pihole-tcp
+  name: pihole-dhcp
   namespace: home-apps
 spec:
   externalTrafficPolicy: Local
-  loadBalancerIP: <SERVER_IP>  # IP to access Pi-hole at
+  loadBalancerIP: <SERVER_IP>
   ports:
-  - name: pihole-http
-    port: 80
-    protocol: TCP
-    targetPort: pihole-http
-  - name: pihole-ssl
-    port: 443
-    protocol: TCP
-    targetPort: pihole-ssl
-  - name: dns
-    port: 53
-    protocol: TCP
-    targetPort: dns
+  - name: client-dhcp
+    port: 67
+    protocol: UDP
+    targetPort: client-dhcp
   selector:
     app: pihole
   sessionAffinity: None
