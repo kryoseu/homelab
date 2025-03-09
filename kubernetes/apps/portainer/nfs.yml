@@ -1,0 +1,86 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: nfs-provisioner-portainer-runner
+  namespace: portainer
+rules:
+  - apiGroups: [""]
+    resources: ["persistentvolumes"]
+    verbs: ["get", "list", "watch", "create", "delete"]
+  - apiGroups: [""]
+    resources: ["persistentvolumeclaims"]
+    verbs: ["get", "list", "watch", "update"]
+  - apiGroups: ["storage.k8s.io"]
+    resources: ["storageclasses"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: [""]
+    resources: ["events"]
+    verbs: ["create", "update", "patch"]
+  - apiGroups: [""]
+    resources: ["endpoints"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: run-nfs-provisioner-portainer
+  namespace: portainer
+subjects:
+  - kind: ServiceAccount
+    name: nfs-provisioner-portainer
+    namespace: portainer
+roleRef:
+  kind: ClusterRole
+  name: nfs-provisioner-portainer-runner
+  apiGroup: rbac.authorization.k8s.io
+
+---
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: nfs-provisioner-portainer
+  namespace: portainer
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nfs-provisioner-portainer
+  labels:
+    app: nfs-provisioner-portainer
+  namespace: portainer
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: nfs-provisioner-portainer
+  template:
+    metadata:
+      labels:
+        app: nfs-provisioner-portainer
+    spec:
+      serviceAccountName: nfs-provisioner-portainer
+      containers:
+        - name: nfs-provisioner-portainer
+          image: registry.k8s.io/sig-storage/nfs-subdir-external-provisioner:v4.0.2
+          volumeMounts:
+            - name: nfs-client-root
+              mountPath: /persistentvolumes
+          env:
+            - name: PROVISIONER_NAME
+              value: k8s-sigs.io/nfs-subdir-external-provisioner
+            - name: NFS_SERVER
+              value: <NFS_SERVER_IP>
+            - name: NFS_PATH
+              value: /tank/portainer-share
+      volumes:
+        - name: nfs-client-root
+          nfs:
+            server: <NFS_SERVER_IP>
+            path: /tank/portainer-share
