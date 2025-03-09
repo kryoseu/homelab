@@ -1,0 +1,80 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: rocketchat-attachments-pv
+spec:
+  capacity:
+    storage: 200Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    path: /tank/rocketchat-attachments
+    server: <NFS_SERVER_IP>
+  storageClassName: "nfs-storage"
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rocketchat-attachments
+  namespace: home-apps
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 200Gi
+  storageClassName: "nfs-storage"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: rocketchat-server
+  namespace: home-apps
+spec:
+  selector:
+    app: rocketchat-server
+  ports:
+    - name: http
+      port: 3000
+      targetPort: 3000
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rocketchat-server
+  namespace: home-apps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rocketchat-server
+  template:
+    metadata:
+      labels:
+        app: rocketchat-server
+    spec:
+      containers:
+        - name: rocketchat-server
+          image: rocketchat/rocket.chat:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: MONGO_URL
+              value: mongodb://rocketmongo-0.rocketmongo:27017/rocketchat
+            - name: MONGO_OPLOG_URL
+              value: mongodb://rocketmongo-0.rocketmongo:27017/local?replSet=rs0
+          imagePullPolicy: Always
+          volumeMounts:
+          - name: rocketchat-attachments-volume
+            mountPath: /app/uploads
+      volumes:
+          - name: rocketchat-attachments-volume
+            persistentVolumeClaim:
+              claimName: rocketchat-attachments
