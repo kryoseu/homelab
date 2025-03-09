@@ -31,7 +31,7 @@ kubectl apply -f ingress.yml
 kubectl apply -f mongo.yml
 ```
 
-Once Mongo pods are up and running, initiate the replica set[1].
+Once Mongo pods are up and running, initiate the replica set[[1](https://ajorloo.medium.com/deploy-rocket-chat-server-using-kubernetes-2d6c4228853)].
 
 ```
 k exec -it -n home-apps rocketmongo-0 -- sh
@@ -49,6 +49,3 @@ The finally:
 ```
 kubectl apply -f rocketchat.yml
 ```
-
-
-[1] https://ajorloo.medium.com/deploy-rocket-chat-server-using-kubernetes-2d6c4228853
