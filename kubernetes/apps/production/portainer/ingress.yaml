@@ -6,7 +6,7 @@ metadata:
 spec:
   ingressClassName: "nginx"
   rules:
-  - host: portainer.home
+  - host: portainer.kryoseu.com
     http:
       paths:
       - path: /

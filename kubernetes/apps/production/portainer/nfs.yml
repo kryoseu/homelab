@@ -76,11 +76,11 @@ spec:
             - name: PROVISIONER_NAME
               value: k8s-sigs.io/nfs-subdir-external-provisioner
             - name: NFS_SERVER
-              value: <NFS_SERVER_IP>
+              value: server01.kryoseu.com
             - name: NFS_PATH
               value: /tank/portainer-share
       volumes:
         - name: nfs-client-root
           nfs:
-            server: <NFS_SERVER_IP>
+            server: server01.kryoseu.com
             path: /tank/portainer-share

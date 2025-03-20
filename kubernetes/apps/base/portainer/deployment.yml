@@ -18,23 +18,6 @@ metadata:
     app.kubernetes.io/instance: portainer
     app.kubernetes.io/version: "ce-latest-ee-lts"
 ---
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: portainer-pv
-  namespace: portainer
-  labels:
-    app: portainer
-spec:
-  capacity:
-    storage: 10Gi
-  accessModes:
-    - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
-  nfs:
-    server: <NFS_SERVER_IP>
-    path: /tank/portainer-share
----
 # Source: portainer/templates/pvc.yaml
 kind: "PersistentVolumeClaim"
 apiVersion: "v1"
