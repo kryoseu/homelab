@@ -3,6 +3,8 @@ kind: Ingress
 metadata:
   name: nginx-ingress
   namespace: portainer
+  annotations:
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 spec:
   ingressClassName: "nginx"
   rules:
