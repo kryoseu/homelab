@@ -11,6 +11,6 @@ spec:
   timeout: 5m
   sourceRef:
     kind: GitRepository
-    name: flux-system apps/production
+    name: flux-system
   path: ./kubernetes/infrastructure/configs/production
   prune: true
