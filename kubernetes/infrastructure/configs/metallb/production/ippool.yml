@@ -1,0 +1,17 @@
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: production-apps-ext
+  namespace: metallb-system
+spec:
+  addresses:
+  - 10.22.0.28/32
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: production-pihole
+  namespace: metallb-system
+spec:
+  addresses:
+  - 10.22.0.29/32
