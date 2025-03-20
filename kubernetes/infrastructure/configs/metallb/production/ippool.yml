@@ -1,7 +1,7 @@
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
-  name: production-apps-ext
+  name: apps-ext-production
   namespace: metallb-system
 spec:
   addresses:
@@ -10,7 +10,7 @@ spec:
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
-  name: production-pihole
+  name: pihole-production
   namespace: metallb-system
 spec:
   addresses:
