@@ -15,7 +15,7 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 10TiB
+      storage: 10Ti
   storageClassName: nfs-storage
 ---
 apiVersion: apps/v1

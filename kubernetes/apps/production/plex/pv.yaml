@@ -44,7 +44,7 @@ metadata:
   namespace: plex-ns
 spec:
   capacity:
-    storage: 10TiB
+    storage: 10Ti
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
