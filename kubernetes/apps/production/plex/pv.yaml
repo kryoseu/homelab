@@ -4,7 +4,7 @@ metadata:
   name: nfs-provisioner-plex
   labels:
     app: nfs-provisioner-plex
-  namespace: home-apps
+  namespace: plex-ns
 spec:
   replicas: 1
   strategy:
@@ -41,10 +41,10 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: plex-media
-  namespace: home-apps
+  namespace: plex-ns
 spec:
   capacity:
-    storage: 1Gi
+    storage: 10TiB
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
