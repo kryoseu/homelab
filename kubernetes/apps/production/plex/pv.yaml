@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nfs-provisioner-plex
+  labels:
+    app: nfs-provisioner-plex
+  namespace: home-apps
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: nfs-provisioner-plex
+  template:
+    metadata:
+      labels:
+        app: nfs-provisioner-plex
+    spec:
+      serviceAccountName: nfs-provisioner
+      containers:
+        - name: nfs-provisioner-plex
+          image: registry.k8s.io/sig-storage/nfs-subdir-external-provisioner:v4.0.2
+          volumeMounts:
+            - name: nfs-client-root
+              mountPath: /persistentvolumes
+          env:
+            - name: PROVISIONER_NAME
+              value: k8s-sigs.io/nfs-subdir-external-provisioner
+            - name: NFS_SERVER
+              value: server01.kryoseu.com
+            - name: NFS_PATH
+              value: /tank/plex-share
+      volumes:
+        - name: nfs-client-root
+          nfs:
+            server: server01.kryoseu.com
+            path: /tank/plex-share
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: plex-media
+  namespace: home-apps
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: nfs-storage
+  nfs:
+    path: /tank/plex-share
+    server: server01.kryoseu.com

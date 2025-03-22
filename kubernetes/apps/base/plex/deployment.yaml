@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plex-server
+  labels:
+    name: plex-server
+  namespace: home-apps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: plex-server
+  template:
+    metadata:
+      labels:
+        name: plex-server
+    spec:
+      hostNetwork: true
+      volumes:
+      - name: media
+        persistentVolumeClaim:
+          claimName: plex-media-pvc
+      containers:
+      - name: plex-server
+        image: plexinc/pms-docker
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          tcpSocket:
+            port: 32400
+          initialDelaySeconds: 60
+          periodSeconds: 5
+        volumeMounts:
+        - mountPath: /config
+          name: media
+          subPath: config
+        - mountPath: /media/movies
+          name: media
+          subPath: movies
+        - mountPath: /media/tv
+          name: media
+          subPath: tv
+        env:
+        - name: PUID
+          value: "1000"
+        - name: PGID
+          value: "4000"
+        - name: VERSION
+          value: "docker"
+        - name: UMASK_SET
+          value: "022"
+        - name: TZ
+          value: "Canada/Vancouver"
