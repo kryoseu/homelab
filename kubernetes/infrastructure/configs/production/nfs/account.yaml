@@ -1,4 +1,4 @@
-# home-apps namespace resources
+# cluster
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -24,29 +24,10 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: run-nfs-provisioner
-  namespace: home-apps
 subjects:
   - kind: ServiceAccount
     name: nfs-provisioner
     namespace: home-apps
-roleRef:
-  kind: ClusterRole
-  name: nfs-provisioner-runner
-  apiGroup: rbac.authorization.k8s.io
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: nfs-provisioner
-  namespace: home-apps
----
-# plex-ns namespace resources
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: run-nfs-provisioner
-  namespace: plex-ns
-subjects:
   - kind: ServiceAccount
     name: nfs-provisioner
     namespace: plex-ns
@@ -55,6 +36,14 @@ roleRef:
   name: nfs-provisioner-runner
   apiGroup: rbac.authorization.k8s.io
 ---
+# home-apps namespace
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: nfs-provisioner
+  namespace: home-apps
+---
+# plex-ns namespace
 apiVersion: v1
 kind: ServiceAccount
 metadata:
