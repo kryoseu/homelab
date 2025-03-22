@@ -23,14 +23,6 @@ Test share:
 # sudo mount -t nfs <NFS-SERVER>:/tank/rocketchat-attachments <MOUNT-POINT>
 ```
 
-### Install
-
-```
-kubectl apply -f nfs.yml
-kubectl apply -f ingress.yml
-kubectl apply -f mongo.yml
-```
-
 Once Mongo pods are up and running, initiate the replica set[[1](https://ajorloo.medium.com/deploy-rocket-chat-server-using-kubernetes-2d6c4228853)].
 
 ```
@@ -43,9 +35,4 @@ rs.reconfig(config)
 rs.add("rocketmongo-1.rocketmongo:27017")
 rs.add("rocketmongo-2.rocketmongo:27017")
 rs.status()
-```
-
-The finally:
-```
-kubectl apply -f rocketchat.yml
 ```
