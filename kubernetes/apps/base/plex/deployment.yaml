@@ -11,6 +11,20 @@ spec:
       storage: 10
   storageClassName: nfs-storage
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: plex-service
+  namespace: home-apps
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 32400
+    targetPort: 32400
+    nodePort: 32400
+  selector:
+    name: plex-server
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -28,7 +42,6 @@ spec:
       labels:
         name: plex-server
     spec:
-      hostNetwork: true
       volumes:
       - name: media
         persistentVolumeClaim:
@@ -37,6 +50,8 @@ spec:
       - name: plex-server
         image: plexinc/pms-docker
         imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 32400
         livenessProbe:
           tcpSocket:
             port: 32400
