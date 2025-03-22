@@ -1,3 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nfs-provisioner-rocketchat
+  labels:
+    app: nfs-provisioner-rocketchat
+  namespace: home-apps
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: nfs-provisioner-rocketchat
+  template:
+    metadata:
+      labels:
+        app: nfs-provisioner-rocketchat
+    spec:
+      serviceAccountName: nfs-provisioner
+      containers:
+        - name: nfs-provisioner-rocketchat
+          image: registry.k8s.io/sig-storage/nfs-subdir-external-provisioner:v4.0.2
+          volumeMounts:
+            - name: nfs-rocketchat-attachments-root
+              mountPath: /persistentvolumes
+          env:
+            - name: PROVISIONER_NAME
+              value: k8s-sigs.io/nfs-subdir-external-provisioner
+            - name: NFS_SERVER
+              value: server01.kryoseu.com
+            - name: NFS_PATH
+              value: /tank/rocketchat-attachments
+      volumes:
+        - name: nfs-rocketchat-attachments-root
+          nfs:
+            server: server01.kryoseu.com
+            path: /tank/rocketchat-attachments
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: rocketchat-attachments-pv
+spec:
+  capacity:
+    storage: 200Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    path: /tank/rocketchat-attachments
+    server: server01.kryopseu.com
+  storageClassName: "nfs-storage"
+---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -44,7 +98,6 @@ spec:
               values:
                 - talos-iop-vxy
 ---
-
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -67,61 +120,3 @@ spec:
               operator: In
               values:
                 - talos-uds-qbo
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: rocketmongo
-  namespace: home-apps
-  labels:
-    app: rocketmongo
-spec:
-  selector:
-    app: rocketmongo
-  ports:
-    - port: 27017
-      targetPort: 27017
-  clusterIP: None
-
----
-
-apiVersion: apps/v1
-kind: StatefulSet
-metadata:
-  name: rocketmongo
-  namespace: home-apps
-spec:
-  serviceName: rocketmongo
-  replicas: 3
-  selector:
-    matchLabels:
-      app: rocketmongo
-  template:
-    metadata:
-      labels:
-        app: rocketmongo
-    spec:
-      terminationGracePeriodSeconds: 10
-      containers:
-        - name: rocketmongo
-          image: mongo:7.0
-          command:
-          - mongod
-          - "--bind_ip_all"
-          - "--replSet"
-          - rs0
-          ports:
-            - containerPort: 27017
-          volumeMounts:
-          - name: mongo-volume
-            mountPath: /data/db
-  volumeClaimTemplates:
-  - metadata:
-      name: mongo-volume
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      resources:
-        requests:
-          storage: 5Gi
-      storageClassName: "local-storage" 

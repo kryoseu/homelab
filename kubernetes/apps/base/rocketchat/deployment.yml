@@ -10,7 +10,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   nfs:
     path: /tank/rocketchat-attachments
-    server: <NFS_SERVER_IP>
+    server: server01.kryopseu.com
   storageClassName: "nfs-storage"
 
 ---

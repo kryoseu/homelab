@@ -11,10 +11,10 @@ spec:
   ingressClassName: "nginx"
   tls:
   - hosts:
-    - <host>
-    secretName: <host>-tls
+    - otarios.kryoseu.com
+    secretName: rocketchat-tls
   rules:
-  - host: <host>
+  - host: otarios.kryoseu.com
     http:
       paths:
       - path: /
