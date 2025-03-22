@@ -112,7 +112,7 @@ metadata:
   namespace: home-apps
 spec:
   progressDeadlineSeconds: 600
-  replicas: 2
+  replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
