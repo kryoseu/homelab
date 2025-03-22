@@ -17,7 +17,6 @@ metadata:
   name: plex-server
   namespace: home-apps
 spec:
-  type: LoadBalancer
   ports:
   - port: 32400
     targetPort: 32400
