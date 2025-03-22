@@ -14,7 +14,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: plex-service
+  name: plex-server
   namespace: home-apps
 spec:
   type: LoadBalancer
