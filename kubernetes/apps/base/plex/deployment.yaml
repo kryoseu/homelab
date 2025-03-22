@@ -64,9 +64,9 @@ spec:
         - mountPath: /media/movies
           name: media
           subPath: movies
-        - mountPath: /media/tv
+        - mountPath: /media/shows
           name: media
-          subPath: tv
+          subPath: shows
         env:
         - name: PUID
           value: "1000"
