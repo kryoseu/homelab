@@ -16,11 +16,15 @@ kind: Service
 metadata:
   name: plex-server
   namespace: home-apps
+  annotations:
+    metallb.universe.tf/address-pool: plex-production
+    metallb.universe.tf/allow-shared-ip: plex-svc
 spec:
+  type: LoadBalancer
+  externalTrafficPolicy: Cluster
   ports:
   - port: 32400
     targetPort: 32400
-    nodePort: 32400
   selector:
     name: plex-server
 ---
@@ -66,6 +70,12 @@ spec:
         - mountPath: /media/shows
           name: media
           subPath: shows
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities: {}
+          privileged: false
+          readOnlyRootFilesystem: false
+          runAsNonRoot: false 
         env:
         - name: PUID
           value: "1000"
@@ -75,5 +85,10 @@ spec:
           value: "docker"
         - name: UMASK_SET
           value: "022"
+        - name: PLEX_CLAIM
+          valueFrom:
+            secretKeyRef:
+              name: plex-claim-token
+              key: PLEX_CLAIM
         - name: TZ
-          value: "Canada/Vancouver"
+          value: "Canada/Pacific"
