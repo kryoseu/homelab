@@ -1,21 +1,4 @@
 apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: rocketchat-attachments-pv
-spec:
-  capacity:
-    storage: 200Gi
-  accessModes:
-    - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
-  nfs:
-    path: /tank/rocketchat-attachments
-    server: server01.kryopseu.com
-  storageClassName: "nfs-storage"
-
----
-
-apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: rocketchat-attachments
@@ -27,9 +10,7 @@ spec:
     requests:
       storage: 200Gi
   storageClassName: "nfs-storage"
-
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
@@ -42,9 +23,7 @@ spec:
     - name: http
       port: 3000
       targetPort: 3000
-
 ---
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
