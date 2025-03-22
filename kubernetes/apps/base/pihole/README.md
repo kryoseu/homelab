@@ -22,13 +22,3 @@ showmount -e <NFS-SERVER>
 sudo mount -t nfs <NFS-SERVER>:/tank/pihole-share <MOUNT-POINT>
 ```
 
-### Install
-
-```
-kubectl apply -f nfs.yaml
-kubectl apply -f pihole.yaml
-kubectl apply -f services/dns-tcp.yaml
-kubectl apply -f services/dns-udp.yaml
-kubectl apply -f services/web.yaml
-kubectl apply -f services/dhcp.yaml
-```

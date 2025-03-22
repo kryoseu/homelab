@@ -1,21 +1,4 @@
 apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: pihole-pv
-  namespace: home-apps
-spec:
-  capacity:
-    storage: 1Gi
-  accessModes:
-    - ReadWriteMany
-  persistentVolumeReclaimPolicy: Retain
-  nfs:
-    path: /tank/pihole-share
-    server: <NFS_SERVER>
-
----
-
-apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: pihole-config
@@ -27,20 +10,99 @@ spec:
     requests:
       storage: 1Gi
   storageClassName: "nfs-storage"
-
 ---
-
 apiVersion: v1
-stringData:
-  password: <WEB-PASSWORD>
-kind: Secret
+kind: Service
 metadata:
-  name: pihole-webpassword
+  annotations:
+    metallb.universe.tf/address-pool: pihole-production
+    metallb.universe.tf/allow-shared-ip: pihole-svc
+  labels:
+    app: pihole
+  name: pihole-dhcp
   namespace: home-apps
-type: Opaque
-
+spec:
+  externalTrafficPolicy: Local
+  ports:
+  - name: client-dhcp
+    port: 67
+    protocol: UDP
+    targetPort: client-dhcp
+  selector:
+    app: pihole
+  sessionAffinity: None
+  type: LoadBalancer
 ---
-
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    metallb.universe.tf/address-pool: pihole-production
+    metallb.universe.tf/allow-shared-ip: pihole-svc
+  labels:
+    app: pihole
+  name: pihole-dns-tcp
+  namespace: home-apps
+spec:
+  externalTrafficPolicy: Local
+  ports:
+  - name: dns-tcp
+    port: 53
+    protocol: TCP
+    targetPort: dns-tcp
+  selector:
+    app: pihole
+  sessionAffinity: None
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    metallb.universe.tf/address-pool: pihole-production
+    metallb.universe.tf/allow-shared-ip: pihole-svc
+  labels:
+    app: pihole
+  name: pihole-dns-udp
+  namespace: home-apps
+spec:
+  externalTrafficPolicy: Local
+  ports:
+  - name: dns-udp
+    port: 53
+    protocol: UDP
+    targetPort: dns-udp
+  selector:
+    app: pihole
+  sessionAffinity: None
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    metallb.universe.tf/address-pool: pihole-production
+    metallb.universe.tf/allow-shared-ip: pihole-svc
+  labels:
+    app: pihole
+  name: pihole-web
+  namespace: home-apps
+spec:
+  externalTrafficPolicy: Local
+  ports:
+  - name: pihole-http
+    port: 80
+    protocol: TCP
+    targetPort: pihole-http
+  - name: pihole-ssl
+    port: 443
+    protocol: TCP
+    targetPort: pihole-ssl
+  selector:
+    app: pihole
+  sessionAffinity: None
+  type: LoadBalancer
+---
 apiVersion: apps/v1 
 kind: Deployment
 metadata:
@@ -68,9 +130,7 @@ spec:
     spec:
       containers:
       - env:
-        - name: ServerIP
-          value: <PIHOLE_IP>
-        - name: WEBPASSWORD
+        - name: FTLCONF_webserver_api_password
           valueFrom:
             secretKeyRef:
               key: password
