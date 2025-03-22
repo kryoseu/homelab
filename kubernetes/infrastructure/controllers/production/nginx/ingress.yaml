@@ -12,7 +12,8 @@ spec:
   tls:
   - hosts:
     - otarios.kryoseu.com
-    secretName: rocketchat-tls
+    - plex.kryoseu.com
+    secretName: home-apps-tls
   rules:
   - host: otarios.kryoseu.com
     http:
@@ -24,3 +25,13 @@ spec:
             name: rocketchat-server
             port:
               number: 3000 
+  - host: plex.kryoseu.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: plex-server
+            port:
+              number: 32400 
