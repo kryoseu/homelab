@@ -41,7 +41,7 @@ spec:
     spec:
       containers:
         - name: rocketchat-server
-          image: rocketchat/rocket.chat:latest
+          image: rocketchat/rocket.chat:7.4.1
           ports:
             - containerPort: 3000
           env:
@@ -49,7 +49,7 @@ spec:
               value: mongodb://rocketmongo-0.rocketmongo:27017/rocketchat
             - name: MONGO_OPLOG_URL
               value: mongodb://rocketmongo-0.rocketmongo:27017/local?replSet=rs0
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           volumeMounts:
           - name: rocketchat-attachments-volume
             mountPath: /app/uploads
