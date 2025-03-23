@@ -39,7 +39,7 @@ spec:
           value: "Canada/Pacific"
         volumeMounts:
         - name: media
-          mountPath: /config/radarr
+          mountPath: /config
           subPath: config/radarr
         - name: media
           mountPath: /media/movies
