@@ -12,7 +12,7 @@ spec:
     solvers:
     - dns01:
         cloudflare:
-          email: kryoseu-homelab@proton.me
+          email: kulanaryoseu@proton.me
           apiKeySecretRef:
             name: cloudflare-api-key
             key: api-key
