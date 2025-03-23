@@ -42,7 +42,6 @@ spec:
       containers:
         - name: rocketchat-server
           image: rocketchat/rocket.chat:latest
-          imagePullPolicy: Always
           ports:
             - containerPort: 3000
           env:
