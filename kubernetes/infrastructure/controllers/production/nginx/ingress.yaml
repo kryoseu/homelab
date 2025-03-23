@@ -67,6 +67,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: deluge
+            name: prowlarr
             port:
               number: 9696 
