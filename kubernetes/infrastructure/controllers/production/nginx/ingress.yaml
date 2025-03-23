@@ -35,20 +35,9 @@ spec:
   ingressClassName: "nginx"
   tls:
   - hosts:
-    - plex.kryoseu.com
     - radarr.kryoseu.com
     secretName: wildcard-tls
   rules:
-  - host: plex.kryoseu.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: plex-server
-            port:
-              number: 32400 
   - host: radarr.kryoseu.com
     http:
       paths:
@@ -59,5 +48,3 @@ spec:
             name: radarr
             port:
               number: 7878 
-
-
