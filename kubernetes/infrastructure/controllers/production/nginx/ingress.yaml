@@ -5,15 +5,13 @@ metadata:
   namespace: home-apps
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: 100m
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 spec:
   ingressClassName: "nginx"
   tls:
   - hosts:
     - otarios.kryoseu.com
-    - plex.kryoseu.com
-    secretName: home-apps-tls
+    secretName: wildcard-tls
   rules:
   - host: otarios.kryoseu.com
     http:
@@ -25,6 +23,22 @@ spec:
             name: rocketchat-server
             port:
               number: 3000 
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  namespace: plex-ns
+  annotations:
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+spec:
+  ingressClassName: "nginx"
+  tls:
+  - hosts:
+    - plex.kryoseu.com
+    - radarr.kryoseu.com
+    secretName: wildcard-tls
+  rules:
   - host: plex.kryoseu.com
     http:
       paths:
@@ -35,3 +49,15 @@ spec:
             name: plex-server
             port:
               number: 32400 
+  - host: radarr.kryoseu.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: radarr
+            port:
+              number: 7878 
+
+
