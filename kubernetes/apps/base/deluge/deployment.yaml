@@ -1,0 +1,81 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: deluge
+  namespace: plex-ns
+spec:
+  selector:
+    app: deluge-vpn
+  ports:
+  - name: web-ui
+    protocol: TCP
+    port: 8112
+    targetPort: 8112
+  - name: daemon
+    protocol: TCP
+    port: 58846
+    targetPort: 58846
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deluge-openvpn
+  namespace: plex-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deluge-vpn
+  template:
+    metadata:
+      labels:
+        app: deluge-vpn
+    spec:
+      dnsPolicy: None
+      dnsConfig:
+        nameservers:
+          - 10.8.0.1
+      initContainers:
+      - name: configure-deluge
+        image: busybox
+        command: ["sh", "-c", "echo '{\"file\": 1, \"format\": 1}{\"add_paused\": false, \"allow_remote\": true}' > /config/core.conf"]
+        volumeMounts:
+        - name: deluge
+          mountPath: /config
+          subPath: config/deluge
+      containers:
+      - name: openvpn
+        image: dperson/openvpn-client
+        imagePullPolicy: Always
+        env:
+        - name: FIREWALL
+          value: "1"
+        volumeMounts:
+        - name: vpn-config
+          mountPath: /vpn
+        securityContext:
+          privileged: true
+      - name: deluge
+        image: linuxserver/deluge
+        imagePullPolicy: Always
+        env:
+        - name: PUID
+          value: "1000"
+        - name: PGID
+          value: "1000"
+        - name: TZ
+          value: "Canada/Pacific"
+        volumeMounts:
+        - name: deluge
+          mountPath: /config
+          subPath: config/deluge
+        - name: deluge
+          mountPath: /downloads
+          subPath: downloads
+      volumes:
+      - name: vpn-config
+        configMap:
+          name: vpn-config
+      - name: deluge
+        persistentVolumeClaim:
+          claimName: plex-media-pvc

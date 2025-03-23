@@ -36,6 +36,7 @@ spec:
   tls:
   - hosts:
     - radarr.kryoseu.com
+    - deluge.kryoseu.com
     secretName: wildcard-tls
   rules:
   - host: radarr.kryoseu.com
@@ -48,3 +49,13 @@ spec:
             name: radarr
             port:
               number: 7878 
+  - host: deluge.kryoseu.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: deluge
+            port:
+              number: 8112 
