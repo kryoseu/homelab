@@ -38,7 +38,7 @@ spec:
       initContainers:
       - name: configure-deluge
         image: busybox
-        command: ["sh", "-c", "echo '{\"file\": 1, \"format\": 1}{\"add_paused\": false, \"allow_remote\": true}' > /config/core.conf"]
+        command: ["sh", "-c", "echo '{\"file\": 1, \"format\": 1}{\"add_paused\": false, \"allow_remote\": true, \"enabled_plugins\": [\"Label\"]}' > /config/core.conf"]
         volumeMounts:
         - name: deluge
           mountPath: /config
@@ -65,13 +65,18 @@ spec:
           value: "1000"
         - name: TZ
           value: "Canada/Pacific"
+        - name: DELUGE_LOGLEVEL
+          value: "error"
         volumeMounts:
         - name: deluge
           mountPath: /config
           subPath: config/deluge
         - name: deluge
-          mountPath: /downloads
-          subPath: downloads
+          mountPath: /media/movies
+          subPath: movies
+        - name: deluge
+          mountPath: /media/shows
+          subPath: shows
       volumes:
       - name: vpn-config
         configMap:
