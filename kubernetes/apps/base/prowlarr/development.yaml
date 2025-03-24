@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: prowlarr
+  namespace: plex-ns
+spec:
+  ports:
+    - port: 9696
+      targetPort: prowlarr
+  selector:
+    app: prowlarr
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: prowlarr
+  labels:
+    app: prowlarr
+  namespace: plex-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prowlarr
+  template:
+    metadata:
+      labels:
+        app: prowlarr
+    spec:
+      containers:
+      - name: flaresolverr
+        image: flaresolverr/flaresolverr
+        ports:
+        - name: flaresolverr
+          containerPort: 8191
+      - name: prowlarr
+        image: linuxserver/prowlarr
+        ports:
+        - name: prowlarr
+          containerPort: 9696
+        env:
+        - name: PUID
+          value: "1000"
+        - name: PGID
+          value: "1000"
+        - name: TZ
+          value: "Canada/Pacific"
+        - name: UMASK
+          value: "022"
+        volumeMounts:
+        - name: prowlarr
+          mountPath: /config
+          subPath: config/prowlarr
+        readinessProbe:
+          tcpSocket:
+            port: prowlarr
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: prowlarr
+          initialDelaySeconds: 15
+          periodSeconds: 20
+      volumes:
+      - name: prowlarr
+        persistentVolumeClaim:
+          claimName: plex-media-pvc

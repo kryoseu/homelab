@@ -14,5 +14,6 @@ Deluge defaults to `allow_remote: false` upon start up. The solution I found was
 From `Radarr` pod I can test connectivity to `Deluge`'s daemon with:
 
 ```
+root@radarr-77f45bd688-2qt6c:/# curl -vo /dev/null deluge.plex-ns.svc.cluster.local 8112
 root@radarr-77f45bd688-2qt6c:/# nc -zv deluge.plex-ns.svc.cluster.local 58846
 ```
