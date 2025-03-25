@@ -72,6 +72,9 @@ spec:
           mountPath: /config
           subPath: config/deluge
         - name: deluge
+          mountPath: /media/downloads
+          subPath: downloads
+        - name: deluge
           mountPath: /media/movies
           subPath: movies
         - name: deluge
