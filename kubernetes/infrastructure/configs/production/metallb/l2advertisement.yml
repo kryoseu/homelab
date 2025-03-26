@@ -7,4 +7,3 @@ spec:
   ipAddressPools:
   - apps-ext-production
   - pihole-production
-  - plex-production
