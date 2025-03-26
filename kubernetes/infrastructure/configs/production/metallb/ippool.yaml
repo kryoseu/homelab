@@ -1,15 +1,6 @@
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
-  name: plex-production
-  namespace: metallb-system
-spec:
-  addresses:
-  - 10.22.0.27/32
----
-apiVersion: metallb.io/v1beta1
-kind: IPAddressPool
-metadata:
   name: apps-ext-production
   namespace: metallb-system
 spec:
