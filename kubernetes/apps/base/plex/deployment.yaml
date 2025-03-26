@@ -40,6 +40,10 @@ spec:
       - name: media
         persistentVolumeClaim:
           claimName: plex-media-pvc
+      - name: transcode
+        emptyDir:
+          medium: Memory
+          sizeLimit: 10Gi
       containers:
       - name: plex-server
         image: plexinc/pms-docker
@@ -61,6 +65,8 @@ spec:
         - mountPath: /media/shows
           name: media
           subPath: shows
+        - mountPath: /transcode
+          name: transcode
         securityContext:
           allowPrivilegeEscalation: false
           capabilities: {}
