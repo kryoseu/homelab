@@ -2,19 +2,6 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: wildcard-tls
-  namespace: wireguard
-spec:
-  dnsNames:
-  - "*.kryoseu.com"
-  issuerRef:
-    name: letsencrypt-prod
-    kind: ClusterIssuer
-  secretName: wildcard-tls
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: wildcard-tls
   namespace: home-apps
 spec:
   dnsNames:
