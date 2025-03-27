@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sonarr
+  namespace: plex-ns
+spec:
+  selector:
+    app: sonarr
+  ports:
+  - protocol: TCP
+    port: 8989
+    targetPort: 8989
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sonarr
+  namespace: plex-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sonarr
+  template:
+    metadata:
+      labels:
+        app: sonarr
+    spec:
+      containers:
+      - name: sonarr
+        image: linuxserver/sonarr
+        imagePullPolicy: Always
+        env:
+          - name: PUID
+            value: "1000"
+          - name: PGID
+            value: "4000"
+          - name: TZ
+            value: "Canada/Pacific"
+        volumeMounts:
+        - name: media
+          mountPath: /config
+          subPath: config/sonarr
+        - name: media
+          mountPath: /media/downloads
+          subPath: downloads
+        - name: media
+          mountPath: /media/shows
+          subPath: shows
+      volumes:
+      - name: media
+        persistentVolumeClaim:
+          claimName: plex-media-pvc
