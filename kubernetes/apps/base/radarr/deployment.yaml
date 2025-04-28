@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
       - name: radarr
-        image: linuxserver/radarr
+        image: linuxserver/radarr:5.22.4
         imagePullPolicy: Always
         env:
         - name: PUID
