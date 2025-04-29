@@ -27,7 +27,7 @@ spec:
             seccompProfile:
               type: RuntimeDefault
           containers:
-            - image: renovate/renovate:39.262.1
+            - image: renovate/renovate:39.263.1
               name: renovate-bot
               securityContext:
                 allowPrivilegeEscalation: false
