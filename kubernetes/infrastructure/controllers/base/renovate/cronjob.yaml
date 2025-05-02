@@ -30,15 +30,5 @@ spec:
                     name: renovate-env
                 - configMapRef:
                     name: renovate-configmap
-              volumeMounts:
-                - name: config-volume
-                  mountPath: /opt/renovate/
-                - name: work-volume
-                  mountPath: /tmp/renovate/
           restartPolicy: Never
-          volumes:
-            - name: config-volume
-              configMap:
-                name: renovate-config
-            - name: work-volume
-              emptyDir: {}
+
