@@ -72,14 +72,7 @@ spec:
           mountPath: /config
           subPath: config/deluge
         - name: deluge
-          mountPath: /media/downloads
-          subPath: downloads
-        - name: deluge
-          mountPath: /media/movies
-          subPath: movies
-        - name: deluge
-          mountPath: /media/shows
-          subPath: shows
+          mountPath: /media
       volumes:
       - name: vpn-config
         configMap:
