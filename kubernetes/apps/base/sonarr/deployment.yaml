@@ -42,11 +42,7 @@ spec:
           mountPath: /config
           subPath: config/sonarr
         - name: media
-          mountPath: /media/downloads
-          subPath: downloads
-        - name: media
-          mountPath: /media/shows
-          subPath: shows
+          mountPath: /media
       volumes:
       - name: media
         persistentVolumeClaim:
