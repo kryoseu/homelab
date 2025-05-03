@@ -62,7 +62,7 @@ spec:
         - name: PUID
           value: "1000"
         - name: PGID
-          value: "1000"
+          value: "4000"
         - name: TZ
           value: "Canada/Pacific"
         - name: DELUGE_LOGLEVEL
