@@ -28,42 +28,42 @@ spec:
         app: prowlarr
     spec:
       containers:
-      - name: flaresolverr
-        image: flaresolverr/flaresolverr:3.3.21
-        imagePullPolicy: Always
-        ports:
         - name: flaresolverr
-          containerPort: 8191
-      - name: prowlarr
-        image: linuxserver/prowlarr:1.36.3
-        imagePullPolicy: Always
-        ports:
+          image: flaresolverr/flaresolverr:v3.3.21
+          imagePullPolicy: Always
+          ports:
+            - name: flaresolverr
+              containerPort: 8191
         - name: prowlarr
-          containerPort: 9696
-        env:
-        - name: PUID
-          value: "1000"
-        - name: PGID
-          value: "1000"
-        - name: TZ
-          value: "Canada/Pacific"
-        - name: UMASK
-          value: "022"
-        volumeMounts:
-        - name: prowlarr
-          mountPath: /config
-          subPath: config/prowlarr
-        readinessProbe:
-          tcpSocket:
-            port: prowlarr
-          initialDelaySeconds: 5
-          periodSeconds: 10
-        livenessProbe:
-          tcpSocket:
-            port: prowlarr
-          initialDelaySeconds: 15
-          periodSeconds: 20
+          image: linuxserver/prowlarr:version-1.36.3.5071
+          imagePullPolicy: Always
+          ports:
+            - name: prowlarr
+              containerPort: 9696
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: TZ
+              value: "Canada/Pacific"
+            - name: UMASK
+              value: "022"
+          volumeMounts:
+            - name: prowlarr
+              mountPath: /config
+              subPath: config/prowlarr
+          readinessProbe:
+            tcpSocket:
+              port: prowlarr
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: prowlarr
+            initialDelaySeconds: 15
+            periodSeconds: 20
       volumes:
-      - name: prowlarr
-        persistentVolumeClaim:
-          claimName: plex-media-pvc
+        - name: prowlarr
+          persistentVolumeClaim:
+            claimName: plex-media-pvc
