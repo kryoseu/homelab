@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
         - name: flaresolverr
-          image: flaresolverr/flaresolverr:v3.3.22
+          image: flaresolverr/flaresolverr:v3.3.24
           imagePullPolicy: Always
           ports:
             - name: flaresolverr
