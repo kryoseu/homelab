@@ -135,7 +135,7 @@ spec:
             secretKeyRef:
               key: password
               name: pihole-webpassword
-        image: pihole/pihole:2025.06.1
+        image: pihole/pihole:2025.06.2
         imagePullPolicy: Always
         name: pihole
         ports:
