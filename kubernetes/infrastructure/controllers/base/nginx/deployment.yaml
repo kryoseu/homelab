@@ -653,7 +653,7 @@ spec:
     spec:
       containers:
         - name: create
-          image: registry.k8s.io/ingress-nginx/kube-webhook-certgen:v1.5.4@sha256:7a38cf0f8480775baaee71ab519c7465fd1dfeac66c421f28f087786e631456e
+          image: registry.k8s.io/ingress-nginx/kube-webhook-certgen:v1.6.0@sha256:c9f76a75fd00e975416ea1b73300efd413116de0de8570346ed90766c5b5cefb
           imagePullPolicy: IfNotPresent
           args:
             - create
@@ -713,7 +713,7 @@ spec:
     spec:
       containers:
         - name: patch
-          image: registry.k8s.io/ingress-nginx/kube-webhook-certgen:v1.5.4@sha256:7a38cf0f8480775baaee71ab519c7465fd1dfeac66c421f28f087786e631456e
+          image: registry.k8s.io/ingress-nginx/kube-webhook-certgen:v1.6.0@sha256:c9f76a75fd00e975416ea1b73300efd413116de0de8570346ed90766c5b5cefb
           imagePullPolicy: IfNotPresent
           args:
             - patch
