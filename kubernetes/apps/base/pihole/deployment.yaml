@@ -1,15 +1,15 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: pihole-config
+  name: pihole-configs
   namespace: home-apps
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: 1Gi
-  storageClassName: "nfs-storage"
+  storageClassName: longhorn
 ---
 apiVersion: v1
 kind: Service
@@ -24,10 +24,10 @@ metadata:
 spec:
   externalTrafficPolicy: Local
   ports:
-  - name: client-dhcp
-    port: 67
-    protocol: UDP
-    targetPort: client-dhcp
+    - name: client-dhcp
+      port: 67
+      protocol: UDP
+      targetPort: client-dhcp
   selector:
     app: pihole
   sessionAffinity: None
@@ -46,10 +46,10 @@ metadata:
 spec:
   externalTrafficPolicy: Local
   ports:
-  - name: dns-tcp
-    port: 53
-    protocol: TCP
-    targetPort: dns-tcp
+    - name: dns-tcp
+      port: 53
+      protocol: TCP
+      targetPort: dns-tcp
   selector:
     app: pihole
   sessionAffinity: None
@@ -68,10 +68,10 @@ metadata:
 spec:
   externalTrafficPolicy: Local
   ports:
-  - name: dns-udp
-    port: 53
-    protocol: UDP
-    targetPort: dns-udp
+    - name: dns-udp
+      port: 53
+      protocol: UDP
+      targetPort: dns-udp
   selector:
     app: pihole
   sessionAffinity: None
@@ -90,20 +90,20 @@ metadata:
 spec:
   externalTrafficPolicy: Local
   ports:
-  - name: pihole-http
-    port: 80
-    protocol: TCP
-    targetPort: pihole-http
-  - name: pihole-ssl
-    port: 443
-    protocol: TCP
-    targetPort: pihole-ssl
+    - name: pihole-http
+      port: 80
+      protocol: TCP
+      targetPort: pihole-http
+    - name: pihole-ssl
+      port: 443
+      protocol: TCP
+      targetPort: pihole-ssl
   selector:
     app: pihole
   sessionAffinity: None
   type: LoadBalancer
 ---
-apiVersion: apps/v1 
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
@@ -129,46 +129,44 @@ spec:
         app: pihole
     spec:
       containers:
-      - env:
-        - name: FTLCONF_webserver_api_password
-          valueFrom:
-            secretKeyRef:
-              key: password
-              name: pihole-webpassword
-        image: pihole/pihole:2025.06.2
-        imagePullPolicy: Always
-        name: pihole
-        ports:
-        - containerPort: 80
-          name: pihole-http
-          protocol: TCP
-        - containerPort: 53
-          name: dns-tcp
-          protocol: TCP
-        - containerPort: 53
-          name: dns-udp
-          protocol: UDP
-        - containerPort: 443
-          name: pihole-ssl
-          protocol: TCP
-        - containerPort: 67
-          name: client-dhcp
-          protocol: UDP
-        resources: {}
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
-        volumeMounts:
-        - mountPath: /etc/pihole
-          name: config
+        - env:
+            - name: FTLCONF_webserver_api_password
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: pihole-webpassword
+          image: pihole/pihole:2025.06.2
+          imagePullPolicy: Always
+          name: pihole
+          ports:
+            - containerPort: 80
+              name: pihole-http
+              protocol: TCP
+            - containerPort: 53
+              name: dns-tcp
+              protocol: TCP
+            - containerPort: 53
+              name: dns-udp
+              protocol: UDP
+            - containerPort: 443
+              name: pihole-ssl
+              protocol: TCP
+            - containerPort: 67
+              name: client-dhcp
+              protocol: UDP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+            - mountPath: /etc/pihole
+              name: config
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
-      securityContext: {
-        runAsUser: 0
-      }
+      securityContext: { runAsUser: 0 }
       terminationGracePeriodSeconds: 30
       volumes:
-      - name: config
-        persistentVolumeClaim:
-          claimName: pihole-config
+        - name: config
+          persistentVolumeClaim:
+            claimName: pihole-configs
 status: {}
