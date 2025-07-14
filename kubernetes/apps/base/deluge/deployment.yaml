@@ -7,14 +7,27 @@ spec:
   selector:
     app: deluge-vpn
   ports:
-  - name: web-ui
-    protocol: TCP
-    port: 8112
-    targetPort: 8112
-  - name: daemon
-    protocol: TCP
-    port: 58846
-    targetPort: 58846
+    - name: web-ui
+      protocol: TCP
+      port: 8112
+      targetPort: 8112
+    - name: daemon
+      protocol: TCP
+      port: 58846
+      targetPort: 58846
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: deluge-configs
+  namespace: plex-ns
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100M
+  storageClassName: longhorn
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -36,47 +49,52 @@ spec:
         nameservers:
           - 10.8.0.1
       initContainers:
-      - name: configure-deluge
-        image: busybox
-        command: ["sh", "-c", "echo '{\"file\": 1, \"format\": 1}{\"add_paused\": false, \"allow_remote\": true, \"enabled_plugins\": [\"Label\"]}' > /config/core.conf"]
-        volumeMounts:
-        - name: deluge
-          mountPath: /config
-          subPath: config/deluge
+        - name: configure-deluge
+          image: busybox
+          command:
+            [
+              "sh",
+              "-c",
+              'echo ''{"file": 1, "format": 1}{"add_paused": false, "allow_remote": true, "enabled_plugins": ["Label"]}'' > /config/core.conf',
+            ]
+          volumeMounts:
+            - name: deluge
+              mountPath: /config
+              subPath: config/deluge
       containers:
-      - name: openvpn
-        image: dperson/openvpn-client
-        imagePullPolicy: Always
-        env:
-        - name: FIREWALL
-          value: "1"
-        volumeMounts:
-        - name: vpn-config
-          mountPath: /vpn
-        securityContext:
-          privileged: true
-      - name: deluge
-        image: linuxserver/deluge
-        imagePullPolicy: Always
-        env:
-        - name: PUID
-          value: "1000"
-        - name: PGID
-          value: "4000"
-        - name: TZ
-          value: "Canada/Pacific"
-        - name: DELUGE_LOGLEVEL
-          value: "error"
-        volumeMounts:
+        - name: openvpn
+          image: dperson/openvpn-client
+          imagePullPolicy: Always
+          env:
+            - name: FIREWALL
+              value: "1"
+          volumeMounts:
+            - name: vpn-config
+              mountPath: /vpn
+          securityContext:
+            privileged: true
         - name: deluge
-          mountPath: /config
-          subPath: config/deluge
-        - name: deluge
-          mountPath: /media
+          image: linuxserver/deluge
+          imagePullPolicy: Always
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "4000"
+            - name: TZ
+              value: "Canada/Pacific"
+            - name: DELUGE_LOGLEVEL
+              value: "error"
+          volumeMounts:
+            - name: deluge
+              mountPath: /config
+              subPath: config/deluge
+            - name: deluge
+              mountPath: /media
       volumes:
-      - name: vpn-config
-        configMap:
-          name: vpn-config
-      - name: deluge
-        persistentVolumeClaim:
-          claimName: plex-media-pvc
+        - name: vpn-config
+          configMap:
+            name: vpn-config
+        - name: deluge
+          persistentVolumeClaim:
+            claimName: deluge-configs
