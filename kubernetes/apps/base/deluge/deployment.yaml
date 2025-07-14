@@ -86,7 +86,7 @@ spec:
             - name: DELUGE_LOGLEVEL
               value: "error"
           volumeMounts:
-            - name: deluge
+            - name: configs
               mountPath: /config
               subPath: config/deluge
             - name: deluge
@@ -98,3 +98,6 @@ spec:
         - name: deluge
           persistentVolumeClaim:
             claimName: plex-media-pvc
+        - name: configs
+          persistentVolumeClaim:
+            claimName: deluge-configs
