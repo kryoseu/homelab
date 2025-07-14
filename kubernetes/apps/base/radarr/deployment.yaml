@@ -7,9 +7,22 @@ spec:
   selector:
     app: radarr
   ports:
-  - protocol: TCP
-    port: 7878
-    targetPort: 7878
+    - protocol: TCP
+      port: 7878
+      targetPort: 7878
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: radarr-configs
+  namespace: plex-ns
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: longhorn
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -27,23 +40,26 @@ spec:
         app: radarr
     spec:
       containers:
-      - name: radarr
-        image: linuxserver/radarr:5.26.2
-        imagePullPolicy: Always
-        env:
-        - name: PUID
-          value: "1000"
-        - name: PGID
-          value: "4000"
-        - name: TZ
-          value: "Canada/Pacific"
-        volumeMounts:
-        - name: media
-          mountPath: /config
-          subPath: config/radarr
-        - name: media
-          mountPath: /media
+        - name: radarr
+          image: linuxserver/radarr:5.26.2
+          imagePullPolicy: Always
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "4000"
+            - name: TZ
+              value: "Canada/Pacific"
+          volumeMounts:
+            - name: configs
+              mountPath: /config
+              subPath: config/radarr
+            - name: media
+              mountPath: /media
       volumes:
-      - name: media
-        persistentVolumeClaim:
-          claimName: plex-media-pvc
+        - name: media
+          persistentVolumeClaim:
+            claimName: plex-media-pvc
+        - name: configs
+          persistentVolumeClaim:
+            claimName: radarr-configs
