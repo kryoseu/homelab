@@ -97,4 +97,4 @@ spec:
             name: vpn-config
         - name: deluge
           persistentVolumeClaim:
-            claimName: deluge-configs
+            claimName: plex-media-pvc
