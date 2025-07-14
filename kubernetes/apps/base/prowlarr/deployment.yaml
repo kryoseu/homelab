@@ -10,6 +10,19 @@ spec:
   selector:
     app: prowlarr
 ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: prowlarr-configs
+  namespace: plex-ns
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500M
+  storageClassName: longhorn
+---
 kind: Deployment
 apiVersion: apps/v1
 metadata:
@@ -50,7 +63,7 @@ spec:
             - name: UMASK
               value: "022"
           volumeMounts:
-            - name: prowlarr
+            - name: configs
               mountPath: /config
               subPath: config/prowlarr
           readinessProbe:
@@ -67,3 +80,6 @@ spec:
         - name: prowlarr
           persistentVolumeClaim:
             claimName: plex-media-pvc
+        - name: configs
+          persistentVolumeClaim:
+            claimName: prowlarr-configs
