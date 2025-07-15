@@ -8,6 +8,19 @@ metadata:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
+  name: plex-configs
+  namespace: plex-ns
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+  storageClassName: longhorn
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
   name: plex-media-pvc
   namespace: plex-ns
 spec:
@@ -37,55 +50,58 @@ spec:
     spec:
       hostNetwork: true
       volumes:
-      - name: media
-        persistentVolumeClaim:
-          claimName: plex-media-pvc
-      - name: transcode
-        emptyDir:
-          medium: Memory
-          sizeLimit: 10Gi
+        - name: media
+          persistentVolumeClaim:
+            claimName: plex-media-pvc
+        - name: configs
+          persistentVolumeClaim:
+            claimName: plex-configs
+        - name: transcode
+          emptyDir:
+            medium: Memory
+            sizeLimit: 10Gi
       containers:
-      - name: plex-server
-        image: plexinc/pms-docker:1.41.6.9685-d301f511a
-        imagePullPolicy: Always 
-        ports:
-        - containerPort: 32400
-        livenessProbe:
-          tcpSocket:
-            port: 32400
-          initialDelaySeconds: 60
-          periodSeconds: 5
-        volumeMounts:
-        - mountPath: /config
-          name: media
-          subPath: config
-        - mountPath: /media/movies
-          name: media
-          subPath: movies
-        - mountPath: /media/shows
-          name: media
-          subPath: shows
-        - mountPath: /transcode
-          name: transcode
-        securityContext:
-          allowPrivilegeEscalation: false
-          capabilities: {}
-          privileged: false
-          readOnlyRootFilesystem: false
-          runAsNonRoot: false 
-        env:
-        - name: PUID
-          value: "1000"
-        - name: PGID
-          value: "4000"
-        - name: VERSION
-          value: "docker"
-        - name: UMASK_SET
-          value: "022"
-        - name: PLEX_CLAIM
-          valueFrom:
-            secretKeyRef:
-              name: plex-claim-token
-              key: PLEX_CLAIM
-        - name: TZ
-          value: "Canada/Pacific"
+        - name: plex-server
+          image: plexinc/pms-docker:1.41.6.9685-d301f511a
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 32400
+          livenessProbe:
+            tcpSocket:
+              port: 32400
+            initialDelaySeconds: 60
+            periodSeconds: 5
+          volumeMounts:
+            - mountPath: /config
+              name: configs
+              subPath: config
+            - mountPath: /media/movies
+              name: media
+              subPath: movies
+            - mountPath: /media/shows
+              name: media
+              subPath: shows
+            - mountPath: /transcode
+              name: transcode
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities: {}
+            privileged: false
+            readOnlyRootFilesystem: false
+            runAsNonRoot: false
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "4000"
+            - name: VERSION
+              value: "docker"
+            - name: UMASK_SET
+              value: "022"
+            - name: PLEX_CLAIM
+              valueFrom:
+                secretKeyRef:
+                  name: plex-claim-token
+                  key: PLEX_CLAIM
+            - name: TZ
+              value: "Canada/Pacific"
