@@ -59,17 +59,30 @@ metadata:
   namespace: plex-ns
   annotations:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-redirect-from: https://$host
+    nginx.ingress.kubernetes.io/proxy-redirect-to: /
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
   ingressClassName: "nginx"
   tls:
     - hosts:
+        - plex.kryoseu.com
         - radarr.kryoseu.com
         - sonarr.kryoseu.com
         - deluge.kryoseu.com
         - prowlarr.kryoseu.com
       secretName: plex-arr-tls
   rules:
+    - host: plex.kryoseu.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: plex
+                port:
+                  number: 32400
     - host: sonarr.kryoseu.com
       http:
         paths:
