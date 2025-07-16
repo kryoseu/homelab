@@ -25,3 +25,21 @@ k get wireguardpeer -n wireguard kryoseu --template={{.status.config}} | bash
 sudo pacman -S
 qrencode -t png -o wireguard-client-qr.png -r wireguard-client.conf
 ```
+## Extra: EC2 setup
+For EC2 we need to exempt SSH traffic from routing through the tunnel. Example config:
+
+```
+[Interface]
+PrivateKey = <private-key>
+Address = 10.8.0.3
+DNS = 10.96.0.10, wireguard.svc.cluster.local
+MTU = 1380
+
+PostUp = ip rule add from <ec2-private-ip>/32 table main
+PostDown = ip rule delete from <ec2-private-ip>/32 table main
+
+[Peer]
+PublicKey = <private-key>
+AllowedIPs = 0.0.0.0/0
+Endpoint = <public-ip>:30836
+```
