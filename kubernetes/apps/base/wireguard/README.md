@@ -9,11 +9,19 @@ Worked around it by changing the service to NodePort.
 
 # Client Installation
 
+## Getting private key of peer:
 ```
-k get wireguardpeer kryoseu --template={{.status.config}} | bash
+k get secret kryoseu-peer -n wireguard -o jsonpath='{.data.privateKey}' | base64 -d
+```
 
+## Getting config of peer:
+
+```
+k get wireguardpeer -n wireguard kryoseu --template={{.status.config}} | bash
+```
+
+## Extra: Generating QR code for a config:
+```
 sudo pacman -S
 qrencode -t png -o wireguard-client-qr.png -r wireguard-client.conf
 ```
-
-
