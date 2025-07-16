@@ -628,7 +628,7 @@ spec:
   wireguardRef: "wireguard-vpn"
 ---
 apiVersion: vpn.wireguard-operator.io/v1alpha1
-kinKUBECONFIG=~/kubeconfig kubectl get nodesd: WireguardPeer
+kind: WireguardPeer
 metadata:
   name: kryoseu-ec2
   namespace: wireguard
