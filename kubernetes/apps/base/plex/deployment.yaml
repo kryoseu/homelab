@@ -8,15 +8,19 @@ metadata:
 apiVersion: v1
 kind: Service
 metadata:
+  annotations:
+    metallb.universe.tf/address-pool: plex-production
   name: plex
   namespace: plex-ns
 spec:
-  selector:
-    name: plex-server
   ports:
     - protocol: TCP
       port: 32400
       targetPort: 32400
+  selector:
+    name: plex-server
+  sessionAffinity: None
+  type: LoadBalancer
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -75,7 +79,7 @@ spec:
             sizeLimit: 10Gi
       containers:
         - name: plex-server
-          image: plexinc/pms-docker:1.41.6.9685-d301f511a
+          image: plexinc/pms-docker:1.41.9.9961-46083195d
           imagePullPolicy: Always
           ports:
             - containerPort: 32400
