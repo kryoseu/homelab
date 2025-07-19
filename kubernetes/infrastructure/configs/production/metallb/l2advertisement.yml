@@ -5,7 +5,7 @@ metadata:
   namespace: metallb-system
 spec:
   ipAddressPools:
+    - postgres-production
     - plex-production
     - apps-ext-production
     - pihole-production
-
