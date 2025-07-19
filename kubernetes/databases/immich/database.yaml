@@ -1,0 +1,31 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: immich-db-production
+spec:
+  description: Postgres cluster for the immich app application
+  imageName: quay.io/enterprisedb/postgresql:16.1
+  instances: 3
+
+  inheritedMetadata:
+    labels:
+      app: immich-database
+      policy-type: "database"
+
+  storage:
+    size: 5Gi
+
+  managed:
+    services:
+      disabledDefaultServices:
+        - ro
+        - r
+      additional:
+        - selectorType: rw
+          serviceTemplate:
+            metadata:
+              name: immich-db-lb
+              annotations:
+                metallb.universe.tf/address-pool: postgres-production
+            spec:
+              type: LoadBalancer
