@@ -53,9 +53,10 @@ spec:
               value: "--max-old-space-size=4096"
           imagePullPolicy: IfNotPresent
           volumeMounts:
-          - name: rocketchat-attachments-volume
-            mountPath: /app/uploads
+            - name: rocketchat-attachments-volume
+              mountPath: /app/uploads
+              subpath: rocketchat-attachments
       volumes:
-          - name: rocketchat-attachments-volume
-            persistentVolumeClaim:
-              claimName: rocketchat-attachments
+        - name: rocketchat-attachments-volume
+          persistentVolumeClaim:
+            claimName: rocketchat-attachments
