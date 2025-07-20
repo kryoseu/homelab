@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nfs-provisioner-rocketchat
+  name: nfs-provisioner
   labels:
-    app: nfs-provisioner-rocketchat
+    app: nfs-provisioner
   namespace: home-apps
 spec:
   replicas: 1
@@ -11,18 +11,18 @@ spec:
     type: Recreate
   selector:
     matchLabels:
-      app: nfs-provisioner-rocketchat
+      app: nfs-provisioner
   template:
     metadata:
       labels:
-        app: nfs-provisioner-rocketchat
+        app: nfs-provisioner
     spec:
       serviceAccountName: nfs-provisioner
       containers:
         - name: nfs-provisioner-rocketchat
           image: registry.k8s.io/sig-storage/nfs-subdir-external-provisioner:v4.0.2
           volumeMounts:
-            - name: nfs-rocketchat-attachments-root
+            - name: nfs-home-apps-root
               mountPath: /persistentvolumes
           env:
             - name: PROVISIONER_NAME
@@ -30,12 +30,12 @@ spec:
             - name: NFS_SERVER
               value: server01.kryoseu.com
             - name: NFS_PATH
-              value: /tank/rocketchat-attachments
+              value: /tank/home-apps
       volumes:
-        - name: nfs-rocketchat-attachments-root
+        - name: nfs-home-apps-root
           nfs:
             server: server01.kryoseu.com
-            path: /tank/rocketchat-attachments
+            path: /tank/home-apps
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -48,7 +48,7 @@ spec:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
   nfs:
-    path: /tank/rocketchat-attachments
+    path: /tank/home-apps
     server: server01.kryoseu.com
   storageClassName: "nfs-storage"
 ---
