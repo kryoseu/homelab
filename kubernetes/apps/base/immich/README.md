@@ -15,4 +15,5 @@ For `Redis` I'm simply using the standalone option created during Immich's insta
 
 For the Library I use an NFS share as PVC.
 
-Then deploy using Helm as per [these instructions](https://github.com/immich-app/immich-charts/blob/main/README.md).
+~~Then deploy using Helm as per [these instructions](https://github.com/immich-app/immich-charts/blob/main/README.md).~~
+I've created a `HelmRelease` with the values from `values.yaml` and am deploying it with FluxCD.
