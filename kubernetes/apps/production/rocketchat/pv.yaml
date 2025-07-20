@@ -40,21 +40,6 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: rocketchat-attachments-pv
-spec:
-  capacity:
-    storage: 200Gi
-  accessModes:
-    - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
-  nfs:
-    path: /tank/home-apps
-    server: server01.kryoseu.com
-  storageClassName: "nfs-storage"
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
   name: rocketmongo-pv-0
 spec:
   capacity:

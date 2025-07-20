@@ -55,7 +55,6 @@ spec:
           volumeMounts:
             - name: rocketchat-attachments-volume
               mountPath: /app/uploads
-              subpath: rocketchat-attachments
       volumes:
         - name: rocketchat-attachments-volume
           persistentVolumeClaim:
