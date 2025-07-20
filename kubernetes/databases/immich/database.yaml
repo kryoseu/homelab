@@ -4,8 +4,12 @@ metadata:
   name: immich-postgres
 spec:
   description: Postgres cluster for the immich app application
-  imageName: quay.io/enterprisedb/postgresql:16.1
+  imageName: ghcr.io/tensorchord/cloudnative-pgvecto.rs:16.5-v0.3.0@sha256:be3f025d79aa1b747817f478e07e71be43236e14d00d8a9eb3914146245035ba
   instances: 3
+
+  postgresql:
+    shared_preload_libraries:
+      - "vectors.so"
 
   inheritedMetadata:
     labels:
@@ -16,16 +20,18 @@ spec:
     size: 5Gi
 
   managed:
-    services:
-      disabledDefaultServices:
-        - ro
-        - r
-      additional:
-        - selectorType: rw
-          serviceTemplate:
-            metadata:
-              name: immich-db-lb
-              annotations:
-                metallb.universe.tf/address-pool: postgres-production
-            spec:
-              type: LoadBalancer
+    roles:
+      - name: immich
+        superuser: true
+        login: true
+
+  bootstrap:
+    initdb:
+      database: immich
+      owner: immich
+      secret:
+        name: immich-db-user
+      postInitSQL:
+        - CREATE EXTENSION IF NOT EXISTS "vectors";
+        - CREATE EXTENSION IF NOT EXISTS "cube" CASCADE;
+        - CREATE EXTENSION IF NOT EXISTS "earthdistance" CASCADE;
