@@ -3,7 +3,19 @@
   "kubernetes": {
     "fileMatch": [
       "\\.yaml$",
-      "/kubernetes/.+\\.yaml$/"
+      "kubernetes/.+\\.yaml$"
     ]
-  }
+  },
+  "regexManagers": [
+    {
+      "fileMatch": [
+        "kubernetes/apps/base/immich/values.yaml"
+      ],
+      "matchStrings": [
+        "tag:\\s*(?<currentValue>v?\\d+\\.\\d+\\.\\d+)"
+      ],
+      "depNameTemplate": "ghcr.io/immich-app/immich-server",
+      "datasourceTemplate": "docker"
+    }
+  ]
 }
