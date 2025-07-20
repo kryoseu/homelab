@@ -9,7 +9,7 @@
   "regexManagers": [
     {
       "fileMatch": [
-        "kubernetes/apps/base/immich/values.yaml"
+        "kubernetes/apps/base/immich/release.yaml"
       ],
       "matchStrings": [
         "tag:\\s*(?<currentValue>v?\\d+\\.\\d+\\.\\d+)"
