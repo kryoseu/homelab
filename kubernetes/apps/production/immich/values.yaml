@@ -16,12 +16,6 @@ env:
   DB_DATABASE_NAME: immich
   IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
 
-# secretEnv:
-#   DB_PASSWORD:
-#     secretKeyRef:
-#       name: immich-db-creds
-#       key: password
-
 image:
   tag: v1.135.3
 
@@ -60,20 +54,6 @@ server:
   image:
     repository: ghcr.io/immich-app/immich-server
     pullPolicy: IfNotPresent
-  ingress:
-    main:
-      enabled: true
-      annotations:
-        # proxy-body-size is set to 0 to remove the body limit on file uploads
-        nginx.ingress.kubernetes.io/proxy-body-size: "0"
-      hosts:
-        - host: immich.kryoseu.com
-          paths:
-            - path: "/"
-      tls:
-        - hosts:
-            - immich.kryoseu.com
-          secretName: immich-tls
 
 machine-learning:
   enabled: true
