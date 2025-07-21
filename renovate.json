@@ -18,12 +18,11 @@
       "datasourceTemplate": "docker"
     },
     {
-      "fileMatch": [
-        "kubernetes/databases/immich/database.yaml"
-      ],
+      "fileMatch": ["kubernetes/databases/immich/database.yaml"],
       "matchStrings": [
-        "imageName:\\s*ghcr\\.io/tensorchord/cloudnative-pgvecto\\.rs:(?<currentValue>[^\\s@]+)@sha256:(?<currentDigest>[a-f0-9]{64})"
+        "^(\\s*imageName:\\s*)ghcr\\.io/tensorchord/cloudnative-pgvecto\\.rs:(?<currentValue>[^\\s@]+)@sha256:(?<currentDigest>[a-f0-9]{64})$"
       ],
+      "replaceString": "$1ghcr.io/tensorchord/cloudnative-pgvecto.rs:{{{newValue}}}@sha256:{{{newDigest}}}",
       "depNameTemplate": "ghcr.io/tensorchord/cloudnative-pgvecto.rs",
       "datasourceTemplate": "docker",
       "versioningTemplate": "docker"
