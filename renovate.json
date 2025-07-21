@@ -20,7 +20,7 @@
     {
       "fileMatch": ["kubernetes/databases/immich/database.yaml"],
       "matchStrings": [
-        "^(?<depName>ghcr\\.io/tensorchord/cloudnative-pgvecto\\.rs):(?<currentValue>[^\\s@]+)@sha256:(?<currentDigest>[a-f0-9]{64})$"
+        "^(?:\\s*imageName:\\s*)?(?<depName>ghcr\\.io/tensorchord/cloudnative-pgvecto\\.rs):(?<currentValue>[^\\s@]+)@sha256:(?<currentDigest>[a-f0-9]{64})$"
       ],
       "datasourceTemplate": "docker",
       "versioningTemplate": "docker"
