@@ -14,16 +14,6 @@
       ],
       "depNameTemplate": "ghcr.io/immich-app/immich-server",
       "datasourceTemplate": "docker"
-    },
-    {
-      "fileMatch": ["kubernetes/databases/immich/database.yaml"],
-      "matchStrings": [
-        "imageName:\\s+(?<depName>ghcr\\.io/tensorchord/cloudnative-pgvecto\\.rs):(?<currentValue>\\d+\\.\\d+-v\\d+\\.\\d+\\.\\d+)(@sha256:[a-f0-9]{64})?"
-      ],
-      "datasourceTemplate": "docker",
-      "versioningTemplate": "regex:^(?<compatibility>\\d+\\.\\d+-)?v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$",
-      "extractVersionTemplate": "^\\d+\\.\\d+-v(?<version>\\d+\\.\\d+\\.\\d+)$",
-      "depNameTemplate": "ghcr.io/tensorchord/cloudnative-pgvecto.rs"
     }
   ]
 }
