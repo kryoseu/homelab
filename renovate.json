@@ -22,7 +22,8 @@
       ],
       "datasourceTemplate": "docker",
       "versioningTemplate": "regex:^(?<compatibility>\\d+\\.\\d+-)?v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$",
-      "extractVersionTemplate": "^\\d+\\.\\d+-v(?<version>\\d+\\.\\d+\\.\\d+)$"
+      "extractVersionTemplate": "^\\d+\\.\\d+-v(?<version>\\d+\\.\\d+\\.\\d+)$",
+      "depNameTemplate": "ghcr.io/tensorchord/cloudnative-pgvecto.rs"
     }
   ]
 }
