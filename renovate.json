@@ -23,7 +23,8 @@
         "^\\s*imageName:\\s+(?<depName>ghcr\\.io/tensorchord/cloudnative-pgvecto\\.rs):(?<currentValue>[^\\s@]+)(@sha256:[a-f0-9]{64})?\\s*$"
       ],
       "datasourceTemplate": "docker",
-      "versioningTemplate": "docker"
+      "versioningTemplate": "docker",
+      "extractVersionTemplate": "^\\d+\\.\\d+-v(?<version>\\d+\\.\\d+\\.\\d+)$"
     }
   ]
 }
