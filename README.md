@@ -18,7 +18,7 @@ Initially, I didn’t plan to use Kubernetes for my homelab. My original idea wa
 
 I didn’t want to end up in a mess of snowflake VMs and manual fixes. Instead, I wanted something reliable and as redundant as possible—despite being limited to a single physical server. Kubernetes checked all those boxes and, as a bonus, gave me the opportunity to learn something new.
 
-That brings me to the current setup. While there's still plenty of room for improvement—especially around network isolation, security, and backups—I'm really happy with how it's coming together. And I'm continuing to improve it every day!
+That brings me to the current setup. While there's still plenty of room for improvement—especially around monitoring, network isolation, security, and backups—I'm really happy with how it's coming together. And I'm continuing to improve it every day!
 
 ## 🧑‍🎨 High-level design
 <img width="4107" height="3024" alt="homelab-nonetwork-dark" src="https://github.com/user-attachments/assets/d66f7f14-afa5-494f-b5b9-de0c502f771a" />
