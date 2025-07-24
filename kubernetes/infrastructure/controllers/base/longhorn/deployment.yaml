@@ -5212,7 +5212,7 @@ spec:
     spec:
       containers:
         - name: longhorn-manager
-          image: longhornio/longhorn-manager:v1.9.0
+          image: longhornio/longhorn-manager:v1.9.1
           imagePullPolicy: IfNotPresent
           securityContext:
             privileged: true
@@ -5339,7 +5339,7 @@ spec:
     spec:
       initContainers:
         - name: wait-longhorn-manager
-          image: longhornio/longhorn-manager:v1.9.0
+          image: longhornio/longhorn-manager:v1.9.1
           command:
             [
               "sh",
@@ -5348,7 +5348,7 @@ spec:
             ]
       containers:
         - name: longhorn-driver-deployer
-          image: longhornio/longhorn-manager:v1.9.0
+          image: longhornio/longhorn-manager:v1.9.1
           imagePullPolicy: IfNotPresent
           command:
             - longhorn-manager
