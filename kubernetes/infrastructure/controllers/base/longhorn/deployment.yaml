@@ -5285,7 +5285,7 @@ spec:
                   fieldPath: spec.nodeName
         - name: pre-pull-share-manager-image
           imagePullPolicy: IfNotPresent
-          image: longhornio/longhorn-share-manager:v1.9.1
+          image: longhornio/longhorn-share-manager:v1.9.0
           command:
             ["sh", "-c", "echo share-manager image pulled && sleep infinity"]
       volumes:
