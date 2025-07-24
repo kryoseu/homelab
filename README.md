@@ -1,12 +1,12 @@
 <div align="center">
- <h1>🚧 Home Operations repository</h1>
+ <h1>💾 Home Operations repository</h1>
  <img width="25" alt="image" src="https://github.com/user-attachments/assets/d5e0dfd9-6861-40b1-82d9-df38601817a8"/>
  <i>Powered by Talos Linux and Kubernetes </i>
  <img width="25" alt="k8s" src="https://github.com/user-attachments/assets/f761962e-23d2-4164-84e7-2c2ea4e21995" />
 </i>
 </div>
 
-## 🔨 Overview
+## 🤖 Overview
 This is my home infrastructure repository.
 
 Everything runs on a single (somewhat beefy) Proxmox server, which hosts four VMs running Talos Linux. These VMs form my Kubernetes cluster.
