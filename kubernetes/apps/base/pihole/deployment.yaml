@@ -136,7 +136,7 @@ spec:
                   key: password
                   name: pihole-webpassword
           image: pihole/pihole:2025.07.1
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           name: pihole
           ports:
             - containerPort: 80
