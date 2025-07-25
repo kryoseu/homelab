@@ -80,7 +80,7 @@ spec:
       containers:
         - name: plex-server
           image: plexinc/pms-docker:1.41.9.9961-46083195d
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 32400
           livenessProbe:
