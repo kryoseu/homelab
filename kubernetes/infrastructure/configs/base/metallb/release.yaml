@@ -17,4 +17,4 @@ spec:
   releaseName: metallb
   values:
     speaker:
-      ignoreExcludeLB: true
+      ignoreExcludeLB: true # required for running control plane nodes as workers
