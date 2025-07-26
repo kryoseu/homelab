@@ -22,7 +22,7 @@ metadata:
   namespace: home-apps
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: 1Ti
