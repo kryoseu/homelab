@@ -7,6 +7,8 @@ I have only been able to make it work by making the service run within a privile
 In addition, I ran into the same issue described [here](https://github.com/jodevsa/wireguard-operator/issues/148).
 Worked around it by changing the service to NodePort.
 
+If the Flux deployment fails, deploying via the manifest provided on [wireguard-operator](https://github.com/jodevsa/wireguard-operator) should work. 
+
 # Client Installation
 
 ## Getting private key of peer:
