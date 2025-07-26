@@ -17,5 +17,7 @@ spec:
   releaseName: metallb
   values:
     speaker:
-      extraArgs:
-        ignore-exclude-lb: ""
+      args: # Use 'args' instead of 'extraArgs'
+        - --port=7472
+        - --log-level=info
+        - --ignore-exclude-lb
