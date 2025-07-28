@@ -4,3 +4,4 @@ metadata:
   name: wireguard
   labels:
     pod-security.kubernetes.io/enforce: privileged
+    app.kubernetes.io/component: monitoring
