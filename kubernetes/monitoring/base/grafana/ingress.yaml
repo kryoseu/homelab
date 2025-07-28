@@ -21,9 +21,9 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: grafana
+                name: kube-prometheus-stack-grafana
                 port:
-                  number: 3000
+                  number: 80
     - host: prometheus.kryoseu.com
       http:
         paths:
@@ -31,6 +31,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: prometheus-k8s
+                name: kube-prometheus-stack-prometheus
                 port:
                   number: 9090
