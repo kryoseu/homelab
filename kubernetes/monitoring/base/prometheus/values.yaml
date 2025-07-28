@@ -1,0 +1,17 @@
+prometheus:
+  prometheusSpec:
+    # Watch only namespaces with this label
+    podMonitorNamespaceSelector:
+      matchLabels:
+        app.kubernetes.io/component: monitoring
+        
+    # But allow ServiceMonitors from any namespace
+    serviceMonitorNamespaceSelector: {}
+    
+    # Discovery settings
+    podMonitorSelectorNilUsesHelmValues: false
+    probeSelectorNilUsesHelmValues: false
+    ruleSelectorNilUsesHelmValues: false
+    serviceMonitorSelectorNilUsesHelmValues: false
+    
+    ignoreNamespaceSelectors: true

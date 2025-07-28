@@ -14,3 +14,7 @@ spec:
         name: prometheus-community
         namespace: flux-system
       interval: 15m
+
+  valuesFrom:
+      - kind: ConfigMap
+        name: kube-prometheus-stack-values
