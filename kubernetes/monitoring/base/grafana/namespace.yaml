@@ -3,5 +3,6 @@ kind: Namespace
 metadata:
   labels:
     pod-security.kubernetes.io/warn: privileged
+    app.kubernetes.io/component: monitoring
     pod-security.kubernetes.io/warn-version: latest
   name: monitoring
