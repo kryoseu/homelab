@@ -45,3 +45,8 @@ PublicKey = <private-key>
 AllowedIPs = 0.0.0.0/0
 Endpoint = <public-ip>:30836
 ```
+
+## Monitoring
+I have created a Grafana dashboard to display the metrics provided by the Wireguard metrics service. More details [here](https://github.com/kryoseu/homelab/blob/main/kubernetes/monitoring/controllers/base/prometheus/README.md). 
+
+<img width="2849" height="1284" alt="image" src="https://github.com/user-attachments/assets/e4cfee6a-3f09-4438-a586-4d9950d47425" />
