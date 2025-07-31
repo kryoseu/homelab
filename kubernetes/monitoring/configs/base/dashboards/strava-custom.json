@@ -1,0 +1,377 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 35,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "grafana-strava-datasource",
+        "uid": "cetkaubrvh5a8a"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "displayName": "Distance",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "semi-dark-orange",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "lengthm"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 0,
+        "y": 0
+      },
+      "hideTimeOverride": true,
+      "id": 2,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "activityData": "graph",
+          "activityGraph": "pace",
+          "activityStat": "distance",
+          "datasource": {
+            "type": "strava",
+            "uid": "cetkaubrvh5a8a"
+          },
+          "extendedStats": [],
+          "fitToTimeRange": true,
+          "format": "time_series",
+          "interval": "auto",
+          "queryType": "Activities",
+          "refId": "A",
+          "segmentData": "graph",
+          "segmentGraph": "pace",
+          "singleActivityStat": "name",
+          "splitStat": "average_speed"
+        }
+      ],
+      "timeFrom": "1y",
+      "title": "Total Running Distance In a Year",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-strava-datasource",
+        "uid": "cetkaubrvh5a8a"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "displayName": "Distance",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "semi-dark-orange",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "lengthm"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 8,
+        "y": 0
+      },
+      "hideTimeOverride": true,
+      "id": 3,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "activityData": "graph",
+          "activityGraph": "pace",
+          "activityStat": "distance",
+          "datasource": {
+            "type": "strava",
+            "uid": "cetkaubrvh5a8a"
+          },
+          "extendedStats": [],
+          "fitToTimeRange": true,
+          "format": "time_series",
+          "interval": "auto",
+          "queryType": "Activities",
+          "refId": "A",
+          "segmentData": "graph",
+          "segmentGraph": "pace",
+          "singleActivityStat": "name",
+          "splitStat": "average_speed"
+        }
+      ],
+      "timeFrom": "1M",
+      "title": "Total Running Distance In a Month",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-strava-datasource",
+        "uid": "cetkaubrvh5a8a"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "displayName": "Distance",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "semi-dark-orange",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "lengthm"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 16,
+        "y": 0
+      },
+      "hideTimeOverride": true,
+      "id": 4,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "activityData": "graph",
+          "activityGraph": "pace",
+          "activityStat": "distance",
+          "datasource": {
+            "type": "strava",
+            "uid": "cetkaubrvh5a8a"
+          },
+          "extendedStats": [],
+          "fitToTimeRange": true,
+          "format": "time_series",
+          "interval": "auto",
+          "queryType": "Activities",
+          "refId": "A",
+          "segmentData": "graph",
+          "segmentGraph": "pace",
+          "singleActivityStat": "name",
+          "splitStat": "average_speed"
+        }
+      ],
+      "timeFrom": "1w",
+      "title": "Total Running Distance In a Week",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-strava-datasource",
+        "uid": "cetkaubrvh5a8a"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 5
+      },
+      "id": 1,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.1.0",
+      "targets": [
+        {
+          "activityData": "graph",
+          "activityGraph": "pace",
+          "activityStat": "distance",
+          "datasource": {
+            "type": "strava",
+            "uid": "cetkaubrvh5a8a"
+          },
+          "extendedStats": [],
+          "fitToTimeRange": true,
+          "format": "time_series",
+          "interval": "auto",
+          "queryType": "Activities",
+          "refId": "A",
+          "segmentData": "graph",
+          "segmentGraph": "pace",
+          "singleActivityStat": "name",
+          "splitStat": "average_speed"
+        }
+      ],
+      "title": "Distance Ran Per Day",
+      "type": "timeseries"
+    }
+  ],
+  "preload": false,
+  "refresh": "",
+  "schemaVersion": 41,
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-90d",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Running / Strava Custom",
+  "uid": "b8837de9-84a3-472a-9c44-ad14d9aac4ea",
+  "version": 10
+}
