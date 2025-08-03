@@ -6,7 +6,7 @@ kubeScheduler:
   service:
     selector:
       k8s-app: kube-scheduler
-      
+
 prometheus:
   prometheusSpec:
     # Watch only namespaces with this label
@@ -26,6 +26,11 @@ prometheus:
     ignoreNamespaceSelectors: true
 
 grafana:
+  additionalDataSources:
+    - name: Loki
+      type: loki
+      url: http://loki.monitoring:3100
+
   persistence:
     enabled: true
     type: pvc
