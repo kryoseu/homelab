@@ -81,7 +81,6 @@ metadata:
   namespace: plex-ns
   annotations:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/proxy-redirect-from: https://$host
     nginx.ingress.kubernetes.io/proxy-redirect-to: /
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
