@@ -44,3 +44,5 @@ spec:
         enabled: true
         grafanaAgent:
           installOperator: false
+    limits_config:
+      max_label_names_per_series: 20
