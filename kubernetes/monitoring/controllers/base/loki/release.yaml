@@ -31,6 +31,8 @@ spec:
               period: 24h
             object_store: filesystem
             schema: v13
+      limits_config:
+        max_label_names_per_series: 20
     singleBinary:
       replicas: 1
     read:
@@ -44,5 +46,3 @@ spec:
         enabled: true
         grafanaAgent:
           installOperator: false
-    limits_config:
-      max_label_names_per_series: 20
