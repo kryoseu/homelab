@@ -15,5 +15,14 @@
       "depNameTemplate": "ghcr.io/immich-app/immich-server",
       "datasourceTemplate": "docker"
     }
+  ],
+  "packageRules": [
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["plexinc/pms-docker"],
+      "enabled": true,
+      "prCreation": "immediate",
+      "commitMessageSuffix": "[plex]"
+    }
   ]
 }
