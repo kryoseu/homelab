@@ -20,9 +20,8 @@
       "matchStrings": [
         "image:\\s*plexinc/pms-docker:(?<currentValue>[^\\s]+)"
       ],
-      "depName": "plexinc/pms-docker",
-      "datasource": "docker",
-      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)"
+      "depNameTemplate": "plexinc/pms-docker",
+      "datasourceTemplate": "docker",
     }
   ],
   "packageRules": [
