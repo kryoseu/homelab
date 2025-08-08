@@ -16,7 +16,7 @@
       "datasourceTemplate": "docker"
     },
     {
-      "fileMatch": ["**/plex/*.yaml"],
+      "fileMatch": ["(^|/)plex/.*\\.yaml$"],
       "matchStrings": [
         "image:\\s*plexinc/pms-docker:(?<currentValue>[^\\s]+)"
       ],
