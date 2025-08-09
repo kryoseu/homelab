@@ -24,14 +24,5 @@
       "datasourceTemplate": "docker",
       "versioningTemplate": "loose"
     }
-  ],
-  "packageRules": [
-    {
-      "matchDatasources": ["docker"],
-      "matchPackageNames": ["plexinc/pms-docker"],
-      "enabled": true,
-      "prCreation": "immediate",
-      "commitMessageSuffix": "[plex]"
-    }
   ]
 }
