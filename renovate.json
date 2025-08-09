@@ -21,7 +21,8 @@
         "image:\\s*plexinc/pms-docker:(?<currentValue>[^\\s]+)"
       ],
       "depNameTemplate": "plexinc/pms-docker",
-      "datasourceTemplate": "docker"
+      "datasourceTemplate": "docker",
+      "versioningTemplate": "loose"
     }
   ],
   "packageRules": [
