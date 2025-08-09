@@ -79,7 +79,7 @@ spec:
             sizeLimit: 10Gi
       containers:
         - name: plex-server
-          image: plexinc/pms-docker:1.41.9.9961-46083195d
+          image: plexinc/pms-docker:1.42.1.10054-f333bdaa8
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 32400
