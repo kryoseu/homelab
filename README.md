@@ -21,7 +21,8 @@ I didn’t want to end up in a mess of snowflake VMs and manual fixes. Instead, 
 That brings me to the current setup. While there's still plenty of room for improvement—especially around monitoring, network isolation, security, and backups—I'm really happy with how it's coming together. And I'm continuing to improve it every day!
 
 ## 🧑‍🎨 High-level design
-<img width="4107" height="3024" alt="homelab-nonetwork-dark" src="https://github.com/user-attachments/assets/d66f7f14-afa5-494f-b5b9-de0c502f771a" />
+
+<img width="4107" height="3025" alt="homelab-dark" src="https://github.com/user-attachments/assets/973be3e7-f28e-4bb5-958c-750e18d7aa4e" />
 
 Diagram style idea stolen from: [@timtorChen/homelab](https://github.com/timtorChen/homelab)
 
