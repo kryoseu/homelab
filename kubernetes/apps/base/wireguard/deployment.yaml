@@ -623,6 +623,14 @@ spec:
 apiVersion: vpn.wireguard-operator.io/v1alpha1
 kind: WireguardPeer
 metadata:
+  name: kryoseu-pc
+  namespace: wireguard
+spec:
+  wireguardRef: "wireguard-vpn"
+---
+apiVersion: vpn.wireguard-operator.io/v1alpha1
+kind: WireguardPeer
+metadata:
   name: kryoseu-ec2
   namespace: wireguard
 spec:
