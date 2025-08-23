@@ -48,7 +48,7 @@ spec:
             - name: flaresolverr
               containerPort: 8191
         - name: prowlarr
-          image: linuxserver/prowlarr:1.37.0
+          image: linuxserver/prowlarr:2.0.5
           imagePullPolicy: Always
           ports:
             - name: prowlarr
