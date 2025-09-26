@@ -1,11 +1,18 @@
 kubeControllerManager:
   service:
-    selector:
-      k8s-app: kube-controller-manager
+    port: 10257
+    targetPort: 10257
+  serviceMonitor:
+    https: 'true'
+    insecureSkipVerify: 'true'
+    
 kubeScheduler:
   service:
-    selector:
-      k8s-app: kube-scheduler
+    port: 10259
+    targetPort: 10259
+  serviceMonitor:
+    https: 'true'
+    insecureSkipVerify: 'true'
 
 prometheus:
   prometheusSpec:
