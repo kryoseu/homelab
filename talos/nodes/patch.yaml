@@ -15,3 +15,18 @@ machine:
           - bind
           - rshared
           - rw
+cluster:
+  controllerManager:
+    extraArgs:
+      bind-address: 0.0.0.0
+  scheduler:
+    extraArgs:
+      bind-address: 0.0.0.0
+  proxy:
+    extraArgs:
+      metrics-bind-address: 0.0.0.0:10249
+  etcd:
+    extraArgs:
+      listen-metrics-urls: http://0.0.0.0:2381
+
+
