@@ -13,7 +13,15 @@ kubeScheduler:
   serviceMonitor:
     https: 'true'
     insecureSkipVerify: 'true'
-
+    
+kubeProxy:
+  service:
+    port: 10249
+    targetPort: 10249
+  serviceMonitor:
+    https: 'true'
+    insecureSkipVerify: 'true'
+    
 prometheus:
   prometheusSpec:
     # Watch only namespaces with this label
