@@ -170,29 +170,3 @@ spec:
                 name: portainer
                 port:
                   number: 9000
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: nginx-ingress
-  namespace: longhorn-system
-  annotations:
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
-spec:
-  ingressClassName: "nginx"
-  tls:
-    - hosts:
-        - longhorn.kryoseu.com
-      secretName: longhorn-tls
-  rules:
-    - host: longhorn.kryoseu.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: longhorn-frontend
-                port:
-                  number: 80
