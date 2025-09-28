@@ -22,3 +22,5 @@ talosctl patch machineconfig --nodes <node_ip> --patch @machine-config-patch.yam
 
 5. [Install](https://longhorn.io/docs/1.9.0/deploy/install/install-with-kubectl/) longhorn.
 
+6. Longhorn UI exposed via an ingress Nginx with basic auth configured (see [this](https://github.com/longhorn/longhorn/blob/v0.8.0/docs/longhorn-ingress.md)).
+
