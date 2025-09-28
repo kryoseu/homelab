@@ -3,6 +3,7 @@ kubeControllerManager:
     port: 10257
     targetPort: 10257
   serviceMonitor:
+    selfMonitor: true
     https: 'true'
     insecureSkipVerify: 'true'
     
@@ -11,6 +12,7 @@ kubeScheduler:
     port: 10259
     targetPort: 10259
   serviceMonitor:
+    selfMonitor: true
     https: 'true'
     insecureSkipVerify: 'true'
     
@@ -19,8 +21,8 @@ kubeProxy:
     port: 10249
     targetPort: 10249
   serviceMonitor:
-    https: 'false'
-    insecureSkipVerify: 'false'
+    selfMonitor: true
+    scheme: 'http'
     
 prometheus:
   prometheusSpec:
