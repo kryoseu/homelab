@@ -23,6 +23,11 @@ kubeProxy:
   serviceMonitor:
     selfMonitor: true
     scheme: 'http'
+
+kubeEtcd:
+  service:
+    port: 2381
+    targetPort: 2381
     
 prometheus:
   prometheusSpec:
