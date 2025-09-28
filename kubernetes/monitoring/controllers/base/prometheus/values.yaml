@@ -19,8 +19,8 @@ kubeProxy:
     port: 10249
     targetPort: 10249
   serviceMonitor:
-    https: 'true'
-    insecureSkipVerify: 'true'
+    https: 'false'
+    insecureSkipVerify: 'false'
     
 prometheus:
   prometheusSpec:
