@@ -26,6 +26,12 @@ That brings me to the current setup. While there's still plenty of room for impr
 
 Diagram style idea stolen from: [@timtorChen/homelab](https://github.com/timtorChen/homelab)
 
+## ☕ Homepage
+<i>Powered by [Homepage](https://gethomepage.dev/)</i>
+
+<img width="1804" height="1212" alt="image" src="https://github.com/user-attachments/assets/f0f17ca4-2a4c-447e-8201-1bad2fc46387" />
+
+
 ## References and Credits
 This project wouldn’t have come together without the help and inspiration from the homelab community. Special thanks to:
 - [@mischavandenburg](https://www.youtube.com/@mischavandenburg) YouTube channel – for excellent homelab content and Kubernetes tutorials.
