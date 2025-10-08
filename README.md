@@ -29,7 +29,7 @@ Diagram style idea stolen from: [@timtorChen/homelab](https://github.com/timtorC
 ## ☕ Homepage
 <i>Powered by [Homepage](https://gethomepage.dev/)</i>
 
-<img width="1804" height="1212" alt="image" src="https://github.com/user-attachments/assets/f0f17ca4-2a4c-447e-8201-1bad2fc46387" />
+<img width="1761" height="1208" alt="image" src="https://github.com/user-attachments/assets/e0ce7d24-b8e7-4a92-ad5e-d9aa2414f3c6" />
 
 
 ## References and Credits
