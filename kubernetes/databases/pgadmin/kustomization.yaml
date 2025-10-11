@@ -6,6 +6,6 @@ resources:
   - configmap.yaml
   - ingress.yaml
   - secrets.yaml
-  - networking.yaml
+  - service.yaml
   - storage.yaml
   - deployment.yaml
