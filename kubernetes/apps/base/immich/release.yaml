@@ -20,10 +20,10 @@ spec:
         containers:
           main:
             env:
-              REDIS_HOSTNAME: '{{ printf "%s-valkey" .Release.Name }}'
+              REDIS_HOSTNAME: immich-valkey.home-apps.svc.cluster.local
 
     env:
-      REDIS_HOSTNAME: '{{ printf "%s-valkey" .Release.Name }}'
+      REDIS_HOSTNAME: immich-valkey.home-apps.svc.cluster.local
       DB_HOSTNAME: immich-postgres-rw.home-apps.svc.cluster.local
       DB_USERNAME: immich
       DB_PASSWORD:
