@@ -33,7 +33,7 @@ spec:
             - configMapRef:
                 name: pgadmin-configmap
             - secretRef:
-                name: pgadmin-container-env
+                name: pgadmin-creds
 
           volumeMounts:
             - mountPath: /var/lib/pgadmin
