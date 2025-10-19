@@ -113,6 +113,7 @@ data:
               - metrics:
                   whoops_manual_auth_errors:
                     type: Counter
+                    action: inc
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
