@@ -109,13 +109,12 @@ data:
             selector: '{app="whoops"}'
             stages:
               - regex:
-                  # Add a capture group here
-                  expression: '(Manual authorization required)'
+                  expression: '(?P<msg>Manual authorization required)'
               - metrics:
                   whoops_manual_auth_errors:
                     type: counter
                     action: inc
-                    source: 1
+                    source: msg
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
