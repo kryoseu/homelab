@@ -112,7 +112,7 @@ data:
                   expression: 'Manual authorization required'
               - metrics:
                   whoops_manual_auth_errors:
-                    type: Counter
+                    type: counter
                     action: inc
 ---
 apiVersion: rbac.authorization.k8s.io/v1
