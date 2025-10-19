@@ -98,23 +98,6 @@ data:
             - __meta_kubernetes_pod_uid
             - __meta_kubernetes_pod_container_name
           target_label: __path__
-    - job_name: whoops-error-count
-      static_configs:
-        - targets:
-            - localhost
-          labels:
-            app: whoops
-      pipeline_stages:
-        - match:
-            selector: '{app="whoops"}'
-            stages:
-              - regex:
-                  expression: '(?P<msg>Manual authorization required)'
-              - metrics:
-                  whoops_manual_auth_errors:
-                    type: counter
-                    action: inc
-                    source: msg
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
