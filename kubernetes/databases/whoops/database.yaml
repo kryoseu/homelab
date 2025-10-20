@@ -9,6 +9,18 @@ spec:
   storage:
     size: 1Gi
 
+  externalClusters:
+    - name: clusterBackup
+      barmanObjectStore:
+        destinationPath: "s3://kryoseu-whoops/postgres"
+        s3Credentials:
+          accessKeyId:
+            name: aws-creds-envs
+            key: ACCESS_KEY_ID
+          secretAccessKey:
+            name: aws-creds-envs
+            key: ACCESS_SECRET_KEY
+
   backup:
     barmanObjectStore:
       destinationPath: "s3://kryoseu-whoops/postgres"
@@ -26,7 +38,8 @@ spec:
     retentionPolicy: 7d
 
   bootstrap:
-    initdb:
+    recovery:
+      source: clusterBackup
       database: whoop_data
       owner: whoops
       secret:
