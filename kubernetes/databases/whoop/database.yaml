@@ -1,0 +1,44 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: whoops-postgres
+  namespace: whoops
+spec:
+  instances: 3
+
+  storage:
+    size: 1Gi
+
+  backup:
+    barmanObjectStore:
+      destinationPath: "s3://kryoseu-whoops/postgres"
+      s3Credentials:
+        accessKeyId:
+          name: aws-creds-envs
+          key: ACCESS_KEY_ID
+        secretAccessKey:
+          name: aws-creds-envs
+          key: ACCESS_SECRET_KEY
+      wal:
+        compression: gzip
+      data:
+        compression: gzip
+    retentionPolicy: 7d
+
+  bootstrap:
+    initdb:
+      database: whoop_data
+      owner: whoops
+      secret:
+        name: whoops-db-creds
+
+  # (optional) For development
+  # managed:
+  #   services:
+  #     additional:
+  #       - selectorType: rw
+  #         serviceTemplate:
+  #           metadata:
+  #             name: "whoop-db"
+  #           spec:
+  #             type: LoadBalancer

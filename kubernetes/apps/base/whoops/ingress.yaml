@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+  name: whoops
+  namespace: whoops
+spec:
+  ingressClassName: "nginx"
+  rules:
+    - host: whoops.kryoseu.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: whoops
+                port:
+                  number: 6000
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - whoops.kryoseu.com
+      secretName: whoops-tls-prod
