@@ -30,7 +30,7 @@ spec:
       database: whoop_data
       owner: whoops
       secret:
-        name: whoops-db-creds
+        name: whoops-creds
 
   # (optional) For development
   # managed:
