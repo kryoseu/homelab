@@ -46,12 +46,12 @@ spec:
         name: whoops-creds
 
   # (optional) For development
-  # managed:
-  #   services:
-  #     additional:
-  #       - selectorType: rw
-  #         serviceTemplate:
-  #           metadata:
-  #             name: "whoop-db"
-  #           spec:
-  #             type: LoadBalancer
+  managed:
+    services:
+      additional:
+        - selectorType: rw
+          serviceTemplate:
+            metadata:
+              name: "whoop-db"
+            spec:
+              type: LoadBalancer
