@@ -3,3 +3,4 @@ kind: Kustomization
 namespace: whoops
 resources:
   - database.yaml
+  - scheduled_backup.yaml
