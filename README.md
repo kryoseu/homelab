@@ -31,10 +31,5 @@ Diagram style idea stolen from: [@timtorChen/homelab](https://github.com/timtorC
 
 <img width="1761" height="1208" alt="image" src="https://github.com/user-attachments/assets/e0ce7d24-b8e7-4a92-ad5e-d9aa2414f3c6" />
 
-
 ## References and Credits
-This project wouldn’t have come together without the help and inspiration from the homelab community. Special thanks to:
 - [@mischavandenburg](https://www.youtube.com/@mischavandenburg) YouTube channel – for excellent homelab content and Kubernetes tutorials.
-- [@mischavandenburg](https://github.com/mischavandenburg) GitHub repo.
- 
-His content helped shape many of the decisions made in this repository.
