@@ -49,7 +49,7 @@ spec:
   managed:
     services:
       additional:
-        - selectorType: rw
+        - selectorType: ro
           serviceTemplate:
             metadata:
               name: "whoop-db"
