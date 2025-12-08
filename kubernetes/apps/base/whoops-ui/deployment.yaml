@@ -14,8 +14,8 @@ spec:
         app: whoop-ui
     spec:
       containers:
-        - name: whoop-ui
-          image: ghcr.io/kryoseu/whoop-ui:v1.0.0
+        - name: whoops-ui
+          image: ghcr.io/kryoseu/whoops-ui:v1.0.0
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
@@ -32,5 +32,5 @@ spec:
                   key: CLIENT_SECRET
             - name: WHOOP_REDIRECT_URI
               value: "https://whoop-ui.kryoseu.com/api/whoop/callback"
-            - name: "WHOOPS_URL"
+            - name: WHOOPS_URL
               value: "https://whoops.kryoseu.com"
