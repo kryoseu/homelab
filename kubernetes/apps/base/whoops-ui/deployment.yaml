@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: whoop-ui
+  name: whoops-ui
   namespace: whoops
 spec:
   selector:
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: whoop-ui
-          image: ghcr.io/kryoseu/whoop-ui:latest
+          image: ghcr.io/kryoseu/whoop-ui:v1.0.0
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
