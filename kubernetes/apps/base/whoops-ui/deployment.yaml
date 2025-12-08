@@ -6,12 +6,12 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: whoop-ui
+      app: whoops-ui
   replicas: 1
   template:
     metadata:
       labels:
-        app: whoop-ui
+        app: whoops-ui
     spec:
       containers:
         - name: whoops-ui
@@ -31,6 +31,6 @@ spec:
                   name: whoops-creds
                   key: CLIENT_SECRET
             - name: WHOOP_REDIRECT_URI
-              value: "https://whoop-ui.kryoseu.com/api/whoop/callback"
+              value: "https://whoops-ui.kryoseu.com/api/whoop/callback"
             - name: WHOOPS_URL
               value: "https://whoops.kryoseu.com"
