@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: whoops
-          image: docker.io/kryoseu/whoops:v1.0.0
+          image: docker.io/kryoseu/whoops:v1.0.1
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
