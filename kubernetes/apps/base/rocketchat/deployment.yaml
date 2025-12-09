@@ -41,7 +41,7 @@ spec:
     spec:
       containers:
         - name: rocketchat-server
-          image: rocketchat/rocket.chat:7.13.0
+          image: rocketchat/rocket.chat:7.13.1
           ports:
             - containerPort: 3000
           env:
