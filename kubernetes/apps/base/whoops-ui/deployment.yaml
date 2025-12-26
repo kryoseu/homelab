@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: whoops-ui
-          image: ghcr.io/kryoseu/whoops-ui:v1.0.0
+          image: ghcr.io/kryoseu/whoops-ui:v1.0.1
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
