@@ -47,7 +47,7 @@ spec:
       dnsPolicy: None
       dnsConfig:
         nameservers:
-          - 10.8.0.1
+          - 10.2.0.1
       initContainers:
         - name: configure-deluge
           image: busybox
