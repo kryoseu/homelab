@@ -3,6 +3,8 @@ kind: Cluster
 metadata:
   name: whoops-postgres
   namespace: whoops
+  # annotations:
+  #   cnpg.io/skipEmptyWalArchiveCheck: "enabled"
 spec:
   imageName: ghcr.io/cloudnative-pg/postgresql:17.5
   instances: 3
@@ -14,6 +16,7 @@ spec:
     - name: clusterBackup
       barmanObjectStore:
         destinationPath: "s3://kryoseu-whoops/postgres"
+        serverName: "whoops-postgres"
         s3Credentials:
           accessKeyId:
             name: aws-creds-envs
@@ -47,12 +50,12 @@ spec:
         name: whoops-creds
 
   # (optional) For development
-  managed:
-    services:
-      additional:
-        - selectorType: ro
-          serviceTemplate:
-            metadata:
-              name: "whoop-db"
-            spec:
-              type: LoadBalancer
+  # managed:
+  #   services:
+  #     additional:
+  #       - selectorType: ro
+  #         serviceTemplate:
+  #           metadata:
+  #             name: "whoop-db"
+  #           spec:
+  #             type: LoadBalancer
