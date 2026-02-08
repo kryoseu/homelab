@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - local.yaml
   - nfs.yaml
+  - ./nfs/
