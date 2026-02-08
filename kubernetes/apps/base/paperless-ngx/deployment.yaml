@@ -39,12 +39,12 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: paperless-ngx-creds
-                  key: DB_USERNAME
+                  key: username
             - name: PAPERLESS_DBPASS
               valueFrom:
                 secretKeyRef:
                   name: paperless-ngx-creds
-                  key: DB_PASSWORD
+                  key: password
           volumeMounts:
             - name: data
               mountPath: /usr/src/paperless/data
