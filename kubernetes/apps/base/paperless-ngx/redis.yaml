@@ -38,9 +38,14 @@ spec:
       labels:
         app: paperless-redis
     spec:
+      securityContext:
+        fsGroup: 999
       containers:
         - name: redis
           image: redis:8
+          securityContext:
+            runAsUser: 999
+            runAsGroup: 999
           ports:
             - containerPort: 6379
           volumeMounts:

@@ -31,7 +31,13 @@ spec:
           ports:
             - containerPort: 8000
           env:
+            - name: PAPERLESS_FILENAME_FORMAT
+              value: "{{ created_year }}/{{ created_month }}/{{ correspondent }}/{{ title }}"
             - name: PAPERLESS_URL
+              value: https://paperless.kryoseu.com
+            - name: PAPERLESS_ALLOWED_HOSTS
+              value: paperless.kryoseu.com
+            - name: PAPERLESS_CORS_ALLOWED_HOSTS
               value: https://paperless.kryoseu.com
             - name: PAPERLESS_OCR_LANGUAGE
               value: eng
