@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: paperless
+  namespace: paperless-ngx
+  labels:
+    app.kubernetes.io/name: paperless
+  annotations:
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  ingressClassName: "nginx"
+  tls:
+    - hosts:
+        - paperless.kryoseu.com
+      secretName: paperless-tls
+  rules:
+    - host: "paperless.kryoseu.com"
+      http:
+        paths:
+          - path: "/"
+            pathType: Prefix
+            backend:
+              service:
+                name: paperless
+                port:
+                  number: 8000

@@ -5,4 +5,5 @@ resources:
   - longhorn.yaml
   - whoops.yaml
   - whoops-ui.yaml
+  - paperless-ngx.yaml
   - ingress.yaml
