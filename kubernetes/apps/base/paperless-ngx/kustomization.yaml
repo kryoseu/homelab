@@ -3,3 +3,6 @@ kind: Kustomization
 namespace: paperless-ngx
 resources:
   - namespace.yaml
+  - redis.yaml
+  - pvc.yaml
+  - deployment.yaml
