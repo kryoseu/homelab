@@ -1,7 +1,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: paperless-ngx-postgres
+  name: paperless-postgres
   # annotations:
   #   cnpg.io/skipEmptyWalArchiveCheck: "enabled"
 spec:
@@ -16,7 +16,7 @@ spec:
     - name: clusterBackup
       barmanObjectStore:
         destinationPath: "s3://kryoseu-paperless-ngx/postgres"
-        serverName: "paperless-ngx-postgres"
+        serverName: "paperless-postgres"
         s3Credentials:
           accessKeyId:
             name: aws-creds-envs
@@ -52,6 +52,6 @@ spec:
   bootstrap:
     initdb:
       database: paperless_ngx
-      owner: paperless-ngx
+      owner: paperless
       secret:
         name: paperless-ngx-creds
