@@ -30,7 +30,7 @@ spec:
             - name: PAPERLESS_REDIS
               value: redis://paperless-redis:6379
             - name: PAPERLESS_DBHOST
-              value: paperless-ngx-postgres-rw
+              value: paperless-postgres-rw
             - name: PAPERLESS_DBPORT
               value: "5432"
             - name: PAPERLESS_DBNAME
