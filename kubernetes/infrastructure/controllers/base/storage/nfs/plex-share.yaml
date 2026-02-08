@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nfs-provisioner-plex
+  namespace: nfs-provisioner
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nfs-provisioner-plex
+  template:
+    metadata:
+      labels:
+        app: nfs-provisioner-plex
+    spec:
+      serviceAccountName: nfs-provisioner
+      containers:
+        - name: nfs-provisioner
+          image: registry.k8s.io/sig-storage/nfs-subdir-external-provisioner:v4.0.2
+          volumeMounts:
+            - name: nfs-root
+              mountPath: /persistentvolumes
+          env:
+            - name: PROVISIONER_NAME
+              value: nfs-plex.k8s.io
+            - name: NFS_SERVER
+              value: server01.kryoseu.com
+            - name: NFS_PATH
+              value: /tank/plex-share
+      volumes:
+        - name: nfs-root
+          nfs:
+            server: server01.kryoseu.com
+            path: /tank/plex-share
