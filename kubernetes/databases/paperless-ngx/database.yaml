@@ -1,0 +1,57 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: paperless-ngx-postgres
+  # annotations:
+  #   cnpg.io/skipEmptyWalArchiveCheck: "enabled"
+spec:
+  description: Postgres cluster for the Paperless-ngx application
+  imageName: ghcr.io/cloudnative-pg/postgresql:18
+  instances: 3
+
+  storage:
+    size: 5Gi
+
+  externalClusters:
+    - name: clusterBackup
+      barmanObjectStore:
+        destinationPath: "s3://kryoseu-paperless-ngx/postgres"
+        serverName: "paperless-ngx-postgres"
+        s3Credentials:
+          accessKeyId:
+            name: aws-creds-envs
+            key: ACCESS_KEY_ID
+          secretAccessKey:
+            name: aws-creds-envs
+            key: ACCESS_SECRET_KEY
+
+  backup:
+    barmanObjectStore:
+      destinationPath: "s3://kryoseu-paperless-ngx/postgres"
+      s3Credentials:
+        accessKeyId:
+          name: aws-creds-envs
+          key: ACCESS_KEY_ID
+        secretAccessKey:
+          name: aws-creds-envs
+          key: ACCESS_SECRET_KEY
+      wal:
+        compression: gzip
+      data:
+        compression: gzip
+    retentionPolicy: 14d
+
+  # bootstrap:
+  #   recovery:
+  #     source: clusterBackup
+  #     database: paperless_ngx
+  #     owner: paperless-ngx
+  #     secret:
+  #       name: paperless-ngx-creds
+
+  bootstrap:
+    initdb:
+      database: paperless_ngx
+      owner: paperless-ngx
+      secret:
+        name: paperless-ngx-creds
