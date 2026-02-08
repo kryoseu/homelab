@@ -13,7 +13,7 @@ spec:
       labels:
         app: nfs-provisioner-plex
     spec:
-      serviceAccountName: nfs-provisioner
+      serviceAccountName: nfs-client-provisioner
       containers:
         - name: nfs-provisioner
           image: registry.k8s.io/sig-storage/nfs-subdir-external-provisioner:v4.0.2
