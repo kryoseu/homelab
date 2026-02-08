@@ -22,6 +22,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: paperless
+                name: paperless-server
                 port:
                   number: 8000
