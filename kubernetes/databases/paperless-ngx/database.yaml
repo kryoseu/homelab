@@ -45,7 +45,7 @@ spec:
   #   recovery:
   #     source: clusterBackup
   #     database: paperless_ngx
-  #     owner: paperless-ngx
+  #     owner: paperless
   #     secret:
   #       name: paperless-ngx-creds
 
