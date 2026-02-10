@@ -4,4 +4,4 @@ namespace: paperless-ngx
 resources:
   - secret.yaml
   - database.yaml
-  # - scheduled_backup.yaml
+  - scheduled_backup.yaml
