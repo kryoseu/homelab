@@ -32,23 +32,23 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
         - name: rocketmongo
-          image: mongo:7.0
+          image: mongo:8.2
           command:
-          - mongod
-          - "--bind_ip_all"
-          - "--replSet"
-          - rs0
+            - mongod
+            - "--bind_ip_all"
+            - "--replSet"
+            - rs0
           ports:
             - containerPort: 27017
           volumeMounts:
-          - name: mongo-volume
-            mountPath: /data/db
+            - name: mongo-volume
+              mountPath: /data/db
   volumeClaimTemplates:
-  - metadata:
-      name: mongo-volume
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      resources:
-        requests:
-          storage: 5Gi
-      storageClassName: "longhorn" 
+    - metadata:
+        name: mongo-volume
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 5Gi
+        storageClassName: "longhorn"
