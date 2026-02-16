@@ -1,17 +1,4 @@
 apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: rocketchat-attachments
-  namespace: home-apps
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 200Gi
-  storageClassName: "nfs-storage"
----
-apiVersion: v1
 kind: Service
 metadata:
   name: rocketchat-server
