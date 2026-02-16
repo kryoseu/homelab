@@ -48,19 +48,6 @@ spec:
       dnsConfig:
         nameservers:
           - 10.2.0.1
-      initContainers:
-        - name: configure-deluge
-          image: busybox
-          command:
-            [
-              "sh",
-              "-c",
-              'echo ''{"file": 1, "format": 1}{"add_paused": false, "allow_remote": true, "enabled_plugins": ["Label"]}'' > /config/core.conf',
-            ]
-          volumeMounts:
-            - name: deluge
-              mountPath: /config
-              subPath: config/deluge
       containers:
         - name: openvpn
           image: dperson/openvpn-client
