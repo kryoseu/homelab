@@ -10,7 +10,7 @@ spec:
   instances: 3
 
   storage:
-    size: 1Gi
+    size: 3Gi
 
   externalClusters:
     - name: clusterBackup
