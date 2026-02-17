@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
         - name: paperless-ngx
-          image: ghcr.io/paperless-ngx/paperless-ngx:v2.20.7
+          image: ghcr.io/paperless-ngx:v2.20.7
           ports:
             - containerPort: 8000
           env:
