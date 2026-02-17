@@ -10,7 +10,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: nfs-storage
+  storageClassName: nfs-home-apps
   nfs:
     server: server01.kryoseu.com
     path: /tank/home-apps/encrypted/immich-library
@@ -26,5 +26,5 @@ spec:
   resources:
     requests:
       storage: 1Ti
-  storageClassName: nfs-storage
+  storageClassName: nfs-home-apps
   volumeName: immich-library-encrypted
