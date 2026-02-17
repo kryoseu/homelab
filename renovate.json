@@ -1,5 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "semanticCommits": true,
+  "semanticCommitType": "chore(deps)",
   "flux": {
     "fileMatch": ["\\.yaml$"]
   },
@@ -16,7 +18,8 @@
         "tag:\\s*(?<currentValue>v?\\d+\\.\\d+\\.\\d+)"
       ],
       "depNameTemplate": "ghcr.io/immich-app/immich-server",
-      "datasourceTemplate": "docker"
+      "datasourceTemplate": "docker",
+      "semanticCommitType": "chore"
     },
     {
       "fileMatch": ["(^|/)plex/.*\\.yaml$"],
@@ -25,7 +28,8 @@
       ],
       "depNameTemplate": "plexinc/pms-docker",
       "datasourceTemplate": "docker",
-      "versioningTemplate": "loose"
+      "versioningTemplate": "loose",
+      "semanticCommitType": "chore"
     }
   ]
 }
