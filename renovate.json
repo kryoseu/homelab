@@ -1,16 +1,20 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+
   "semanticCommits": true,
-  "semanticCommitType": "chore(deps)",
+  "semanticCommitType": "chore",
+
   "flux": {
     "fileMatch": ["\\.yaml$"]
   },
+
   "kubernetes": {
     "fileMatch": [
       "\\.yaml$",
       "kubernetes/.+\\.yaml$"
     ]
   },
+
   "regexManagers": [
     {
       "fileMatch": ["kubernetes/apps/base/immich/release.yaml"],
@@ -18,8 +22,7 @@
         "tag:\\s*(?<currentValue>v?\\d+\\.\\d+\\.\\d+)"
       ],
       "depNameTemplate": "ghcr.io/immich-app/immich-server",
-      "datasourceTemplate": "docker",
-      "semanticCommitType": "chore"
+      "datasourceTemplate": "docker"
     },
     {
       "fileMatch": ["(^|/)plex/.*\\.yaml$"],
@@ -28,8 +31,7 @@
       ],
       "depNameTemplate": "plexinc/pms-docker",
       "datasourceTemplate": "docker",
-      "versioningTemplate": "loose",
-      "semanticCommitType": "chore"
+      "versioningTemplate": "loose"
     }
   ]
 }
