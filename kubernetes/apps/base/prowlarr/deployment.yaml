@@ -20,7 +20,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 500M
+      storage: 1Gi
   storageClassName: longhorn
 ---
 kind: Deployment
