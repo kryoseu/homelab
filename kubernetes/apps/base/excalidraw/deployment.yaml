@@ -34,7 +34,7 @@ spec:
     spec:
       containers:
         - name: excalidraw
-          image: "excalidraw/excalidraw:latest"
+          image: "excalidraw/excalidraw@sha256:9a92beb30c9bc18585bfd9adbb5cf7120b756b781363a66333b31cc8a0783e51"
           ports:
             - name: http
               containerPort: 80
