@@ -32,6 +32,8 @@ metadata:
   namespace: plex-ns
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: prowlarr
@@ -43,13 +45,29 @@ spec:
       containers:
         - name: flaresolverr
           image: flaresolverr/flaresolverr:v3.4.6
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            capabilities:
+              drop:
+                - ALL
+              priviledged: false
+              allowPrivilegeEscalation: false
           ports:
             - name: flaresolverr
               containerPort: 8191
         - name: prowlarr
           image: linuxserver/prowlarr:2.3.0
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            capabilities:
+              add:
+                - CHOWN
+                - SETGID
+                - SETUID
+              drop:
+                - ALL
+              priviledged: false
+              allowPrivilegeEscalation: false
           ports:
             - name: prowlarr
               containerPort: 9696
