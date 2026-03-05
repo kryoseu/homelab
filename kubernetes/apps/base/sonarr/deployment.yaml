@@ -43,6 +43,16 @@ spec:
         - name: sonarr
           image: linuxserver/sonarr:4.0.16
           imagePullPolicy: IfNotPresent
+          securityContext:
+            capabilities:
+              add:
+                - CHOWN
+                - SETGID
+                - SETUID
+              drop:
+                - ALL
+              priviledged: false
+              allowPrivilegeEscalation: false
           env:
             - name: PUID
               value: "1000"
