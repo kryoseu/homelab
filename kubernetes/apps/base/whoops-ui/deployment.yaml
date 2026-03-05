@@ -13,10 +13,20 @@ spec:
       labels:
         app: whoops-ui
     spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
       containers:
         - name: whoops-ui
           image: ghcr.io/kryoseu/whoops-ui:v1.0.1
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
           ports:
             - containerPort: 3000
           env:
