@@ -46,8 +46,6 @@ spec:
           image: linuxserver/radarr:6.0.4
           imagePullPolicy: IfNotPresent
           securityContext:
-            runAsUser: 1000
-            runAsGroup: 4000
             capabilities:
               add:
                 - CHOWN
