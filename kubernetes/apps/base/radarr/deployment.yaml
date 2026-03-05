@@ -42,7 +42,19 @@ spec:
       containers:
         - name: radarr
           image: linuxserver/radarr:6.0.4
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 4000
+            capabilities:
+              add:
+                - CHOWN
+                - SETGID
+                - SETUID
+              drop:
+                - ALL
+              priviledged: false
+              allowPrivilegeEscalation: false
           env:
             - name: PUID
               value: "1000"
