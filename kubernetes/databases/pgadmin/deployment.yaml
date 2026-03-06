@@ -40,6 +40,11 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/pgadmin
               name: pgadmin-data
+          livenessProbe:
+            initialDelaySeconds: 30
+            httpGet:
+              path: /
+              port: 3004
       restartPolicy: Always
       volumes:
         - name: pgadmin-data
