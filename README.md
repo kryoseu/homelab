@@ -29,7 +29,7 @@ Diagram style idea stolen from: [@timtorChen/homelab](https://github.com/timtorC
 ## ☕ Homepage
 <i>Powered by [Homepage](https://gethomepage.dev/)</i>
 
-<img width="1347" height="1077" alt="260307_12h01m23s_screenshot" src="https://github.com/user-attachments/assets/1fdf717e-a6b3-4c57-a350-02f1a0e5015d" />
+<img width="1343" height="1079" alt="260307_13h52m13s_screenshot" src="https://github.com/user-attachments/assets/3e366a74-ef50-41e1-ad61-c19723860367" />
 
 ## References and Credits
 - [@mischavandenburg](https://www.youtube.com/@mischavandenburg) YouTube channel – for excellent homelab content and Kubernetes tutorials.
