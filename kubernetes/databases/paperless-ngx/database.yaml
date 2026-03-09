@@ -41,17 +41,17 @@ spec:
         compression: gzip
     retentionPolicy: 14d
 
-  # bootstrap:
-  #   recovery:
-  #     source: clusterBackup
-  #     database: paperless_ngx
-  #     owner: paperless
-  #     secret:
-  #       name: paperless-ngx-creds
-
   bootstrap:
-    initdb:
+    recovery:
+      source: clusterBackup
       database: paperless_ngx
       owner: paperless
       secret:
         name: paperless-ngx-creds
+
+  # bootstrap:
+  #   initdb:
+  #     database: paperless_ngx
+  #     owner: paperless
+  #     secret:
+  #       name: paperless-ngx-creds
