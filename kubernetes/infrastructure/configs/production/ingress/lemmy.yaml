@@ -1,0 +1,39 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: lemmy
+  namespace: lemmy
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - lemmy.bunga.kryoseu.com
+      secretName: lemmy-tls
+
+  rules:
+    - host: lemmy.bunga.kryoseu.com
+      http:
+        paths:
+          # Lemmy backend
+          - path: /(api|pictrs|feeds|nodeinfo|.well-known)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: lemmy
+                port:
+                  number: 8536
+
+          # UI
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: lemmy-ui
+                port:
+                  number: 1234

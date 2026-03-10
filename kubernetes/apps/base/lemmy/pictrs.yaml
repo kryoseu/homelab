@@ -1,0 +1,76 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pictrs
+  namespace: lemmy
+spec:
+  selector:
+    app: pictrs
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pictrs
+  namespace: lemmy
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: pictrs
+  template:
+    metadata:
+      labels:
+        app: pictrs
+    spec:
+      securityContext:
+        runAsUser: 991
+        runAsGroup: 991
+        fsGroup: 991
+      containers:
+        - name: pictrs
+          image: asonix/pictrs:0.5.22
+          ports:
+            - containerPort: 8080
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
+          env:
+            - name: PICTRS_OPENTELEMETRY_URL
+              value: "http://otel:4137"
+            - name: PICTRS__SERVER__API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: lemmy-creds
+                  key: pictrs-api-key
+            - name: RUST_BACKTRACE
+              value: "full"
+            - name: PICTRS__MEDIA__VIDEO__VIDEO_CODEC
+              value: "vp9"
+            - name: PICTRS__MEDIA__ANIMATION__MAX_WIDTH
+              value: "256"
+            - name: PICTRS__MEDIA__ANIMATION__MAX_HEIGHT
+              value: "256"
+            - name: PICTRS__MEDIA__ANIMATION__MAX_FRAME_COUNT
+              value: "400"
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 10
+          livenessProbe:
+            initialDelaySeconds: 10
+            tcpSocket:
+              port: 8080
+          volumeMounts:
+            - name: pictrs-storage
+              mountPath: /mnt
+      volumes:
+        - name: pictrs-storage
+          nfs:
+            server: server01.kryoseu.com
+            path: /tank/home-apps/encrypted/lemmy/pictrs

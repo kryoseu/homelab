@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: lemmy
+spec:
+  selector:
+    app: lemmy
+  ports:
+    - protocol: TCP
+      port: 8536
+      targetPort: 8536
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lemmy
+  namespace: lemmy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lemmy
+  template:
+    metadata:
+      labels:
+        app: lemmy
+    spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+      containers:
+        - name: lemmy
+          image: dessalines/lemmy:0.19.16
+          ports:
+            - containerPort: 8536
+              protocol: TCP
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
+          env:
+            - name: RUST_LOG
+              value: "warn"
+          volumeMounts:
+            - name: lemmy-config
+              mountPath: /config/config.hjson
+              subPath: lemmy.hjson
+          readinessProbe:
+            tcpSocket:
+              port: 8536
+            initialDelaySeconds: 15
+      volumes:
+        - name: lemmy-config
+          secret:
+            secretName: lemmy-config

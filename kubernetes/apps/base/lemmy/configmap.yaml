@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: lemmy-config-template
+  namespace: lemmy
+data:
+  lemmy.hjson: |
+    {
+      database: {
+        host: "lemmy-postgres-rw.lemmy.svc.cluster.local"
+        username: "{{ .username }}"
+        password: "{{ .password }}"
+      }
+
+      hostname: "lemmy.bunga.kryoseu.com"
+
+      pictrs: {
+        url: "http://pictrs:8080/"
+        api_key: "{{ .pictrs_api_key }}"
+      }
+
+      email: {
+        smtp_server: "postfix:25"
+        smtp_from_address: "noreply@lemmy.example.com"
+        tls_type: "none"
+      }
+    }
+---
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: lemmy-config
+  namespace: lemmy
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: aws-kv-store
+    kind: ClusterSecretStore
+
+  target:
+    name: lemmy-config
+    template:
+      engineVersion: v2
+      templateFrom:
+        - target: Data
+          configMap:
+            name: lemmy-config-template
+            items:
+              - key: lemmy.hjson
+                templateAs: Values
+  data:
+    - secretKey: username
+      remoteRef:
+        key: apps
+        property: LEMMY_DB_USERNAME
+    - secretKey: password
+      remoteRef:
+        key: apps
+        property: LEMMY_DB_PASSWORD
+    - secretKey: pictrs_api_key
+      remoteRef:
+        key: apps
+        property: PICTRS_SERVER_API_KEY
