@@ -1,0 +1,10 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: lemmy-postgres
+spec:
+  immediate: true
+  schedule: "0 0 7 * * *"
+  backupOwnerReference: cluster
+  cluster:
+    name: lemmy-postgres

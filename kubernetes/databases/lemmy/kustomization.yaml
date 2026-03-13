@@ -3,3 +3,4 @@ kind: Kustomization
 namespace: lemmy
 resources:
   - database.yaml
+  - scheduled_backup.yaml
