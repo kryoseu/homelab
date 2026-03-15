@@ -18,6 +18,11 @@ data:
         url: "http://pictrs:8080/"
         api_key: "{{ .pictrs_api_key }}"
       }
+      
+      prometheus: {
+        bind: "0.0.0.0"
+        port: 10002
+      }
 
       email: {
         smtp_server: "postfix:25"
