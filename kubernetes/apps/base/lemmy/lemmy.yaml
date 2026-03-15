@@ -14,11 +14,15 @@ apiVersion: v1
 kind: Service
 metadata:
   name: lemmy-metrics
+  namespace: lemmy
+  labels:
+    app: lemmy-metrics
 spec:
   selector:
     app: lemmy
   ports:
-    - protocol: TCP
+    - name: metrics
+      protocol: TCP
       port: 10002
       targetPort: 10002
 ---
