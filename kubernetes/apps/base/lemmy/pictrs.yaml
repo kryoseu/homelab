@@ -41,8 +41,8 @@ spec:
             privileged: false
             allowPrivilegeEscalation: false
           env:
-            - name: PICTRS_OPENTELEMETRY_URL
-              value: "http://otel:4137"
+            # - name: PICTRS_OPENTELEMETRY_URL
+            #   value: "http://otel:4137"
             - name: PICTRS__SERVER__API_KEY
               valueFrom:
                 secretKeyRef:
