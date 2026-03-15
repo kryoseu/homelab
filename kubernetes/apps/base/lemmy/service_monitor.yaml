@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: lemmy-metrics
+  namespace: lemmy
+  labels:
+    release: kube-prometheus-stack
+spec:
+  endpoints:
+    - port: metrics
+      interval: 15s
+      path: /metrics
+      scheme: http
+  selector:
+    matchLabels:
+      app: lemmy-metrics
+  namespaceSelector:
+    matchNames:
+      - lemmy
