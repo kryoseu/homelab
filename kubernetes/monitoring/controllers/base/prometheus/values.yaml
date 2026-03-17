@@ -27,7 +27,7 @@ kube-state-metrics:
           - imagerepositories
           - imagepolicies
           - imageupdateautomations
-        verbs: [ "list", "watch" ]
+        verbs: ["list", "watch"]
   customResourceState:
     enabled: true
     config:
@@ -45,13 +45,13 @@ kube-state-metrics:
                   type: Info
                   info:
                     labelsFromPath:
-                      name: [ metadata, name ]
+                      name: [metadata, name]
                 labelsFromPath:
-                  exported_namespace: [ metadata, namespace ]
-                  ready: [ status, conditions, "[type=Ready]", status ]
-                  suspended: [ spec, suspend ]
-                  revision: [ status, lastAppliedRevision ]
-                  source_name: [ spec, sourceRef, name ]
+                  exported_namespace: [metadata, namespace]
+                  ready: [status, conditions, "[type=Ready]", status]
+                  suspended: [spec, suspend]
+                  revision: [status, lastAppliedRevision]
+                  source_name: [spec, sourceRef, name]
           - groupVersionKind:
               group: helm.toolkit.fluxcd.io
               version: v2beta2
@@ -64,14 +64,14 @@ kube-state-metrics:
                   type: Info
                   info:
                     labelsFromPath:
-                      name: [ metadata, name ]
+                      name: [metadata, name]
                 labelsFromPath:
-                  exported_namespace: [ metadata, namespace ]
-                  ready: [ status, conditions, "[type=Ready]", status ]
-                  suspended: [ spec, suspend ]
-                  revision: [ status, lastAppliedRevision ]
-                  chart_name: [ spec, chart, spec, chart ]
-                  chart_source_name: [ spec, chart, spec, sourceRef, name ]
+                  exported_namespace: [metadata, namespace]
+                  ready: [status, conditions, "[type=Ready]", status]
+                  suspended: [spec, suspend]
+                  revision: [status, lastAppliedRevision]
+                  chart_name: [spec, chart, spec, chart]
+                  chart_source_name: [spec, chart, spec, sourceRef, name]
           - groupVersionKind:
               group: source.toolkit.fluxcd.io
               version: v1
@@ -84,13 +84,13 @@ kube-state-metrics:
                   type: Info
                   info:
                     labelsFromPath:
-                      name: [ metadata, name ]
+                      name: [metadata, name]
                 labelsFromPath:
-                  exported_namespace: [ metadata, namespace ]
-                  ready: [ status, conditions, "[type=Ready]", status ]
-                  suspended: [ spec, suspend ]
-                  revision: [ status, artifact, revision ]
-                  url: [ spec, url ]
+                  exported_namespace: [metadata, namespace]
+                  ready: [status, conditions, "[type=Ready]", status]
+                  suspended: [spec, suspend]
+                  revision: [status, artifact, revision]
+                  url: [spec, url]
           - groupVersionKind:
               group: source.toolkit.fluxcd.io
               version: v1beta2
@@ -103,14 +103,14 @@ kube-state-metrics:
                   type: Info
                   info:
                     labelsFromPath:
-                      name: [ metadata, name ]
+                      name: [metadata, name]
                 labelsFromPath:
-                  exported_namespace: [ metadata, namespace ]
-                  ready: [ status, conditions, "[type=Ready]", status ]
-                  suspended: [ spec, suspend ]
-                  revision: [ status, artifact, revision ]
-                  endpoint: [ spec, endpoint ]
-                  bucket_name: [ spec, bucketName ]
+                  exported_namespace: [metadata, namespace]
+                  ready: [status, conditions, "[type=Ready]", status]
+                  suspended: [spec, suspend]
+                  revision: [status, artifact, revision]
+                  endpoint: [spec, endpoint]
+                  bucket_name: [spec, bucketName]
           - groupVersionKind:
               group: source.toolkit.fluxcd.io
               version: v1beta2
@@ -123,13 +123,13 @@ kube-state-metrics:
                   type: Info
                   info:
                     labelsFromPath:
-                      name: [ metadata, name ]
+                      name: [metadata, name]
                 labelsFromPath:
-                  exported_namespace: [ metadata, namespace ]
-                  ready: [ status, conditions, "[type=Ready]", status ]
-                  suspended: [ spec, suspend ]
-                  revision: [ status, artifact, revision ]
-                  url: [ spec, url ]
+                  exported_namespace: [metadata, namespace]
+                  ready: [status, conditions, "[type=Ready]", status]
+                  suspended: [spec, suspend]
+                  revision: [status, artifact, revision]
+                  url: [spec, url]
           - groupVersionKind:
               group: source.toolkit.fluxcd.io
               version: v1beta2
@@ -142,14 +142,14 @@ kube-state-metrics:
                   type: Info
                   info:
                     labelsFromPath:
-                      name: [ metadata, name ]
+                      name: [metadata, name]
                 labelsFromPath:
-                  exported_namespace: [ metadata, namespace ]
-                  ready: [ status, conditions, "[type=Ready]", status ]
-                  suspended: [ spec, suspend ]
-                  revision: [ status, artifact, revision ]
-                  chart_name: [ spec, chart ]
-                  chart_version: [ spec, version ]
+                  exported_namespace: [metadata, namespace]
+                  ready: [status, conditions, "[type=Ready]", status]
+                  suspended: [spec, suspend]
+                  revision: [status, artifact, revision]
+                  chart_name: [spec, chart]
+                  chart_version: [spec, version]
           - groupVersionKind:
               group: source.toolkit.fluxcd.io
               version: v1beta2
@@ -162,13 +162,13 @@ kube-state-metrics:
                   type: Info
                   info:
                     labelsFromPath:
-                      name: [ metadata, name ]
+                      name: [metadata, name]
                 labelsFromPath:
-                  exported_namespace: [ metadata, namespace ]
-                  ready: [ status, conditions, "[type=Ready]", status ]
-                  suspended: [ spec, suspend ]
-                  revision: [ status, artifact, revision ]
-                  url: [ spec, url ]
+                  exported_namespace: [metadata, namespace]
+                  ready: [status, conditions, "[type=Ready]", status]
+                  suspended: [spec, suspend]
+                  revision: [status, artifact, revision]
+                  url: [spec, url]
           - groupVersionKind:
               group: notification.toolkit.fluxcd.io
               version: v1beta3
@@ -181,10 +181,10 @@ kube-state-metrics:
                   type: Info
                   info:
                     labelsFromPath:
-                      name: [ metadata, name ]
+                      name: [metadata, name]
                 labelsFromPath:
-                  exported_namespace: [ metadata, namespace ]
-                  suspended: [ spec, suspend ]
+                  exported_namespace: [metadata, namespace]
+                  suspended: [spec, suspend]
           - groupVersionKind:
               group: notification.toolkit.fluxcd.io
               version: v1beta3
@@ -197,10 +197,10 @@ kube-state-metrics:
                   type: Info
                   info:
                     labelsFromPath:
-                      name: [ metadata, name ]
+                      name: [metadata, name]
                 labelsFromPath:
-                  exported_namespace: [ metadata, namespace ]
-                  suspended: [ spec, suspend ]
+                  exported_namespace: [metadata, namespace]
+                  suspended: [spec, suspend]
           - groupVersionKind:
               group: notification.toolkit.fluxcd.io
               version: v1
@@ -213,12 +213,12 @@ kube-state-metrics:
                   type: Info
                   info:
                     labelsFromPath:
-                      name: [ metadata, name ]
+                      name: [metadata, name]
                 labelsFromPath:
-                  exported_namespace: [ metadata, namespace ]
-                  ready: [ status, conditions, "[type=Ready]", status ]
-                  suspended: [ spec, suspend ]
-                  webhook_path: [ status, webhookPath ]
+                  exported_namespace: [metadata, namespace]
+                  ready: [status, conditions, "[type=Ready]", status]
+                  suspended: [spec, suspend]
+                  webhook_path: [status, webhookPath]
           - groupVersionKind:
               group: image.toolkit.fluxcd.io
               version: v1beta2
@@ -231,12 +231,12 @@ kube-state-metrics:
                   type: Info
                   info:
                     labelsFromPath:
-                      name: [ metadata, name ]
+                      name: [metadata, name]
                 labelsFromPath:
-                  exported_namespace: [ metadata, namespace ]
-                  ready: [ status, conditions, "[type=Ready]", status ]
-                  suspended: [ spec, suspend ]
-                  image: [ spec, image ]
+                  exported_namespace: [metadata, namespace]
+                  ready: [status, conditions, "[type=Ready]", status]
+                  suspended: [spec, suspend]
+                  image: [spec, image]
           - groupVersionKind:
               group: image.toolkit.fluxcd.io
               version: v1beta2
@@ -249,12 +249,12 @@ kube-state-metrics:
                   type: Info
                   info:
                     labelsFromPath:
-                      name: [ metadata, name ]
+                      name: [metadata, name]
                 labelsFromPath:
-                  exported_namespace: [ metadata, namespace ]
-                  ready: [ status, conditions, "[type=Ready]", status ]
-                  suspended: [ spec, suspend ]
-                  source_name: [ spec, imageRepositoryRef, name ]
+                  exported_namespace: [metadata, namespace]
+                  ready: [status, conditions, "[type=Ready]", status]
+                  suspended: [spec, suspend]
+                  source_name: [spec, imageRepositoryRef, name]
           - groupVersionKind:
               group: image.toolkit.fluxcd.io
               version: v1beta1
@@ -267,13 +267,13 @@ kube-state-metrics:
                   type: Info
                   info:
                     labelsFromPath:
-                      name: [ metadata, name ]
+                      name: [metadata, name]
                 labelsFromPath:
-                  exported_namespace: [ metadata, namespace ]
-                  ready: [ status, conditions, "[type=Ready]", status ]
-                  suspended: [ spec, suspend ]
-                  source_name: [ spec, sourceRef, name ]
-                  
+                  exported_namespace: [metadata, namespace]
+                  ready: [status, conditions, "[type=Ready]", status]
+                  suspended: [spec, suspend]
+                  source_name: [spec, sourceRef, name]
+
 kubeControllerManager:
   service:
     port: 10257
@@ -315,7 +315,7 @@ kubeEtcd:
 prometheus:
   prometheusSpec:
     portName: http-prom
-    
+
     retention: 14d
 
     # Watch only namespaces with this label
@@ -339,6 +339,8 @@ grafana:
     - name: Loki
       type: loki
       url: http://loki.monitoring:3100
+  dashboardsConfigMaps:
+    - flux-grafana-dashboards
 
   persistence:
     enabled: true
