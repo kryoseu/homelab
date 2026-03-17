@@ -9,6 +9,7 @@ configMapGenerator:
       - dashboards/flux/cluster.json
       - dashboards/lemmy.json
       - dashboards/wireguard.json
+      - dashboards/whoops.json
     options:
       labels:
         grafana_dashboard: "1"
