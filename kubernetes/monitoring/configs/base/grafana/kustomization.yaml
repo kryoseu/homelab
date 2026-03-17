@@ -7,6 +7,7 @@ configMapGenerator:
       - dashboards/cert-manager/dashboard.json
       - dashboards/flux/control-plane.json
       - dashboards/flux/cluster.json
+      - dashboards/lemmy/dashboard.json
     options:
       labels:
         grafana_dashboard: "1"
