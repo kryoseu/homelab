@@ -4,10 +4,10 @@ namespace: monitoring
 configMapGenerator:
   - name: flux-grafana-dashboards
     files:
-      - dashboards/cert-manager/dashboard.json
+      - dashboards/cert-manager.json
       - dashboards/flux/control-plane.json
       - dashboards/flux/cluster.json
-      - dashboards/lemmy/dashboard.json
+      - dashboards/lemmy.json
     options:
       labels:
         grafana_dashboard: "1"
