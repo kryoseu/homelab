@@ -8,6 +8,9 @@ metadata:
     app.kubernetes.io/name: cert-manager
     app.kubernetes.io/instance: cert-manager
 spec:
+  namespaceSelector:
+    matchNames:
+      - cert-manager
   jobLabel: app.kubernetes.io/name
   selector:
     matchExpressions:
