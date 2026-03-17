@@ -38,6 +38,8 @@ kubeEtcd:
 
 prometheus:
   prometheusSpec:
+    portName: http-prom
+    
     retention: 14d
 
     # Watch only namespaces with this label
@@ -54,7 +56,7 @@ prometheus:
     ruleSelectorNilUsesHelmValues: false
     serviceMonitorSelectorNilUsesHelmValues: false
 
-    ignoreNamespaceSelectors: true
+    ignoreNamespaceSelectors: false
 
 grafana:
   additionalDataSources:
