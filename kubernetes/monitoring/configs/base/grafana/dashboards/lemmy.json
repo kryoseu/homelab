@@ -126,6 +126,10 @@
       "pluginVersion": "12.1.0",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "Prometheus"
+          },
           "disableTextWrap": false,
           "editorMode": "code",
           "expr": "sum by (exported_endpoint) (rate(lemmy_api_http_requests_total[$__rate_interval])) * $rate_unit",
@@ -134,11 +138,7 @@
           "legendFormat": "__auto",
           "range": true,
           "refId": "A",
-          "useBackend": false,
-          "datasource": {
-            "type": "prometheus",
-            "uid": "Prometheus"
-          }
+          "useBackend": false
         }
       ],
       "title": "Requests by Endpoint",
@@ -228,15 +228,15 @@
       "pluginVersion": "12.1.0",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "Prometheus"
+          },
           "editorMode": "code",
           "expr": "histogram_quantile(\n  $quantile,\n  sum(rate(lemmy_api_http_requests_duration_seconds_bucket[$__rate_interval])) by (exported_endpoint, le)\n)",
           "legendFormat": "__auto",
           "range": true,
-          "refId": "A",
-          "datasource": {
-            "type": "prometheus",
-            "uid": "Prometheus"
-          }
+          "refId": "A"
         }
       ],
       "title": "Latency  by Endpoint",
@@ -326,15 +326,15 @@
       "pluginVersion": "12.1.0",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "Prometheus"
+          },
           "editorMode": "code",
           "expr": "sum(rate(lemmy_api_http_requests_total[$__rate_interval])) * $rate_unit",
           "legendFormat": "lemmy_api_http_requests_total",
           "range": true,
-          "refId": "A",
-          "datasource": {
-            "type": "prometheus",
-            "uid": "Prometheus"
-          }
+          "refId": "A"
         }
       ],
       "title": "Total Traffic",
@@ -447,15 +447,15 @@
       "pluginVersion": "12.1.0",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "Prometheus"
+          },
           "editorMode": "code",
           "expr": "(sum(rate(lemmy_api_http_requests_total{status=~\"4..|5..\"}[$__rate_interval]) * $rate_unit)\n/\nsum(rate(lemmy_api_http_requests_total[$__rate_interval]) * $rate_unit))",
           "legendFormat": "error_rate",
           "range": true,
-          "refId": "A",
-          "datasource": {
-            "type": "prometheus",
-            "uid": "Prometheus"
-          }
+          "refId": "A"
         }
       ],
       "title": "Error Rate",
@@ -545,15 +545,15 @@
       "pluginVersion": "12.1.0",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "Prometheus"
+          },
           "editorMode": "code",
           "expr": "sum by (exported_endpoint, status) (\n  rate(lemmy_api_http_requests_total{status=~\"4..|5..\"}[$__rate_interval]) * $rate_unit\n)",
           "legendFormat": "{{exported_endpoint}} {{status}}",
           "range": true,
-          "refId": "A",
-          "datasource": {
-            "type": "prometheus",
-            "uid": "Prometheus"
-          }
+          "refId": "A"
         }
       ],
       "title": "HTTP errors by Endpoint",
@@ -646,35 +646,22 @@
       "pluginVersion": "12.1.0",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "Prometheus"
+          },
           "disableTextWrap": false,
           "editorMode": "builder",
           "expr": "process_resident_memory_bytes{job=\"lemmy-metrics\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
-          "legendFormat": "__auto",
+          "legendFormat": "process_resident_memory_bytes",
           "range": true,
           "refId": "A",
-          "useBackend": false,
-          "datasource": {
-            "type": "prometheus",
-            "uid": "Prometheus"
-          }
+          "useBackend": false
         }
       ],
       "title": "Process Resident Memory (RSS)",
-      "transformations": [
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {},
-            "includeByName": {},
-            "indexByName": {},
-            "renameByName": {
-              "{__name__=\"process_resident_memory_bytes\", endpoint=\"metrics\", instance=\"10.244.2.65:10002\", job=\"lemmy-metrics\", namespace=\"lemmy\", pod=\"lemmy-5d5c5bfc77-f7kwh\", service=\"lemmy-metrics\"}": "process_resident_memory_bytes"
-            }
-          }
-        }
-      ],
       "type": "timeseries"
     },
     {
@@ -761,35 +748,22 @@
       "pluginVersion": "12.1.0",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "Prometheus"
+          },
           "disableTextWrap": false,
           "editorMode": "builder",
           "expr": "process_virtual_memory_bytes{job=\"lemmy-metrics\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
-          "legendFormat": "__auto",
+          "legendFormat": "process_virtual_memory_bytes",
           "range": true,
           "refId": "A",
-          "useBackend": false,
-          "datasource": {
-            "type": "prometheus",
-            "uid": "Prometheus"
-          }
+          "useBackend": false
         }
       ],
       "title": "Process Virtual Memory (VSZ)",
-      "transformations": [
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {},
-            "includeByName": {},
-            "indexByName": {},
-            "renameByName": {
-              "{__name__=\"process_virtual_memory_bytes\", endpoint=\"metrics\", instance=\"10.244.2.65:10002\", job=\"lemmy-metrics\", namespace=\"lemmy\", pod=\"lemmy-5d5c5bfc77-f7kwh\", service=\"lemmy-metrics\"}": "process_virtual_memory_bytes"
-            }
-          }
-        }
-      ],
       "type": "timeseries"
     },
     {
@@ -875,35 +849,22 @@
       "pluginVersion": "12.1.0",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "Prometheus"
+          },
           "disableTextWrap": false,
           "editorMode": "builder",
           "expr": "process_threads{job=\"lemmy-metrics\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
-          "legendFormat": "__auto",
+          "legendFormat": "process_threads",
           "range": true,
           "refId": "A",
-          "useBackend": false,
-          "datasource": {
-            "type": "prometheus",
-            "uid": "Prometheus"
-          }
+          "useBackend": false
         }
       ],
       "title": "Process Threads",
-      "transformations": [
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {},
-            "includeByName": {},
-            "indexByName": {},
-            "renameByName": {
-              "{__name__=\"process_threads\", endpoint=\"metrics\", instance=\"10.244.2.65:10002\", job=\"lemmy-metrics\", namespace=\"lemmy\", pod=\"lemmy-5d5c5bfc77-f7kwh\", service=\"lemmy-metrics\"}": "process_threads"
-            }
-          }
-        }
-      ],
       "type": "timeseries"
     },
     {
@@ -989,35 +950,22 @@
       "pluginVersion": "12.1.0",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "Prometheus"
+          },
           "disableTextWrap": false,
           "editorMode": "builder",
           "expr": "process_open_fds{job=\"lemmy-metrics\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
-          "legendFormat": "__auto",
+          "legendFormat": "process_open_fds",
           "range": true,
           "refId": "A",
-          "useBackend": false,
-          "datasource": {
-            "type": "prometheus",
-            "uid": "Prometheus"
-          }
+          "useBackend": false
         }
       ],
       "title": "Open File Descriptors",
-      "transformations": [
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {},
-            "includeByName": {},
-            "indexByName": {},
-            "renameByName": {
-              "{__name__=\"process_open_fds\", endpoint=\"metrics\", instance=\"10.244.2.65:10002\", job=\"lemmy-metrics\", namespace=\"lemmy\", pod=\"lemmy-5d5c5bfc77-f7kwh\", service=\"lemmy-metrics\"}": "process_open_fds"
-            }
-          }
-        }
-      ],
       "type": "timeseries"
     },
     {
@@ -1103,36 +1051,22 @@
       "pluginVersion": "12.1.0",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "Prometheus"
+          },
           "disableTextWrap": false,
           "editorMode": "builder",
           "expr": "process_max_fds{job=\"lemmy-metrics\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
-          "legendFormat": "__auto",
+          "legendFormat": "process_max_fds",
           "range": true,
           "refId": "A",
-          "useBackend": false,
-          "datasource": {
-            "type": "prometheus",
-            "uid": "Prometheus"
-          }
+          "useBackend": false
         }
       ],
       "title": "Max File Descriptor",
-      "transformations": [
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {},
-            "includeByName": {},
-            "indexByName": {},
-            "renameByName": {
-              "Time": "",
-              "{__name__=\"process_max_fds\", endpoint=\"metrics\", instance=\"10.244.2.65:10002\", job=\"lemmy-metrics\", namespace=\"lemmy\", pod=\"lemmy-5d5c5bfc77-f7kwh\", service=\"lemmy-metrics\"}": "process_max_fds"
-            }
-          }
-        }
-      ],
       "type": "timeseries"
     },
     {
@@ -1223,7 +1157,7 @@
           "expr": "lemmy_db_pool_max_connections",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
-          "legendFormat": "__auto",
+          "legendFormat": "lemmy_db_pool_max_connections",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -1240,7 +1174,7 @@
           "hide": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "__auto",
+          "legendFormat": "lemmy_db_pool_connections",
           "range": true,
           "refId": "B",
           "useBackend": false
@@ -1257,36 +1191,13 @@
           "hide": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "__auto",
+          "legendFormat": "lemmy_db_pool_available_connections",
           "range": true,
           "refId": "C",
           "useBackend": false
         }
       ],
       "title": "Postgres",
-      "transformations": [
-        {
-          "id": "renameByRegex",
-          "options": {
-            "regex": "({__name__=\"lemmy_db_pool_max_connections\", endpoint=\"metrics\", instance=\"10.244.2.65:10002\", job=\"lemmy-metrics\", namespace=\"lemmy\", pod=\"lemmy-5d5c5bfc77-f7kwh\", service=\"lemmy-metrics\"})",
-            "renamePattern": "lemmy_db_pool_max_connections"
-          }
-        },
-        {
-          "id": "renameByRegex",
-          "options": {
-            "regex": "({__name__=\"lemmy_db_pool_connections\", endpoint=\"metrics\", instance=\"10.244.2.65:10002\", job=\"lemmy-metrics\", namespace=\"lemmy\", pod=\"lemmy-5d5c5bfc77-f7kwh\", service=\"lemmy-metrics\"})",
-            "renamePattern": "lemmy_db_pool_connections"
-          }
-        },
-        {
-          "id": "renameByRegex",
-          "options": {
-            "regex": "({__name__=\"lemmy_db_pool_available_connections\", endpoint=\"metrics\", instance=\"10.244.2.65:10002\", job=\"lemmy-metrics\", namespace=\"lemmy\", pod=\"lemmy-5d5c5bfc77-f7kwh\", service=\"lemmy-metrics\"})",
-            "renamePattern": "lemmy_db_pool_available_connections"
-          }
-        }
-      ],
       "type": "timeseries"
     }
   ],
@@ -1357,8 +1268,8 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Lemmy",
-  "uid": "9ef4397b-2a79-4dca-9fc9-1b075545a0c3",
-  "version": 14,
+  "title": "Lemmy-test",
+  "uid": "9ef4397b-2a79-4dca-9fc9-1b075545a0c4",
+  "version": 2,
   "weekStart": ""
 }
