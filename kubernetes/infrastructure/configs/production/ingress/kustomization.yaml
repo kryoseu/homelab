@@ -7,4 +7,5 @@ resources:
   - whoops.yaml
   - whoops-ui.yaml
   - paperless-ngx.yaml
+  - prometheus.yaml
   - ingress.yaml
