@@ -38,21 +38,10 @@ spec:
   ingressClassName: "nginx"
   tls:
     - hosts:
-        - otarios.kryoseu.com
         - immich.kryoseu.com
         - excalidraw.kryoseu.com
       secretName: home-apps-tls
   rules:
-    - host: otarios.kryoseu.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: rocketchat-server
-                port:
-                  number: 3000
     - host: immich.kryoseu.com
       http:
         paths:
