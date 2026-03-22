@@ -7,6 +7,6 @@ resources:
   - whoops.yaml
   - whoops-ui.yaml
   - paperless-ngx.yaml
-  - prometheus.yaml
+  - prometheus-grafana.yaml
   - rocketchat.yaml
   - ingress.yaml
