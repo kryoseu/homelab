@@ -8,4 +8,5 @@ resources:
   - whoops-ui.yaml
   - paperless-ngx.yaml
   - prometheus.yaml
+  - rocketchat.yaml
   - ingress.yaml
