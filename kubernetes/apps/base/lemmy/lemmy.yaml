@@ -46,7 +46,7 @@ spec:
         runAsGroup: 1000
       containers:
         - name: lemmy
-          image: dessalines/lemmy:0.19.16
+          image: dessalines/lemmy:0.19.17
           ports:
             - containerPort: 8536
               protocol: TCP
