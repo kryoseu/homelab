@@ -17,10 +17,14 @@ spec:
         runAsNonRoot: true
         runAsUser: 1000
         runAsGroup: 1000
+        fsGroup: 1000
       containers:
         - name: whoops-ui
           image: ghcr.io/kryoseu/whoops-ui:v1.0.1
           imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: config
+              mountPath: /app/config
           securityContext:
             privileged: false
             allowPrivilegeEscalation: false
@@ -44,3 +48,6 @@ spec:
               value: "https://whoops-ui.kryoseu.com/api/whoop/callback"
             - name: WHOOPS_URL
               value: "https://whoops.kryoseu.com"
+      volumes:
+        - name: config
+          emptyDir: {}
