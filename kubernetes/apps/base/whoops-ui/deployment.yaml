@@ -20,7 +20,7 @@ spec:
         fsGroup: 1000
       containers:
         - name: whoops-ui
-          image: ghcr.io/kryoseu/whoops-ui:v1.0.1
+          image: ghcr.io/kryoseu/whoops-ui:v2.0.0
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: config
