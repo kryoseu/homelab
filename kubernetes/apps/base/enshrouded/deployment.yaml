@@ -1,0 +1,86 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: enshrouded-server
+  namespace: enshrouded
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: enshrouded-server
+  template:
+    metadata:
+      name: enshrouded-server
+      labels:
+        app: enshrouded-server
+    spec:
+      containers:
+        - name: enshrouded-server
+          image: mornedhels/enshrouded-server:1.7.1-proton
+          env:
+            - name: SERVER_NAME
+              value: "so_pode_otario"
+            - name: SERVER_SLOT_COUNT
+              value: "4"
+            - name: SERVER_QUERYPORT
+              value: "15637"
+            - name: SERVER_IP
+              value: "0.0.0.0"
+            - name: SERVER_SAVE_DIR
+              value: "./savegame"
+            - name: SERVER_LOG_DIR
+              value: "./logs"
+            - name: SERVER_VOICE_CHAT_MODE
+              value: "Global"
+            - name: SERVER_ENABLE_VOICE_CHAT
+              value: "true"
+            - name: SERVER_ENABLE_TEXT_CHAT
+              value: "true"
+            - name: PUID
+              value: "4711"
+            - name: PGID
+              value: "4711"
+            - name: UPDATE_CRON
+              value: "0 4 * * *"
+            - name: SERVER_ROLE_0_NAME
+              value: "Admins"
+            - name: SERVER_ROLE_0_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: enshrouded-server
+                  key: ENSHROUDED_ROLE_0_PASSWORD
+            - name: SERVER_ROLE_0_CAN_KICK_BAN
+              value: "true"
+            - name: SERVER_ROLE_0_CAN_ACCESS_INVENTORIES
+              value: "true"
+            - name: SERVER_ROLE_0_CAN_EDIT_WORLD
+              value: "true"
+            - name: SERVER_ROLE_0_CAN_EDIT_BASE
+              value: "true"
+            - name: SERVER_ROLE_0_CAN_EXTEND_BASE
+              value: "true"
+            - name: SERVER_ROLE_0_RESERVED_SLOTS
+              value: "1"
+            - name: SERVER_GS_PRESET
+              value: "Hard"
+          volumeMounts:
+            - name: game
+              mountPath: /opt/enshrouded
+          ports:
+            - containerPort: 15637
+              protocol: UDP
+          securityContext:
+            allowPrivilegeEscalation: false
+          resources:
+            requests:
+              memory: "4Gi"
+              cpu: "2"
+            limits:
+              memory: "8Gi"
+              cpu: "4"
+      volumes:
+        - name: game
+          persistentVolumeClaim:
+            claimName: enshrouded-server

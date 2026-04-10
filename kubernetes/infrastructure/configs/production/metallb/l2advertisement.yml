@@ -9,3 +9,4 @@ spec:
     - plex-production
     - apps-ext-production
     - pihole-production
+    - enshrouded-server

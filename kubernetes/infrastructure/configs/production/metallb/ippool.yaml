@@ -1,6 +1,15 @@
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
+  name: enshrouded-server
+  namespace: metallb-system
+spec:
+  addresses:
+    - 10.22.0.24/32
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
   name: postgres-production
   namespace: metallb-system
 spec:
