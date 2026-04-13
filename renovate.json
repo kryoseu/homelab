@@ -31,7 +31,8 @@
       ],
       "depNameTemplate": "plexinc/pms-docker",
       "datasourceTemplate": "docker",
-      "versioningTemplate": "loose"
+      "versioningTemplate": "loose",
+      "allowedVersions": "/^\\d+\\.\\d+\\.\\d+\\.\\d+-[a-f0-9]+$/"
     }
   ]
 }
