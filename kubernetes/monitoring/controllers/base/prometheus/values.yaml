@@ -340,7 +340,7 @@ grafana:
       type: loki
       url: http://loki.monitoring:3100
   dashboardsConfigMaps:
-    - flux-grafana-dashboards
+    flux: flux-grafana-dashboards
 
   persistence:
     enabled: true
