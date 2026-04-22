@@ -9,7 +9,7 @@ spec:
     type: Recreate
   selector:
     matchLabels:
-      app: enshrouded-server
+      app.kubernetes.io/name: enshrouded-server
   template:
     metadata:
       name: enshrouded-server
