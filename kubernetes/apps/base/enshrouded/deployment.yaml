@@ -14,7 +14,7 @@ spec:
     metadata:
       name: enshrouded-server
       labels:
-        app: enshrouded-server
+        app.kubernetes.io/name: enshrouded-server
     spec:
       containers:
         - name: enshrouded-server
