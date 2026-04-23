@@ -7,7 +7,7 @@ metadata:
     metallb.io/address-pool: enshrouded-server
 spec:
   selector:
-    app: enshrouded-server
+    app.kubernetes.io/name: enshrouded-server
   type: LoadBalancer
   ports:
     - protocol: UDP
