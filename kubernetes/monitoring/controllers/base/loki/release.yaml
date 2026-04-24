@@ -8,14 +8,14 @@ spec:
   chart:
     spec:
       chart: loki
-      version: "6.55.0"
+      version: "13.2.3"
       sourceRef:
         kind: HelmRepository
-        name: grafana
+        name: grafana-community
         namespace: monitoring
       interval: 12h
   values:
-    deploymentMode: SingleBinary
+    deploymentMode: Monolithic
     loki:
       table_manager:
         retention_deletes_enabled: true
@@ -48,8 +48,3 @@ spec:
       replicas: 0
     write:
       replicas: 0
-    monitoring:
-      selfMonitoring:
-        enabled: true
-        grafanaAgent:
-          installOperator: false
