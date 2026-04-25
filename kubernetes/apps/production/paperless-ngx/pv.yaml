@@ -4,6 +4,20 @@ metadata:
   name: paperless-media
 spec:
   capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: nfs-home-apps
+  nfs:
+    path: /tank/home-apps/encrypted/paperless-ngx/data
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: paperless-media
+spec:
+  capacity:
     storage: 200Gi
   accessModes:
     - ReadWriteMany
@@ -27,5 +41,3 @@ spec:
   nfs:
     path: /tank/home-apps/encrypted/paperless-ngx/export
     server: server01.kryoseu.com
-
-

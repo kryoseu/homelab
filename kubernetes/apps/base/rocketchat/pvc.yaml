@@ -10,3 +10,4 @@ spec:
     requests:
       storage: 200Gi
   storageClassName: nfs-home-apps
+  volumeName: rocketchat-attachments
