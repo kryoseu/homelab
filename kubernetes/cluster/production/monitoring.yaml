@@ -19,6 +19,8 @@ metadata:
   name: monitoring-configs
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: monitoring-controllers
   interval: 5m
   retryInterval: 1m
   timeout: 5m
