@@ -10,7 +10,6 @@ spec:
     requests:
       storage: 10Gi
   storageClassName: longhorn
-  volumeName: paperless-data
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
