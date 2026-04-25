@@ -2,8 +2,8 @@ apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
   name: lemmy-postgres
-  annotations:
-    cnpg.io/skipEmptyWalArchiveCheck: "enabled"
+  # annotations:
+  #   cnpg.io/skipEmptyWalArchiveCheck: "enabled"
 spec:
   description: Postgres cluster for the Lemmy application
   imageName: ghcr.io/cloudnative-pg/postgresql:18
