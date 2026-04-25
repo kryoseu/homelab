@@ -3,8 +3,8 @@ kind: Cluster
 metadata:
   name: whoops-postgres
   namespace: whoops
-  # annotations:
-  #   cnpg.io/skipEmptyWalArchiveCheck: "enabled"
+  annotations:
+    cnpg.io/skipEmptyWalArchiveCheck: "enabled"
 spec:
   imageName: ghcr.io/cloudnative-pg/postgresql:17.5
   instances: 3
