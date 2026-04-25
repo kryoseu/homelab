@@ -1,3 +1,4 @@
+# controlplane-worker-talos-vm
 machine:
   sysctls:
     vm.nr_hugepages: "1024"
@@ -5,7 +6,6 @@ machine:
     modules:
       - name: nvme_tcp
       - name: vfio_pci
-  #     - name: uio_pci_generic
   kubelet:
     extraMounts:
       - destination: /var/lib/longhorn
@@ -15,7 +15,21 @@ machine:
           - bind
           - rshared
           - rw
+  network:
+    interfaces:
+      - interface: ens18
+        dhcp: false
+        addresses:
+          - 10.22.20.22/24
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 10.22.20.1
+    nameservers:
+      - 10.22.20.1
+  install:
+    disk: /dev/sda
 cluster:
+  allowSchedulingOnControlPlanes: true
   controllerManager:
     extraArgs:
       bind-address: 0.0.0.0
@@ -28,5 +42,3 @@ cluster:
   etcd:
     extraArgs:
       listen-metrics-urls: http://0.0.0.0:2381
-
-
