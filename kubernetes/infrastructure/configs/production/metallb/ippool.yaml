@@ -1,20 +1,11 @@
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
-  name: enshrouded-server
+  name: apps-ext-production
   namespace: metallb-system
 spec:
   addresses:
-    - 10.22.0.24/32
----
-apiVersion: metallb.io/v1beta1
-kind: IPAddressPool
-metadata:
-  name: postgres-production
-  namespace: metallb-system
-spec:
-  addresses:
-    - 10.22.0.25/32
+    - 10.22.0.40/32
 ---
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
@@ -23,16 +14,25 @@ metadata:
   namespace: metallb-system
 spec:
   addresses:
-    - 10.22.0.27/32
+    - 10.22.20.41/32
 ---
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
-  name: apps-ext-production
+  name: enshrouded-server
   namespace: metallb-system
 spec:
   addresses:
-    - 10.22.0.28/32
+    - 10.22.20.42/32
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: postgres-production
+  namespace: metallb-system
+spec:
+  addresses:
+    - 10.22.20.45/32
 ---
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
@@ -41,4 +41,4 @@ metadata:
   namespace: metallb-system
 spec:
   addresses:
-    - 10.22.0.29/32
+    - 10.22.20.53/32
