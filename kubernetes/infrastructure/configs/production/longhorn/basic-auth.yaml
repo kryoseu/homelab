@@ -1,0 +1,17 @@
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: longhorn-basic-auth
+  namespace: longhorn-system
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: aws-kv-store
+    kind: ClusterSecretStore
+  target:
+    name: longhorn-basic-auth
+  data:
+    - secretKey: LONGHORN_PASSWORD
+      remoteRef:
+        key: apps
+        property: LONGHORN_PASSWORD
