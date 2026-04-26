@@ -83,4 +83,4 @@ spec:
       volumes:
         - name: game
           persistentVolumeClaim:
-            claimName: enshrouded-server
+            claimName: enshrouded-server-restored

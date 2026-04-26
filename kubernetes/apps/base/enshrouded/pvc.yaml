@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: enshrouded-server
+  name: enshrouded-server-restored
   namespace: enshrouded
 spec:
   accessModes:
     - ReadWriteOnce
+  storageClassName: longhorn
   resources:
     requests:
-      storage: 20Gi
-  storageClassName: longhorn
+      storage: 40Gi
