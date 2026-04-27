@@ -28,15 +28,6 @@ spec:
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
-  name: postgres-production
-  namespace: metallb-system
-spec:
-  addresses:
-    - 10.22.20.45/32
----
-apiVersion: metallb.io/v1beta1
-kind: IPAddressPool
-metadata:
   name: pihole-production
   namespace: metallb-system
 spec:
