@@ -52,6 +52,8 @@ spec:
         - name: gluetun
           image: qmcgaw/gluetun:v3.41.1
           env:
+            - name: DNS_UPSTREAM_RESOLVERS
+              value: "cloudflare,google"
             - name: VPN_SERVICE_PROVIDER
               value: "protonvpn"
             - name: VPN_TYPE
