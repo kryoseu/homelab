@@ -50,8 +50,8 @@ spec:
             capabilities:
               drop:
                 - ALL
-              priviledged: false
-              allowPrivilegeEscalation: false
+            privileged: false
+            allowPrivilegeEscalation: false
           ports:
             - name: flaresolverr
               containerPort: 8191
@@ -66,8 +66,8 @@ spec:
                 - SETUID
               drop:
                 - ALL
-              priviledged: false
-              allowPrivilegeEscalation: false
+            privileged: false
+            allowPrivilegeEscalation: false
           ports:
             - name: prowlarr
               containerPort: 9696
