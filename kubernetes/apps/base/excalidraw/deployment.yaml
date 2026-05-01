@@ -32,6 +32,9 @@ spec:
         app.kubernetes.io/name: excalidraw
         app.kubernetes.io/instance: excalidraw
     spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
       containers:
         - name: excalidraw
           image: "excalidraw/excalidraw@sha256:72600b725cfbf0c74f090b748f11bdd41ae205fc065ad02080d7b2ec37566079"
@@ -49,3 +52,13 @@ spec:
             - name: http
               containerPort: 80
               protocol: TCP
+          volumeMounts:
+            - mountPath: /var/cache/nginx
+              name: nginx-cache
+            - mountPath: /var/run
+              name: nginx-run
+      volumes:
+        - name: nginx-cache
+          emptyDir: {}
+        - name: nginx-run
+          emptyDir: {}
