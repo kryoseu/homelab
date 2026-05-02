@@ -11,6 +11,6 @@ spec:
       port: 32400
       targetPort: 32400
   selector:
-    name: plex-server
+    app: plex-server
   sessionAffinity: None
   type: LoadBalancer

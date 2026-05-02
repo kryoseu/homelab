@@ -3,17 +3,17 @@ kind: Deployment
 metadata:
   name: plex-server
   labels:
-    name: plex-server
+    app: plex-server
   namespace: plex-ns
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: plex-server
+      app: plex-server
   template:
     metadata:
       labels:
-        name: plex-server
+        app: plex-server
     spec:
       # hostNetwork: true
       volumes:
