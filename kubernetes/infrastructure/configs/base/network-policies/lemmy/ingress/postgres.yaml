@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ingress-postgres
+  namespace: lemmy
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/instance: lemmy-postgres
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: lemmy
+      ports:
+        - protocol: TCP
+          port: 5432
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: cnpg-system
+      ports:
+        - protocol: TCP
+          port: 5432
+        - protocol: TCP
+          port: 8000 # CNPG metrics/status port
+    - from:
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/instance: lemmy-postgres
+      ports:
+        - protocol: TCP
+          port: 5432
