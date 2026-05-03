@@ -20,3 +20,21 @@ spec:
       ports:
         - protocol: TCP
           port: 32400
+    - from:
+        - ipBlock:
+            cidr: 10.22.10.0/24
+        - ipBlock:
+            cidr: 10.22.40.0/24
+      ports:
+        - protocol: TCP
+          port: 32400
+    - from:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+            except:
+              - 10.0.0.0/8
+              - 172.16.0.0/12
+              - 192.168.0.0/16
+      ports:
+        - protocol: TCP
+          port: 32400
