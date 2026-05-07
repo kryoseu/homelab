@@ -28,6 +28,14 @@ spec:
       ports:
         - protocol: TCP
           port: 32400
+        - protocol: UDP
+          port: 32410
+        - protocol: UDP
+          port: 32412
+        - protocol: UDP
+          port: 32413
+        - protocol: UDP
+          port: 32414
     - from:
         - ipBlock:
             cidr: 0.0.0.0/0
