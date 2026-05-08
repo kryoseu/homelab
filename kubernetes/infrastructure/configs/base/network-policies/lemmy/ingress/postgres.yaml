@@ -14,6 +14,9 @@ spec:
         - podSelector:
             matchLabels:
               app: lemmy
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/instance: lemmy-postgres
       ports:
         - protocol: TCP
           port: 5432
@@ -27,9 +30,12 @@ spec:
         - protocol: TCP
           port: 8000 # CNPG metrics/status port
     - from:
-        - podSelector:
+        - namespaceSelector:
             matchLabels:
-              app.kubernetes.io/instance: lemmy-postgres
+              kubernetes.io/metadata.name: pgadmin
+          podSelector:
+            matchLabels:
+              app: pgadmin
       ports:
         - protocol: TCP
           port: 5432
