@@ -58,6 +58,11 @@ spec:
             privileged: false
             readOnlyRootFilesystem: false
             runAsNonRoot: false
+          resources:
+            requests:
+              memory: "2Gi"
+            limits:
+              memory: "4Gi"
           env:
             - name: PUID
               value: "1000"
