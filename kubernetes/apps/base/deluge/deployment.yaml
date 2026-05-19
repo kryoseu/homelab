@@ -80,7 +80,7 @@ spec:
           securityContext:
             privileged: true
         - name: deluge
-          image: linuxserver/deluge:2.2.0-ls372
+          image: linuxserver/deluge:2.2.0-ls377
           imagePullPolicy: Always
           env:
             - name: PUID
