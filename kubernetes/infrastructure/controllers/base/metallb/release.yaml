@@ -16,12 +16,16 @@ spec:
   timeout: 5m
   releaseName: metallb
   values:
-    speaker:
-      ignoreExcludeLB: true # required for running control plane nodes as workers
-      frr:
-        enabled: true
-      frrk8s:
-        enabled: false
+  speaker:
+    ignoreExcludeLB: true # required for running control plane nodes as workers
+    frr:
+      enabled: true
+    frrk8s:
+      enabled: false
+  prometheus:
+    serviceMonitor:
+      enabled: true
+  frrk8s:
     prometheus:
       serviceMonitor:
-        enabled: true
+        enabled: false
