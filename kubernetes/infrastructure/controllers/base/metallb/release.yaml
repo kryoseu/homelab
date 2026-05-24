@@ -24,7 +24,7 @@ spec:
       enabled: false
     prometheus:
       serviceMonitor:
-        enabled: true
+        enabled: false
     frr-k8s:
       prometheus:
         serviceMonitor:
