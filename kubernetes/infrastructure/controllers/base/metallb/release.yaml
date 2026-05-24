@@ -20,8 +20,8 @@ spec:
       ignoreExcludeLB: true # required for running control plane nodes as workers
       frr:
         enabled: true
-      frrk8s:
-        enabled: false
+    frrk8s:
+      enabled: false
     prometheus:
       serviceMonitor:
         enabled: true
