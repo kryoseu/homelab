@@ -44,7 +44,7 @@ spec:
     spec:
       containers:
         - name: flaresolverr
-          image: flaresolverr/flaresolverr:v3.4.6
+          image: flaresolverr/flaresolverr:v3.5.0
           imagePullPolicy: IfNotPresent
           securityContext:
             capabilities:
