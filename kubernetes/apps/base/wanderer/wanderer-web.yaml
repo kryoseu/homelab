@@ -1,0 +1,87 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: wanderer-web
+  namespace: wanderer
+  labels:
+    app: wanderer-web
+spec:
+  selector:
+    app: wanderer-web
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wanderer-web
+  namespace: wanderer
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: wanderer-web
+  template:
+    metadata:
+      name: wanderer-web
+      labels:
+        app: wanderer-web
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: wanderer-web
+          image: flomp/wanderer-web:v0.18.5
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
+          volumeMounts:
+            - name: wanderer-uploads
+              mountPath: /app/uploads
+          env:
+            - name: MEILI_URL
+              value: "http://melisearch:7700"
+            - name: MEILI_MASTER_KEY
+              value: "e79d592abff6ddbb18c9674d04ea80a3c9cfe0e3b224aecae64a11b46b1ac19a"
+            - name: PUBLIC_POCKETBASE_URL
+              value: "http://wanderer-db:8090"
+            - name: PUBLIC_DISABLE_SIGNUP
+              value: "true"
+            - name: UPLOAD_FOLDER
+              value: "/app/uploads"
+            - name: PUBLIC_OVERPASS_API_URL
+              value: "https://overpass-api.de"
+            - name: PUBLIC_VALHALLA_URL
+              value: "https://valhalla1.openstreetmap.de"
+            - name: PUBLIC_NOMINATIM_URL
+              value: "https://nominatim.openstreetmap.org"
+            - name: BODY_SIZE_LIMIT
+              value: "Infinity"
+            - name: ORIGIN
+              value: "https://wanderer.kryoseu.com"
+          livenessProbe:
+            initialDelaySeconds: 30
+            httpGet:
+              path: /
+              port: 3000
+      volumes:
+        - name: wanderer-uploads
+          nfs:
+            server: server01.kryoseu.com
+            path: /tank/home-apps/encrypted/wanderer/uploads

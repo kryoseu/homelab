@@ -1,0 +1,88 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: wanderer-db
+  namespace: wanderer
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: longhorn
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wanderer-db
+  namespace: wanderer
+  labels:
+    app: wanderer-db
+spec:
+  selector:
+    app: wanderer-db
+  ports:
+    - protocol: TCP
+      port: 8090
+      targetPort: 8090
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wanderer-db
+  namespace: wanderer
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: wanderer-db
+  template:
+    metadata:
+      name: wanderer-db
+      labels:
+        app: wanderer-db
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: wanderer-db
+          image: flomp/wanderer-db:v0.18.5
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8090
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
+          volumeMounts:
+            - name: wanderer-db-data
+              mountPath: /pb_data
+          env:
+            - name: MEILI_URL
+              value: "http://melisearch:7700"
+            - name: MEILI_MASTER_KEY
+              value: "e79d592abff6ddbb18c9674d04ea80a3c9cfe0e3b224aecae64a11b46b1ac19a"
+            - name: POCKETBASE_ENCRYPTION_KEY
+              value: "937e3baa3c24ef38abb5871694234bf3"
+            - name: ORIGIN
+              value: "https://wanderer.kryoseu.com"
+          livenessProbe:
+            initialDelaySeconds: 30
+            httpGet:
+              path: /health
+              port: 8090
+      volumes:
+        - name: wanderer-db-data
+          persistentVolumeClaim:
+            claimName: wanderer-db

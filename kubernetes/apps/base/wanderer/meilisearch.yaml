@@ -1,0 +1,87 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: meilisearch-data
+  namespace: wanderer
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: longhorn
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: melisearch
+  namespace: wanderer
+  labels:
+    app: melisearch
+spec:
+  selector:
+    app: melisearch
+  ports:
+    - protocol: TCP
+      port: 7700
+      targetPort: 7700
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: melisearch
+  namespace: wanderer
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: melisearch
+  template:
+    metadata:
+      name: melisearch
+      labels:
+        app: melisearch
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: melisearch
+          image: getmeili/meilisearch:v1.43.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 7700
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
+            # readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
+          volumeMounts:
+            - name: meili-data
+              mountPath: /meili_data
+          env:
+            - name: MEILI_URL
+              value: "http://melisearch:7700"
+            - name: MEILI_MASTER_KEY
+              value: "e79d592abff6ddbb18c9674d04ea80a3c9cfe0e3b224aecae64a11b46b1ac19a"
+            - name: MEILI_ENV
+              value: "production"
+            - name: MEILI_NO_ANALYTICS
+              value: "true"
+          livenessProbe:
+            initialDelaySeconds: 30
+            httpGet:
+              path: /health
+              port: 7700
+      volumes:
+        - name: meili-data
+          persistentVolumeClaim:
+            claimName: meilisearch-data
