@@ -1,0 +1,58 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: wyrm-postgres
+  namespace: wyrm
+  # annotations:
+  #   cnpg.io/skipEmptyWalArchiveCheck: "enabled"
+spec:
+  description: Postgres cluster for the Wyrm application
+  imageName: ghcr.io/cloudnative-pg/postgresql:18
+  instances: 3
+
+  storage:
+    size: 10Gi
+
+  externalClusters:
+    - name: clusterBackup
+      barmanObjectStore:
+        destinationPath: "s3://kryoseu-wyrm/postgres"
+        serverName: "wyrm-postgres"
+        s3Credentials:
+          accessKeyId:
+            name: aws-creds-envs
+            key: ACCESS_KEY_ID
+          secretAccessKey:
+            name: aws-creds-envs
+            key: ACCESS_SECRET_KEY
+
+  backup:
+    barmanObjectStore:
+      destinationPath: "s3://kryoseu-wyrm/postgres"
+      s3Credentials:
+        accessKeyId:
+          name: aws-creds-envs
+          key: ACCESS_KEY_ID
+        secretAccessKey:
+          name: aws-creds-envs
+          key: ACCESS_SECRET_KEY
+      wal:
+        compression: gzip
+      data:
+        compression: gzip
+    retentionPolicy: 14d
+
+  # bootstrap:
+  #   recovery:
+  #     source: clusterBackup
+  #     database: wyrm
+  #     owner: wyrm
+  #     secret:
+  #       name: wyrm-creds
+
+  bootstrap:
+    initdb:
+      database: wyrm
+      owner: wyrm
+      secret:
+        name: wyrm-creds

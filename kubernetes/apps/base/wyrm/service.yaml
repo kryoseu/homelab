@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: wyrm-server
+  namespace: wyrm
+spec:
+  selector:
+    app: wyrm-server
+  ports:
+    - protocol: "TCP"
+      port: 3001
+      targetPort: 3001
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wyrm-ui
+  namespace: wyrm
+spec:
+  selector:
+    app: wyrm-ui
+  ports:
+    - protocol: "TCP"
+      port: 3000
+      targetPort: 3000
