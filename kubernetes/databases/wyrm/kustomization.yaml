@@ -3,3 +3,4 @@ kind: Kustomization
 namespace: wyrm
 resources:
   - database.yaml
+  - scheduled_backup.yaml

@@ -40,19 +40,19 @@ spec:
         compression: gzip
       data:
         compression: gzip
-    retentionPolicy: 14d
-
-  # bootstrap:
-  #   recovery:
-  #     source: clusterBackup
-  #     database: wyrm
-  #     owner: wyrm
-  #     secret:
-  #       name: wyrm-creds
+    retentionPolicy: 3d
 
   bootstrap:
-    initdb:
+    recovery:
+      source: clusterBackup
       database: wyrm
       owner: wyrm
       secret:
         name: wyrm-creds
+
+  # bootstrap:
+  #   initdb:
+  #     database: wyrm
+  #     owner: wyrm
+  #     secret:
+  #       name: wyrm-creds
