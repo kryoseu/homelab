@@ -35,9 +35,13 @@
       "matchPackageNames": ["plexinc/pms-docker"],
       "allowedVersions": "/^\\d+\\.\\d+\\.\\d+\\.\\d+-[a-f0-9]+$/"
     },
-  {
-    "matchPackagePatterns": ["quay.io/jetstack/cert-manager-.*"],
-    "groupName": "cert-manager"
-  }
+    {
+      "matchPackagePatterns": ["quay.io/jetstack/cert-manager-.*"],
+      "groupName": "cert-manager"
+    },
+    {
+      "matchPackagePatterns": ["ghcr.io/kryoseu/wyrm.*"],
+      "groupName": "wyrm-rss"
+    }
   ]
 }
