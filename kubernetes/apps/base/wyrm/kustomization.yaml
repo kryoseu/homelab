@@ -3,3 +3,4 @@ kind: Kustomization
 namespace: wyrm
 resources:
   - deployment.yaml
+  - service.yaml
