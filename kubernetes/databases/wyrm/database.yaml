@@ -8,7 +8,7 @@ metadata:
 spec:
   description: Postgres cluster for the Wyrm application
   imageName: ghcr.io/cloudnative-pg/postgresql:18
-  instances: 3
+  instances: 1
 
   storage:
     size: 10Gi
