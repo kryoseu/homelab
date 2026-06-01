@@ -40,7 +40,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: wanderer-web
-          image: flomp/wanderer-web:v0.19.1
+          image: flomp/wanderer-web:v0.19.2
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
