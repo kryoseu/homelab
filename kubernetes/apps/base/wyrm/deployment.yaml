@@ -35,6 +35,11 @@ spec:
                 secretKeyRef:
                   name: wyrm-creds
                   key: WYRM_DATABASE_CONNECTION
+            - name: WYRM_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: wyrm-creds
+                  key: WYRM_API_KEY
 ---
 apiVersion: apps/v1
 kind: Deployment
