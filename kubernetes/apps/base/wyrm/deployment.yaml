@@ -62,7 +62,7 @@ spec:
         runAsGroup: 1000
       containers:
         - name: wyrm-ui
-          image: ghcr.io/kryoseu/wyrm-ui:0.14.0
+          image: ghcr.io/kryoseu/wyrm-ui:0.14.1
           imagePullPolicy: IfNotPresent
           securityContext:
             privileged: false
