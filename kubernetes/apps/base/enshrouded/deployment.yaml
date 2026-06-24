@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: enshrouded-server
-          image: mornedhels/enshrouded-server:1.7.1-proton
+          image: mornedhels/enshrouded-server:1.7.2-proton
           env:
             - name: SERVER_NAME
               value: "so_pode_otario"
