@@ -54,7 +54,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: wanderer-db
-          image: flomp/wanderer-db:v0.19.2
+          image: flomp/wanderer-db:v0.19.3
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8090
