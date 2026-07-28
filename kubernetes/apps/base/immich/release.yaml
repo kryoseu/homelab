@@ -61,20 +61,28 @@ spec:
 
     server:
       enabled: true
-      image:
-        repository: ghcr.io/immich-app/immich-server
-        pullPolicy: IfNotPresent
+      controllers:
+        main:
+          containers:
+            main:
+              image:
+                repository: ghcr.io/immich-app/immich-server
+                pullPolicy: IfNotPresent
 
-    machine-learning:
-      enabled: true
-      image:
-        repository: ghcr.io/immich-app/immich-machine-learning
-        pullPolicy: IfNotPresent
-      env:
-        TRANSFORMERS_CACHE: /cache
-      persistence:
-        cache:
-          enabled: true
-          size: 10Gi
-          type: emptyDir
-          accessMode: ReadWriteMany
+  machine-learning:
+    enabled: true
+    controllers:
+      main:
+        containers:
+          main:
+            image:
+              repository: ghcr.io/immich-app/immich-machine-learning
+              pullPolicy: IfNotPresent
+            env:
+              TRANSFORMERS_CACHE: /cache
+    persistence:
+      cache:
+        enabled: true
+        size: 10Gi
+        type: emptyDir
+        accessMode: ReadWriteMany
