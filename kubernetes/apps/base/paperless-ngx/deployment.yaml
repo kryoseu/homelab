@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
         - name: paperless-ngx
-          image: ghcr.io/paperless-ngx/paperless-ngx:v3.0.0
+          image: ghcr.io/paperless-ngx/paperless-ngx:3.0.0
           imagePullPolicy: IfNotPresent
           securityContext:
             privileged: false
