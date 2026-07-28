@@ -76,6 +76,11 @@ spec:
                 secretKeyRef:
                   name: paperless-ngx-creds
                   key: password
+            - name: PAPERLESS_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: paperless-ngx-creds
+                  key: secret_key
           volumeMounts:
             - name: data
               mountPath: /usr/src/paperless/data
