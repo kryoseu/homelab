@@ -4,3 +4,8 @@ resources:
   - home-apps.yaml
   - wyrm.yaml
   - paperless-ngx.yaml
+  - plex-ns.yaml
+  - enshrouded.yaml
+  - homepage.yaml
+  - lemmy.yaml
+  - whoops.yaml
