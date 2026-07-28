@@ -20,7 +20,7 @@ spec:
         containers:
           main:
             image:
-              tag: v3.0.0
+              tag: v3.0.3
             env:
               REDIS_HOSTNAME: immich-valkey.home-apps.svc.cluster.local
               DB_HOSTNAME: immich-postgres-rw.home-apps.svc.cluster.local
@@ -35,7 +35,7 @@ spec:
 
     immich:
       metrics:
-        enabled: false
+        enabled: true
       persistence:
         library:
           existingClaim: immich-library-encrypted
