@@ -6,12 +6,12 @@ metadata:
   #   cnpg.io/skipEmptyWalArchiveCheck: "enabled"
 spec:
   description: Postgres cluster for the immich app application
-  imageName: ghcr.io/tensorchord/cloudnative-pgvecto.rs:16.5-v0.3.0@sha256:be3f025d79aa1b747817f478e07e71be43236e14d00d8a9eb3914146245035ba
+  imageName: ghcr.io/tensorchord/cloudnative-vectorchord:16.9-0.4.2@sha256:649da2df5f079dd1f214e3a877cafd0208eff3779e9c60d14d243fbca5e11c97
   instances: 3
 
   postgresql:
     shared_preload_libraries:
-      - "vectors.so"
+      - "vchord.so"
 
   inheritedMetadata:
     labels:
