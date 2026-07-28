@@ -32,9 +32,9 @@
   ],
   "packageRules": [
     {
-      "description": "Silently automerge Renovate's own patch/digest updates via branch, no PR",
+      "description": "Silently automerge Renovate's own updates via branch, no PR",
       "matchPackageNames": ["renovate/renovate", "ghcr.io/renovatebot/renovate"],
-      "matchUpdateTypes": ["patch", "digest"],
+      "matchUpdateTypes": ["patch", "minor", "digest"],
       "automerge": true,
       "automergeType": "branch"
     },
