@@ -55,7 +55,7 @@ spec:
         data:
           enabled: true
           size: 1Gi
-          type: emptyDir
+          type: persistentVolumeClaim
           accessMode: ReadWriteOnce
           storageClass: longhorn
 
@@ -84,5 +84,6 @@ spec:
         cache:
           enabled: true
           size: 10Gi
-          type: emptyDir
+          type: persistentVolumeClaim
           accessMode: ReadWriteMany
+          storageClass: longhorn
