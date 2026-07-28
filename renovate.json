@@ -2,6 +2,8 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "semanticCommits": true,
   "semanticCommitType": "chore",
+  "minimumReleaseAge": "3 days",
+  "internalChecksFilter": "strict",
   "flux": {
     "fileMatch": ["\\.yaml$"]
   },
