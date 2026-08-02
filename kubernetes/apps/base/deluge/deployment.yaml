@@ -52,7 +52,7 @@ spec:
           - 10.2.0.1
       containers:
         - name: gluetun
-          image: qmcgaw/gluetun:v3.41.1
+          image: qmcgaw/gluetun:v3.41.3
           env:
             - name: DNS_UPSTREAM_RESOLVERS
               value: "cloudflare,google"
