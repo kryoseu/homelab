@@ -39,7 +39,6 @@ spec:
   template:
     metadata:
       labels:
-        app: lemmy
         app.kubernetes.io/name: lemmy
     spec:
       securityContext:
