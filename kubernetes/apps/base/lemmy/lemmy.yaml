@@ -4,7 +4,7 @@ metadata:
   name: lemmy
 spec:
   selector:
-    app: lemmy
+    app.kubernetes.io/name: lemmy
   ports:
     - protocol: TCP
       port: 8536
@@ -19,7 +19,7 @@ metadata:
     app: lemmy-metrics
 spec:
   selector:
-    app: lemmy
+    app.kubernetes.io/name: lemmy
   ports:
     - name: metrics
       protocol: TCP
@@ -39,6 +39,7 @@ spec:
   template:
     metadata:
       labels:
+        app: lemmy
         app.kubernetes.io/name: lemmy
     spec:
       securityContext:

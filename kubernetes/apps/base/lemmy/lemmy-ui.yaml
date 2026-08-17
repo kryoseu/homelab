@@ -4,7 +4,7 @@ metadata:
   name: lemmy-ui
 spec:
   selector:
-    app: lemmy-ui
+    app.kubernetes.io/name: lemmy-ui
   ports:
     - protocol: TCP
       port: 1234
@@ -19,11 +19,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: lemmy-ui
+      app.kubernetes.io/name: lemmy-ui
   template:
     metadata:
       labels:
-        app: lemmy-ui
+        app.kubernetes.io/name: lemmy-ui
     spec:
       securityContext:
         runAsUser: 1000

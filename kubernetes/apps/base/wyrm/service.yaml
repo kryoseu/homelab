@@ -5,7 +5,7 @@ metadata:
   namespace: wyrm
 spec:
   selector:
-    app: wyrm-server
+    app.kubernetes.io/name: wyrm-server
   ports:
     - protocol: "TCP"
       port: 3001
@@ -18,7 +18,7 @@ metadata:
   namespace: wyrm
 spec:
   selector:
-    app: wyrm-ui
+    app.kubernetes.io/name: wyrm-ui
   ports:
     - protocol: "TCP"
       port: 3000
