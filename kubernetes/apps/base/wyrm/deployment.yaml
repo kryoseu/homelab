@@ -6,12 +6,12 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: wyrm-server
+      app.kubernetes.io/name: wyrm-server
   replicas: 1
   template:
     metadata:
       labels:
-        app: wyrm-server
+        app.kubernetes.io/name: wyrm-server
     spec:
       securityContext:
         runAsNonRoot: true
@@ -49,12 +49,12 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: wyrm-ui
+      app.kubernetes.io/name: wyrm-ui
   replicas: 1
   template:
     metadata:
       labels:
-        app: wyrm-ui
+        app.kubernetes.io/name: wyrm-ui
     spec:
       securityContext:
         runAsNonRoot: true
