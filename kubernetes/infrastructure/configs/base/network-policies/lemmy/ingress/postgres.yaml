@@ -13,7 +13,7 @@ spec:
     - from:
         - podSelector:
             matchLabels:
-              app: lemmy
+              app.kubernetes.io/name: lemmy
         - podSelector:
             matchLabels:
               app.kubernetes.io/instance: lemmy-postgres

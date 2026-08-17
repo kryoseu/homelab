@@ -6,7 +6,7 @@ metadata:
 spec:
   podSelector:
     matchLabels:
-      app: lemmy
+      app.kubernetes.io/name: lemmy
   policyTypes:
     - Ingress
   ingress:
@@ -33,7 +33,7 @@ spec:
     - from:
         - podSelector:
             matchLabels:
-              app: lemmy-ui
+              app.kubernetes.io/name: lemmy-ui
       ports:
         - protocol: TCP
           port: 8536

@@ -6,7 +6,7 @@ metadata:
 spec:
   podSelector:
     matchLabels:
-      app: lemmy-ui
+      app.kubernetes.io/name: lemmy-ui
   policyTypes:
     - Ingress
   ingress:
