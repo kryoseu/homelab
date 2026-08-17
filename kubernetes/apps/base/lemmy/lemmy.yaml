@@ -35,11 +35,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: lemmy
+      app.kubernetes.io/name: lemmy
   template:
     metadata:
       labels:
-        app: lemmy
+        app.kubernetes.io/name: lemmy
     spec:
       securityContext:
         runAsUser: 1000
