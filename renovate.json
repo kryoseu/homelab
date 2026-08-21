@@ -34,13 +34,6 @@
   ],
   "packageRules": [
     {
-      "description": "Silently automerge Renovate's own updates via branch, no PR",
-      "matchPackageNames": ["renovate/renovate", "ghcr.io/renovatebot/renovate"],
-      "matchUpdateTypes": ["patch", "minor", "digest"],
-      "automerge": true,
-      "automergeType": "branch"
-    },
-    {
       "matchPackageNames": ["plexinc/pms-docker"],
       "allowedVersions": "/^\\d+\\.\\d+\\.\\d+\\.\\d+-[a-f0-9]+$/"
     },
