@@ -38,7 +38,8 @@
       "matchUpdateTypes": ["patch", "minor", "digest"],
       "minimumReleaseAge": "0 days",
       "automerge": true,
-      "automergeType": "branch"
+      "automergeType": "branch",
+      "ignoreTests": true
     },
     {
       "matchPackageNames": ["plexinc/pms-docker"],
