@@ -39,7 +39,7 @@
       "minimumReleaseAge": "0 days",
       "automerge": true,
       "automergeType": "branch"
-    }
+    },
     {
       "matchPackageNames": ["plexinc/pms-docker"],
       "allowedVersions": "/^\\d+\\.\\d+\\.\\d+\\.\\d+-[a-f0-9]+$/"
