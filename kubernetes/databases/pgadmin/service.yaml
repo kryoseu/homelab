@@ -6,5 +6,5 @@ spec:
   ports:
     - port: 3004
   selector:
-    app: pgadmin
+    app.kubernetes.io/name: pgadmin
   type: ClusterIP

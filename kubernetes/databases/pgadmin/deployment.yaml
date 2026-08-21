@@ -8,11 +8,11 @@ spec:
     type: Recreate
   selector:
     matchLabels:
-      app: pgadmin
+      app.kubernetes.io/name: pgadmin
   template:
     metadata:
       labels:
-        app: pgadmin
+        app.kubernetes.io/name: pgadmin
         policy-type: "app"
     spec:
       securityContext:
