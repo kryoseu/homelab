@@ -17,14 +17,16 @@ spec:
   values:
     deploymentMode: Monolithic
     loki:
-      table_manager:
-        retention_deletes_enabled: true
-        retention_period: 720h
-      limits_config:
-        max_label_names_per_series: 20
       auth_enabled: false
       commonConfig:
         replication_factor: 1
+      compactor:
+        working_directory: /var/loki/compactor
+        retention_enabled: true
+        delete_request_store: filesystem
+      limits_config:
+        retention_period: 720h
+        max_label_names_per_series: 20
       storage:
         type: "filesystem"
         bucketNames:
@@ -42,6 +44,9 @@ spec:
             schema: v13
     singleBinary:
       replicas: 1
+      persistence:
+        enabled: true
+        size: 20Gi
     read:
       replicas: 0
     backend:
