@@ -3,6 +3,7 @@
   "semanticCommits": true,
   "semanticCommitType": "chore",
   "minimumReleaseAge": "3 days",
+  "minimumReleaseAgeBehaviour": "timestamp-optional",
   "internalChecksFilter": "strict",
   "flux": {
     "fileMatch": ["\\.yaml$"]
