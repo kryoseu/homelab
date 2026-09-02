@@ -35,7 +35,7 @@ spec:
               kubernetes.io/metadata.name: pgadmin
           podSelector:
             matchLabels:
-              app: pgadmin
+              app.kubernetes.io/name: pgadmin
       ports:
         - protocol: TCP
           port: 5432
