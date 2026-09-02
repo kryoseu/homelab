@@ -55,7 +55,7 @@ spec:
             allowPrivilegeEscalation: false
           env:
             - name: RUST_LOG
-              value: "warn"
+              value: "warn,lemmy_federate=off"
           volumeMounts:
             - name: lemmy-config
               mountPath: /config/config.hjson

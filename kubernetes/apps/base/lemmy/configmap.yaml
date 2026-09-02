@@ -12,8 +12,6 @@ data:
         password: "{{ .password }}"
       }
 
-      hostname: "lemmy.bunga.kryoseu.com"
-
       pictrs: {
         url: "http://pictrs:8080/"
         api_key: "{{ .pictrs_api_key }}"
@@ -29,6 +27,9 @@ data:
         smtp_from_address: "noreply@lemmy.example.com"
         tls_type: "none"
       }
+
+      hostname: "lemmy.bunga.kryoseu.com"
+      tls_enabled: true
     }
 ---
 apiVersion: external-secrets.io/v1
