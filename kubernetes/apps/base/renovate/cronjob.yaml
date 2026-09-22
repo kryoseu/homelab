@@ -4,11 +4,14 @@ metadata:
   name: renovate-bot
   namespace: home-apps
 spec:
-  schedule: '@hourly'
+  schedule: "@hourly"
   concurrencyPolicy: Forbid
   jobTemplate:
     spec:
       template:
+        metadata:
+          labels:
+            app.kubernetes.io/name: renovate
         spec:
           securityContext:
             runAsNonRoot: true
@@ -31,4 +34,3 @@ spec:
                 - configMapRef:
                     name: renovate-configmap
           restartPolicy: Never
-
