@@ -53,6 +53,11 @@
     {
       "matchPackagePatterns": ["ghcr.io/kryoseu/wyrm.*"],
       "groupName": "wyrm-rss"
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["/^factory\\.talos\\.dev//"],
+      "enabled": false
     }
   ]
 }
