@@ -4,8 +4,11 @@ metadata:
   name: renovate-configmap
   namespace: home-apps
 data:
+  # https://github.com/renovatebot/renovate/discussions/45374
+  RENOVATE_DOCKER_MAX_PAGES: "10"
   RENOVATE_AUTODISCOVER: "false"
   RENOVATE_GIT_AUTHOR: "Renovate Bot <bot@renovateapp.com>"
   RENOVATE_PLATFORM: "github"
-  RENOVATE_PR_HOURLY_LIMIT: '0'
-  LOG_LEVEL: 'debug'
+  RENOVATE_PR_HOURLY_LIMIT: "0"
+  LOG_LEVEL: "debug"
+
