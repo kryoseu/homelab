@@ -10,5 +10,5 @@ data:
   RENOVATE_GIT_AUTHOR: "Renovate Bot <bot@renovateapp.com>"
   RENOVATE_PLATFORM: "github"
   RENOVATE_PR_HOURLY_LIMIT: "0"
-  LOG_LEVEL: "debug"
+  LOG_LEVEL: "info"
 
