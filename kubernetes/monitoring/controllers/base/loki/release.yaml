@@ -25,7 +25,7 @@ spec:
         retention_enabled: true
         delete_request_store: filesystem
       limits_config:
-        retention_period: 720h
+        retention_period: 168h
         max_label_names_per_series: 20
       storage:
         type: "filesystem"
