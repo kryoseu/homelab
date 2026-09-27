@@ -15,6 +15,11 @@ spec:
         namespace: monitoring
       interval: 12h
   values:
+    # Chart default enables an 8Gi-allocated memcached chunks-cache, which is
+    # oversized for this single-node, filesystem-backed monolithic deployment
+    # and was driving the node's memory major page fault alarms.
+    chunksCache:
+      enabled: false
     deploymentMode: Monolithic
     loki:
       auth_enabled: false
