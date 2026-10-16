@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: morss
+  namespace: wyrm
+spec:
+  selector:
+    app.kubernetes.io/name: morss
+  ports:
+    - protocol: "TCP"
+      port: 8000
+      targetPort: 8000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: morss
+  namespace: wyrm
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: morss
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: morss
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+      containers:
+        - name: morss
+          image: pictuga/morss
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+          ports:
+            - containerPort: 8000

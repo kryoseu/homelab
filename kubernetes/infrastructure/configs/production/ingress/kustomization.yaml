@@ -4,6 +4,7 @@ resources:
   - homepage.yaml
   - lemmy.yaml
   - longhorn.yaml
+  - morss.yaml
   - whoops.yaml
   - whoops-ui.yaml
   - paperless-ngx.yaml
