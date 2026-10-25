@@ -34,7 +34,7 @@ spec:
         fsGroup: 991
       containers:
         - name: pictrs
-          image: asonix/pictrs:0.5.24
+          image: asonix/pictrs:0.5.25
           ports:
             - containerPort: 8080
           securityContext:
