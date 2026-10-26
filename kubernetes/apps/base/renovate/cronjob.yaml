@@ -18,7 +18,7 @@ spec:
             seccompProfile:
               type: RuntimeDefault
           containers:
-            - image: renovate/renovate:44.181.7
+            - image: renovate/renovate:44.181.8
               name: renovate-bot
               args:
                 - kryoseu/homelab
