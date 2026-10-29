@@ -30,7 +30,7 @@ spec:
         runAsGroup: 1000
       containers:
         - name: lemmy-ui
-          image: dessalines/lemmy-ui:0.19.20
+          image: dessalines/lemmy-ui:0.19.21
           ports:
             - containerPort: 1234
               protocol: TCP
