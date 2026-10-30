@@ -1,30 +1,28 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "semanticCommits": true,
+  "configMigration": true,
+  "dependencyDashboard": true,
+  "semanticCommits": "enabled",
   "semanticCommitType": "chore",
   "minimumReleaseAge": "3 days",
   "minimumReleaseAgeBehaviour": "timestamp-optional",
   "internalChecksFilter": "strict",
   "flux": {
-    "fileMatch": ["\\.yaml$"]
-  },
-  "kubernetes": {
-    "fileMatch": [
-      "\\.yaml$",
-      "kubernetes/.+\\.yaml$"
+    "managerFilePatterns": [
+      "/\\.yaml$/"
     ]
   },
-  "regexManagers": [
+  "kubernetes": {
+    "managerFilePatterns": [
+      "/\\.yaml$/"
+    ]
+  },
+  "customManagers": [
     {
-      "fileMatch": ["kubernetes/apps/base/immich/release.yaml"],
-      "matchStrings": [
-        "tag:\\s*(?<currentValue>v?\\d+\\.\\d+\\.\\d+)"
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/(^|/)plex/.*\\.yaml$/"
       ],
-      "depNameTemplate": "ghcr.io/immich-app/immich-server",
-      "datasourceTemplate": "docker"
-    },
-    {
-      "fileMatch": ["(^|/)plex/.*\\.yaml$"],
       "matchStrings": [
         "image:\\s*plexinc/pms-docker:(?<currentValue>[^\\s]+)"
       ],
@@ -35,28 +33,52 @@
   ],
   "packageRules": [
     {
-      "matchPackageNames": ["renovate/renovate", "ghcr.io/renovatebot/renovate"],
-      "matchUpdateTypes": ["patch", "minor", "digest"],
+      "matchPackageNames": [
+        "renovate/renovate",
+        "ghcr.io/renovatebot/renovate"
+      ],
+      "matchUpdateTypes": [
+        "patch",
+        "minor",
+        "digest"
+      ],
       "minimumReleaseAge": "0 days",
       "automerge": true,
       "automergeType": "branch",
       "ignoreTests": true
     },
     {
-      "matchPackageNames": ["plexinc/pms-docker"],
+      "matchPackageNames": [
+        "plexinc/pms-docker"
+      ],
       "allowedVersions": "/^\\d+\\.\\d+\\.\\d+\\.\\d+-[a-f0-9]+$/"
     },
     {
-      "matchPackagePatterns": ["quay.io/jetstack/cert-manager-.*"],
+      "matchPackageNames": [
+        "/^ghcr\\.io/immich-app//"
+      ],
+      "groupName": "immich",
+      "automerge": false
+    },
+    {
+      "matchPackageNames": [
+        "/^quay\\.io/jetstack/cert-manager-/"
+      ],
       "groupName": "cert-manager"
     },
     {
-      "matchPackagePatterns": ["ghcr.io/kryoseu/wyrm.*"],
+      "matchPackageNames": [
+        "/^ghcr\\.io/kryoseu/wyrm/"
+      ],
       "groupName": "wyrm-rss"
     },
     {
-      "matchDatasources": ["docker"],
-      "matchPackageNames": ["/^factory\\.talos\\.dev//"],
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "/^factory\\.talos\\.dev//"
+      ],
       "enabled": false
     }
   ]
