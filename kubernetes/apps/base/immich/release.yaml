@@ -83,7 +83,5 @@ spec:
       persistence:
         cache:
           enabled: true
-          size: 10Gi
-          type: persistentVolumeClaim
-          accessMode: ReadWriteMany
-          storageClass: longhorn
+          sizeLimit: 10Gi
+          type: emptyDir
