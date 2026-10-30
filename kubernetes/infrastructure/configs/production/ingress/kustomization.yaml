@@ -1,12 +1,15 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
+  - vaultwarden.yaml
+  - headlamp.yaml
   - homepage.yaml
   - lemmy.yaml
   - longhorn.yaml
   - morss.yaml
   - whoops.yaml
   - whoops-ui.yaml
+  - wyrm.yaml
   - paperless-ngx.yaml
   - prometheus-grafana.yaml
   - rocketchat.yaml
