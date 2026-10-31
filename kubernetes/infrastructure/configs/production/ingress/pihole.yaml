@@ -6,6 +6,7 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/app-root: /admin
     gethomepage.dev/enabled: "true"
     gethomepage.dev/description: AdBlocking DNS Server
     gethomepage.dev/href: https://pihole.kryoseu.com/admin/
@@ -31,6 +32,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: pihole
+                name: pihole-web
                 port:
                   number: 80
