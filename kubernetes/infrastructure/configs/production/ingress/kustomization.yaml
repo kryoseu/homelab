@@ -17,3 +17,4 @@ resources:
   - prometheus-grafana.yaml
   - rocketchat.yaml
   - ingress.yaml
+  - immich.yaml
