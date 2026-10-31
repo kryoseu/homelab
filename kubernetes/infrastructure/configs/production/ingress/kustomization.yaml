@@ -13,6 +13,7 @@ resources:
   - paperless-ngx.yaml
   - pgadmin.yaml
   - pihole.yaml
+  - plex.yaml
   - prometheus-grafana.yaml
   - rocketchat.yaml
   - ingress.yaml
