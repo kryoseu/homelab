@@ -12,6 +12,7 @@ resources:
   - wyrm.yaml
   - paperless-ngx.yaml
   - pgadmin.yaml
+  - pihole.yaml
   - prometheus-grafana.yaml
   - rocketchat.yaml
   - ingress.yaml
