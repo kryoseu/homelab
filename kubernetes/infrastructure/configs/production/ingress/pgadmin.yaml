@@ -4,6 +4,11 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/description: Postgres Administration
+    gethomepage.dev/group: Infrastructure
+    gethomepage.dev/icon: pgadmin.svg
+    gethomepage.dev/name: pgAdmin
   name: pgadmin
 spec:
   ingressClassName: "nginx"

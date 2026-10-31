@@ -11,6 +11,7 @@ resources:
   - whoops-ui.yaml
   - wyrm.yaml
   - paperless-ngx.yaml
+  - pgadmin.yaml
   - prometheus-grafana.yaml
   - rocketchat.yaml
   - ingress.yaml
