@@ -11,10 +11,10 @@ metadata:
     gethomepage.dev/group: Media
     gethomepage.dev/icon: immich.svg
     gethomepage.dev/name: immich
-    gethomepage.dev/siteMonitor: http://immich-server.home-apps.svc.cluster.local:32400
-    gethomepage.dev/weight: "10"
+    gethomepage.dev/siteMonitor: http://immich-server.home-apps.svc.cluster.local:2283
+    gethomepage.dev/weight: "20"
     gethomepage.dev/widget.type: immich
-    gethomepage.dev/widget.url: http://immich-sever.home-apps.svc.cluster.local:32400
+    gethomepage.dev/widget.url: http://immich-server.home-apps.svc.cluster.local:2283
     gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_IMMICH_API_KEY}}"
 spec:
   ingressClassName: "nginx"
