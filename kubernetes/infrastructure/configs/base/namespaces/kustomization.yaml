@@ -9,3 +9,4 @@ resources:
   - homepage.yaml
   - lemmy.yaml
   - whoops.yaml
+  - immich.yaml
