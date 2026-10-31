@@ -11,7 +11,7 @@ metadata:
     gethomepage.dev/description: Plex Media Server
     gethomepage.dev/group: Media
     gethomepage.dev/icon: plex.svg
-    gethomepage.dev/name: Plex
+    gethomepage.dev/name: plex-server
     gethomepage.dev/siteMonitor: http://plex.plex-ns.svc.cluster.local:32400
     gethomepage.dev/weight: "10"
     gethomepage.dev/widget.type: plex

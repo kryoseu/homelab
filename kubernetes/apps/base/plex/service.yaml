@@ -11,7 +11,7 @@ spec:
       port: 32400
       targetPort: 32400
   selector:
-    app: plex-server
+    app.kubernetes.io/name: plex-server
   sessionAffinity: None
   type: LoadBalancer
   externalTrafficPolicy: Local

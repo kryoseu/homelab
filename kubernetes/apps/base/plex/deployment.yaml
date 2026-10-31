@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: plex-server
   labels:
-    app: plex-server
+    app.kubernetes.io/name: plex-server
   namespace: plex-ns
 spec:
   replicas: 1
@@ -11,11 +11,11 @@ spec:
     type: Recreate
   selector:
     matchLabels:
-      app: plex-server
+      app.kubernetes.io/name: plex-server
   template:
     metadata:
       labels:
-        app: plex-server
+        app.kubernetes.io/name: plex-server
     spec:
       # hostNetwork: true
       volumes:
