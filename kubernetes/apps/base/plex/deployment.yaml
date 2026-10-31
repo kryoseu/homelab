@@ -75,7 +75,7 @@ spec:
             - name: PLEX_CLAIM
               valueFrom:
                 secretKeyRef:
-                  name: plex-claim-token
+                  name: plex-tokens
                   key: PLEX_CLAIM
             - name: TZ
               value: "Canada/Pacific"
