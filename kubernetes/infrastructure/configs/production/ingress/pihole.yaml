@@ -13,6 +13,7 @@ metadata:
     gethomepage.dev/group: Infrastructure
     gethomepage.dev/icon: pi-hole.svg
     gethomepage.dev/name: Pi-hole
+    gethomepage.dev/siteMonitor: http://pihole-web.home-apps.svc.cluster.local/admin
     gethomepage.dev/weight: "10"
     gethomepage.dev/widget.type: pihole
     gethomepage.dev/widget.url: http://pihole-web.home-apps.svc.cluster.local

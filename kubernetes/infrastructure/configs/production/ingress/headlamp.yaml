@@ -11,6 +11,7 @@ metadata:
     gethomepage.dev/group: Infrastructure
     gethomepage.dev/icon: headlamp.svg
     gethomepage.dev/name: Headlamp
+    gethomepage.dev/siteMonitor: http://headlamp.kube-system.svc.cluster.local
     gethomepage.dev/weight: "30"
 spec:
   ingressClassName: "nginx"

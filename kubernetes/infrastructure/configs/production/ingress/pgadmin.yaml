@@ -11,6 +11,7 @@ metadata:
     gethomepage.dev/group: Infrastructure
     gethomepage.dev/icon: pgadmin.svg
     gethomepage.dev/name: pgAdmin
+    gethomepage.dev/siteMonitor: http://pgadmin.pgadmin.svc.cluster.local:3004
     gethomepage.dev/weight: "40"
 spec:
   ingressClassName: "nginx"
