@@ -26,7 +26,7 @@ spec:
               DB_PASSWORD:
                 valueFrom:
                   secretKeyRef:
-                    name: immich-db-creds
+                    name: immich
                     key: password
               DB_DATABASE_NAME: immich
               IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
