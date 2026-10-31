@@ -15,6 +15,7 @@ metadata:
     gethomepage.dev/weight: "20"
     gethomepage.dev/widget.type: immich
     gethomepage.dev/widget.url: http://immich-server.home-apps.svc.cluster.local:2283
+    gethomepage.dev/widget.version: "2"
     gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_IMMICH_API_KEY}}"
 spec:
   ingressClassName: "nginx"
