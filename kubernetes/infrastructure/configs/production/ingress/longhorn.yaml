@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nginx-ingress
+  name: longhorn
   namespace: longhorn-system
   annotations:
     nginx.ingress.kubernetes.io/auth-type: basic
@@ -9,6 +9,13 @@ metadata:
     nginx.ingress.kubernetes.io/auth-realm: "Authentication Required "
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/description: Distributed Block Storage
+    gethomepage.dev/group: Infrastructure
+    gethomepage.dev/icon: longhorn.svg
+    gethomepage.dev/name: Longhorn
+    # selects all pods in the namespace
+    gethomepage.dev/pod-selector: ""
 spec:
   ingressClassName: "nginx"
   tls:
