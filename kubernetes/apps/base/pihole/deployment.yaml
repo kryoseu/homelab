@@ -18,7 +18,7 @@ metadata:
     metallb.io/address-pool: pihole-production
     metallb.io/allow-shared-ip: pihole-svc
   labels:
-    app: pihole
+    app.kubernetes.io/name: pihole
   name: pihole-dhcp
   namespace: home-apps
 spec:
@@ -29,7 +29,7 @@ spec:
       protocol: UDP
       targetPort: client-dhcp
   selector:
-    app: pihole
+    app.kubernetes.io/name: pihole
   sessionAffinity: None
   type: LoadBalancer
 ---
@@ -40,7 +40,7 @@ metadata:
     metallb.io/address-pool: pihole-production
     metallb.io/allow-shared-ip: pihole-svc
   labels:
-    app: pihole
+    app.kubernetes.io/name: pihole
   name: pihole-dns-tcp
   namespace: home-apps
 spec:
@@ -51,7 +51,7 @@ spec:
       protocol: TCP
       targetPort: dns-tcp
   selector:
-    app: pihole
+    app.kubernetes.io/name: pihole
   sessionAffinity: None
   type: LoadBalancer
 ---
@@ -62,7 +62,7 @@ metadata:
     metallb.io/address-pool: pihole-production
     metallb.io/allow-shared-ip: pihole-svc
   labels:
-    app: pihole
+    app.kubernetes.io/name: pihole
   name: pihole-dns-udp
   namespace: home-apps
 spec:
@@ -73,7 +73,7 @@ spec:
       protocol: UDP
       targetPort: dns-udp
   selector:
-    app: pihole
+    app.kubernetes.io/name: pihole
   sessionAffinity: None
   type: LoadBalancer
 ---
@@ -84,7 +84,7 @@ metadata:
     metallb.io/address-pool: pihole-production
     metallb.io/allow-shared-ip: pihole-svc
   labels:
-    app: pihole
+    app.kubernetes.io/name: pihole
   name: pihole-web
   namespace: home-apps
 spec:
@@ -99,7 +99,7 @@ spec:
       protocol: TCP
       targetPort: pihole-ssl
   selector:
-    app: pihole
+    app.kubernetes.io/name: pihole
   sessionAffinity: None
   type: LoadBalancer
 ---
@@ -107,7 +107,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: pihole
+    app.kubernetes.io/name: pihole
   name: pihole
   namespace: home-apps
 spec:
@@ -116,7 +116,7 @@ spec:
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: pihole
+      app.kubernetes.io/name: pihole
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -126,7 +126,7 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        app: pihole
+        app.kubernetes.io/name: pihole
     spec:
       containers:
         - env:

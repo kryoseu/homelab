@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pihole
+  namespace: home-apps
+  annotations:
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/description: AdBlocking DNS Server
+    gethomepage.dev/href: https://pihole.kryoseu.com/admin/
+    gethomepage.dev/group: Infrastructure
+    gethomepage.dev/icon: pi-hole.svg
+    gethomepage.dev/name: Pi-hole
+    gethomepage.dev/widget.type: pihole
+    gethomepage.dev/widget.url: http://pihole-web.home-apps.svc.cluster.local
+    gethomepage.dev/widget.version: "6"
+    gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_PIHOLE_KEY}}"
+
+spec:
+  ingressClassName: "nginx"
+  tls:
+    - hosts:
+        - pihole.kryoseu.com
+      secretName: pihole-tls
+  rules:
+    - host: "pihole.kryoseu.com"
+      http:
+        paths:
+          - path: "/"
+            pathType: Prefix
+            backend:
+              service:
+                name: pihole
+                port:
+                  number: 80
