@@ -6,6 +6,11 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/description: Kubernetes Management
+    gethomepage.dev/group: Infrastructure
+    gethomepage.dev/icon: headlamp.svg
+    gethomepage.dev/name: Headlamp
 spec:
   ingressClassName: "nginx"
   tls:
