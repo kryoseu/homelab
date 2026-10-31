@@ -29,6 +29,9 @@ spec:
           env:
             - name: HOMEPAGE_ALLOWED_HOSTS
               value: home.kryoseu.com
+          envFrom:
+            - secretRef:
+                name: homepage-env
           ports:
             - name: http
               containerPort: 3000
