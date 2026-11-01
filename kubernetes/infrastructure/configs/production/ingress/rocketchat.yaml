@@ -7,6 +7,14 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: "0"
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/description: Chat Server
+    gethomepage.dev/group: Social & Reading
+    gethomepage.dev/icon: https://www.svgrepo.com/show/354287/rocket-chat-icon.svg
+    gethomepage.dev/name: RocketChat
+    gethomepage.dev/siteMonitor: https://chat.bunga.kryoseu.com
+    gethomepage.dev/weight: "30"
+    gethomepage.dev/pod-selector: "app in (rocketchat-server,rocketmongo)"
 spec:
   ingressClassName: "nginx"
   tls:
