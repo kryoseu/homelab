@@ -3,4 +3,5 @@ kind: Namespace
 metadata:
   name: home-apps
   labels:
+    cnpg-backups: "true"
     app.kubernetes.io/component: monitoring

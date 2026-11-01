@@ -1,0 +1,25 @@
+apiVersion: external-secrets.io/v1
+kind: ClusterExternalSecret
+metadata:
+  name: cnpg-backup-creds
+spec:
+  namespaceSelectors:
+    - matchLabels:
+        cnpg-backups: "true"
+  refreshTime: 1h
+  externalSecretSpec:
+    refreshInterval: 1h
+    secretStoreRef:
+      name: aws-kv-store
+      kind: ClusterSecretStore
+    target:
+      name: aws-creds-envs
+    data:
+      - secretKey: ACCESS_KEY_ID
+        remoteRef:
+          key: apps
+          property: AWS_CNPG_USER_ACCESS_KEY
+      - secretKey: ACCESS_SECRET_KEY
+        remoteRef:
+          key: apps
+          property: AWS_CNPG_USER_SECRET_KEY
