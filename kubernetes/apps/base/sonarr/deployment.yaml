@@ -5,7 +5,7 @@ metadata:
   namespace: plex-ns
 spec:
   selector:
-    app: sonarr
+    app.kubernetes.io/name: sonarr
   ports:
     - protocol: TCP
       port: 8989
@@ -35,11 +35,11 @@ spec:
     type: Recreate
   selector:
     matchLabels:
-      app: sonarr
+      app.kubernetes.io/name: sonarr
   template:
     metadata:
       labels:
-        app: sonarr
+        app.kubernetes.io/name: sonarr
     spec:
       containers:
         - name: sonarr
