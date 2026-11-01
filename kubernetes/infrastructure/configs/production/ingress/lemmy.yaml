@@ -13,7 +13,7 @@ metadata:
     gethomepage.dev/group: Social & Reading
     gethomepage.dev/icon: lemmy.svg
     gethomepage.dev/name: Lemmy
-    gethomepage.dev/siteMonitor: https://lemmy.bunga.kroseu.com
+    gethomepage.dev/siteMonitor: https://lemmy.bunga.kryoseu.com
     gethomepage.dev/weight: "10"
     # selects all pods in the namespace
     gethomepage.dev/pod-selector: ""
