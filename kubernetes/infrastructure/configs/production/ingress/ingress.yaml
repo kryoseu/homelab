@@ -65,7 +65,6 @@ spec:
   ingressClassName: "nginx"
   tls:
     - hosts:
-        - radarr.kryoseu.com
         - sonarr.kryoseu.com
         - deluge.kryoseu.com
         - prowlarr.kryoseu.com
@@ -81,16 +80,6 @@ spec:
                 name: sonarr
                 port:
                   number: 8989
-    - host: radarr.kryoseu.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: radarr
-                port:
-                  number: 7878
     - host: deluge.kryoseu.com
       http:
         paths:
