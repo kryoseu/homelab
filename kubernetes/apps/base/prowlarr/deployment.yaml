@@ -8,7 +8,7 @@ spec:
     - port: 9696
       targetPort: prowlarr
   selector:
-    app: prowlarr
+    app.kubernetes.io/name: prowlarr
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -28,7 +28,7 @@ apiVersion: apps/v1
 metadata:
   name: prowlarr
   labels:
-    app: prowlarr
+    app.kubernetes.io/name: prowlarr
   namespace: plex-ns
 spec:
   replicas: 1
@@ -36,11 +36,11 @@ spec:
     type: Recreate
   selector:
     matchLabels:
-      app: prowlarr
+      app.kubernetes.io/name: prowlarr
   template:
     metadata:
       labels:
-        app: prowlarr
+        app.kubernetes.io/name: prowlarr
     spec:
       containers:
         - name: flaresolverr

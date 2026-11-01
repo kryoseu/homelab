@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: prowlarr
+  namespace: plex-ns
+  annotations:
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/description: Indexer Manager
+    gethomepage.dev/group: Downloads
+    gethomepage.dev/icon: prowlarr.svg
+    gethomepage.dev/name: prowlarr
+    gethomepage.dev/siteMonitor: http://prowlarr.plex-ns.svc.cluster.local:9696
+    gethomepage.dev/weight: "30"
+    gethomepage.dev/widget.type: prowlarr
+    gethomepage.dev/widget.url: http://prowlarr.plex-ns.svc.cluster.local:9696
+    gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_PROWLARR_API_KEY}}"
+spec:
+  ingressClassName: "nginx"
+  tls:
+    - hosts:
+        - prowlarr.kryoseu.com
+      secretName: prowlarr-tls
+  rules:
+    - host: "prowlarr.kryoseu.com"
+      http:
+        paths:
+          - path: "/"
+            pathType: Prefix
+            backend:
+              service:
+                name: prowlarr
+                port:
+                  number: 9696

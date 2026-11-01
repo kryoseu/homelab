@@ -15,6 +15,7 @@ resources:
   - pihole.yaml
   - plex.yaml
   - prometheus-grafana.yaml
+  - prowlarr.yaml
   - radarr.yaml
   - rocketchat.yaml
   - sonarr.yaml
