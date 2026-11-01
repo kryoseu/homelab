@@ -13,6 +13,15 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-buffering: "off"
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/description: Document Management
+    gethomepage.dev/group: Social & Reading
+    gethomepage.dev/icon: paperless.png
+    gethomepage.dev/name: Paperless-ngx
+    gethomepage.dev/siteMonitor: https://paperless.kryoseu.com
+    gethomepage.dev/weight: "10"
+    # selects all pods in the namespace
+    gethomepage.dev/pod-selector: ""
 spec:
   ingressClassName: "nginx"
   tls:
