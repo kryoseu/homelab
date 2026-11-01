@@ -1,11 +1,18 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  name: vaultwarden
+  namespace: vaultwarden
   annotations:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-  name: vaultwarden
-  namespace: vaultwarden
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/description: Password Manager
+    gethomepage.dev/group: Productivity
+    gethomepage.dev/icon: vaultwarden-light.png
+    gethomepage.dev/name: Vaultwarden
+    gethomepage.dev/siteMonitor: https://vault.kryoseu.com
+    gethomepage.dev/weight: "20"
 spec:
   ingressClassName: "nginx"
   rules:
