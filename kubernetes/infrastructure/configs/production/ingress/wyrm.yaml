@@ -9,7 +9,7 @@ metadata:
     gethomepage.dev/group: Social & Reading
     gethomepage.dev/icon: https://raw.githubusercontent.com/kryoseu/WyrmRSS/refs/heads/main/web/public/favicon.svg
     gethomepage.dev/name: WyrmRSS
-    gethomepage.dev/siteMonitor: https://wyrm-ui.wyrm.svc.cluter.local:3000
+    gethomepage.dev/siteMonitor: https://wyrm.kryoseu.com
     gethomepage.dev/weight: "20"
     # selects all pods in the namespace
     gethomepage.dev/pod-selector: ""
