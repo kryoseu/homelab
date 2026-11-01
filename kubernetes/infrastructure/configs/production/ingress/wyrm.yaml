@@ -4,7 +4,16 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-  name: wyrm-ui
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/description: RSS Reader
+    gethomepage.dev/group: Social & Reading
+    gethomepage.dev/icon: https://raw.githubusercontent.com/kryoseu/WyrmRSS/refs/heads/main/web/public/favicon.svg
+    gethomepage.dev/name: WyrmRSS
+    gethomepage.dev/siteMonitor: https://wyrm-ui.wyrm.svc.cluter.local:3000
+    gethomepage.dev/weight: "20"
+    # selects all pods in the namespace
+    gethomepage.dev/pod-selector: ""
+  name: wyrm
   namespace: wyrm
 spec:
   ingressClassName: "nginx"
