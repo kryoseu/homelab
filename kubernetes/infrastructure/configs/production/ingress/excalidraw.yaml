@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: excalidraw
+  namespace: home-apps
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/description: Virtual Whiteboard
+    gethomepage.dev/group: Productivity
+    gethomepage.dev/icon: excalidraw.svg
+    gethomepage.dev/name: Excalidraw
+    gethomepage.dev/siteMonitor: https://excalidraw.kryoseu.com
+    gethomepage.dev/weight: "30"
+spec:
+  ingressClassName: "nginx"
+  tls:
+    - hosts:
+        - excalidraw.kryoseu.com
+      secretName: home-apps-tls
+  rules:
+    - host: excalidraw.kryoseu.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: excalidraw
+                port:
+                  number: 5000
