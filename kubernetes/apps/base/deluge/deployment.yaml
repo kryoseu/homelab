@@ -5,7 +5,7 @@ metadata:
   namespace: plex-ns
 spec:
   selector:
-    app: deluge-vpn
+    app.kubernetes.io/name: deluge-vpn
   ports:
     - name: web-ui
       protocol: TCP
@@ -40,11 +40,11 @@ spec:
     type: Recreate
   selector:
     matchLabels:
-      app: deluge-vpn
+      app.kubernetes.io/name: deluge-vpn
   template:
     metadata:
       labels:
-        app: deluge-vpn
+        app.kubernetes.io/name: deluge-vpn
     spec:
       dnsPolicy: None
       dnsConfig:

@@ -56,33 +56,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: nginx-ingress
-  namespace: plex-ns
-  annotations:
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/proxy-redirect-to: /
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
-spec:
-  ingressClassName: "nginx"
-  tls:
-    - hosts:
-        - deluge.kryoseu.com
-      secretName: plex-arr-tls
-  rules:
-    - host: deluge.kryoseu.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: deluge
-                port:
-                  number: 8112
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: nginx-ingress
   namespace: portainer
   annotations:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
