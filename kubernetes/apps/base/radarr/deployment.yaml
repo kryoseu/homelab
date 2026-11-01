@@ -5,7 +5,7 @@ metadata:
   namespace: plex-ns
 spec:
   selector:
-    app: radarr
+    app.kubernetes.io/name: radarr
   ports:
     - protocol: TCP
       port: 7878
@@ -35,11 +35,11 @@ spec:
     type: Recreate
   selector:
     matchLabels:
-      app: radarr
+      app.kubernetes.io/name: radarr
   template:
     metadata:
       labels:
-        app: radarr
+        app.kubernetes.io/name: radarr
     spec:
       containers:
         - name: radarr
