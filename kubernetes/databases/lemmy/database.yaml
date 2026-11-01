@@ -5,41 +5,27 @@ metadata:
   # annotations:
   #   cnpg.io/skipEmptyWalArchiveCheck: "enabled"
 spec:
-  description: Postgres cluster for the Lemmy application
-  imageName: ghcr.io/cloudnative-pg/postgresql:18
   instances: 3
+  imageName: ghcr.io/cloudnative-pg/postgresql:18
+  imagePullPolicy: IfNotPresent
+
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: lemmy-backup
+        serverName: lemmy-postgres-v2
 
   storage:
     size: 30Gi
 
   externalClusters:
     - name: clusterBackup
-      barmanObjectStore:
-        destinationPath: "s3://kryoseu-lemmy/postgres"
-        serverName: "lemmy-postgres"
-        s3Credentials:
-          accessKeyId:
-            name: aws-creds-envs
-            key: ACCESS_KEY_ID
-          secretAccessKey:
-            name: aws-creds-envs
-            key: ACCESS_SECRET_KEY
-
-  backup:
-    barmanObjectStore:
-      destinationPath: "s3://kryoseu-lemmy/postgres"
-      s3Credentials:
-        accessKeyId:
-          name: aws-creds-envs
-          key: ACCESS_KEY_ID
-        secretAccessKey:
-          name: aws-creds-envs
-          key: ACCESS_SECRET_KEY
-      wal:
-        compression: gzip
-      data:
-        compression: gzip
-    retentionPolicy: 14d
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+          barmanObjectName: lemmy-backup
+          serverName: lemmy-postgres
 
   bootstrap:
     recovery:
