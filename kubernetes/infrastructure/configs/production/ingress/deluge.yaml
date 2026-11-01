@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: deluge
+  name: deluge-vpn
   namespace: plex-ns
   annotations:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
@@ -10,12 +10,12 @@ metadata:
     gethomepage.dev/description: Torrent Client
     gethomepage.dev/group: Downloads
     gethomepage.dev/icon: deluge.svg
-    gethomepage.dev/name: deluge-vpn
+    gethomepage.dev/name: Deluge-Gluetun
     gethomepage.dev/siteMonitor: http://deluge.plex-ns.svc.cluster.local:8112
     gethomepage.dev/weight: "40"
     gethomepage.dev/widget.type: deluge
     gethomepage.dev/widget.url: http://deluge.plex-ns.svc.cluster.local:8112
-    gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_DELUGE_PASSWORD}}"
+    gethomepage.dev/widget.password: "{{HOMEPAGE_VAR_DELUGE_PASSWORD}}"
 spec:
   ingressClassName: "nginx"
   tls:
