@@ -5,9 +5,9 @@ metadata:
   # annotations:
   #   cnpg.io/skipEmptyWalArchiveCheck: "enabled"
 spec:
-  description: Postgres cluster for the immich app application
-  imageName: ghcr.io/tensorchord/cloudnative-vectorchord:16.9-0.4.2@sha256:649da2df5f079dd1f214e3a877cafd0208eff3779e9c60d14d243fbca5e11c97
   instances: 3
+  imageName: ghcr.io/tensorchord/cloudnative-vectorchord:16.9-0.4.2@sha256:649da2df5f079dd1f214e3a877cafd0208eff3779e9c60d14d243fbca5e11c97
+  imagePullPolicy: IfNotPresent
 
   postgresql:
     shared_preload_libraries:
@@ -17,6 +17,13 @@ spec:
     labels:
       app: immich-database
       policy-type: "database"
+
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: immich-backup
+        serverName: immich-postgres-v2
 
   storage:
     size: 5Gi
@@ -29,32 +36,11 @@ spec:
 
   externalClusters:
     - name: clusterBackup
-      barmanObjectStore:
-        destinationPath: "s3://kryoseu-immich-library/postgres"
-        serverName: "immich-postgres"
-        s3Credentials:
-          accessKeyId:
-            name: aws-creds-envs
-            key: ACCESS_KEY_ID
-          secretAccessKey:
-            name: aws-creds-envs
-            key: ACCESS_SECRET_KEY
-
-  backup:
-    barmanObjectStore:
-      destinationPath: "s3://kryoseu-immich-library/postgres"
-      s3Credentials:
-        accessKeyId:
-          name: aws-creds-envs
-          key: ACCESS_KEY_ID
-        secretAccessKey:
-          name: aws-creds-envs
-          key: ACCESS_SECRET_KEY
-      wal:
-        compression: gzip
-      data:
-        compression: gzip
-    retentionPolicy: 14d
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+          barmanObjectName: immich-backup
+          serverName: immich-postgres
 
   bootstrap:
     recovery:

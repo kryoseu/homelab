@@ -4,7 +4,7 @@ metadata:
   name: paperless-ngx-backup
   namespace: paperness-ngx
 spec:
-  retentionPolicy: 7d
+  retentionPolicy: 14d
   configuration:
     destinationPath: s3://kryoseu-paperless-ngx/postgres
     endpointURL: https://s3.us-west-2.amazonaws.com/
