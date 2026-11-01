@@ -8,6 +8,15 @@ metadata:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     nginx.ingress.kubernetes.io/use-regex: "true"
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/description: Decentralized Discussion Platform
+    gethomepage.dev/group: Social & Reading
+    gethomepage.dev/icon: lemmy.svg
+    gethomepage.dev/name: Lemmy
+    gethomepage.dev/siteMonitor: http://lemmy-ui.lemmy.svc.cluster.local:1234
+    gethomepage.dev/weight: "10"
+    # selects all pods in the namespace
+    gethomepage.dev/pod-selector: ""
 spec:
   ingressClassName: nginx
   tls:
