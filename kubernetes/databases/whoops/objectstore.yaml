@@ -1,0 +1,19 @@
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: whoops-backup
+  namespace: whoops
+spec:
+  retentionPolicy: 7d
+  configuration:
+    destinationPath: s3://kryoseu-whoops/postgres
+    endpointURL: https://s3.us-west-2.amazonaws.com/
+    s3Credentials:
+      accessKeyId:
+        name: aws-creds-envs
+        key: ACCESS_KEY_ID
+      secretAccessKey:
+        name: aws-creds-envs
+        key: ACCESS_SECRET_KEY
+    wal:
+      compression: gzip
