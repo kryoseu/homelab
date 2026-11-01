@@ -3,8 +3,9 @@ kind: Cluster
 metadata:
   name: whoops-postgres
   namespace: whoops
-  annotations:
-    cnpg.io/skipEmptyWalArchiveCheck: "enabled"
+  # annotations:
+  #   cnpg.io/skipEmptyWalArchiveCheck: "enabled"
+
 spec:
   instances: 3
   imageName: ghcr.io/cloudnative-pg/postgresql:17.5
@@ -15,22 +16,18 @@ spec:
       isWALArchiver: true
       parameters:
         barmanObjectName: whoops-backup
+        serverName: whoops-postgres-v2
 
   storage:
     size: 3Gi
 
   externalClusters:
     - name: clusterBackup
-      barmanObjectStore:
-        destinationPath: "s3://kryoseu-whoops/postgres"
-        serverName: "whoops-postgres"
-        s3Credentials:
-          accessKeyId:
-            name: aws-creds-envs
-            key: ACCESS_KEY_ID
-          secretAccessKey:
-            name: aws-creds-envs
-            key: ACCESS_SECRET_KEY
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+          barmanObjectName: whoops-backup
+          serverName: whoops-postgres
 
   bootstrap:
     recovery:
