@@ -3,8 +3,11 @@ kind: ScheduledBackup
 metadata:
   name: whoops-postgres
 spec:
+  cluster:
+    name: whoops-postgres
   immediate: true
   schedule: "0 0 7 * * *"
   backupOwnerReference: cluster
-  cluster:
-    name: whoops-postgres
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io
