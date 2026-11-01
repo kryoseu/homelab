@@ -1,0 +1,19 @@
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: paperless-ngx-backup
+  namespace: paperness-ngx
+spec:
+  retentionPolicy: 7d
+  configuration:
+    destinationPath: s3://kryoseu-paperless-ngx/postgres
+    endpointURL: https://s3.us-west-2.amazonaws.com/
+    s3Credentials:
+      accessKeyId:
+        name: aws-creds-envs
+        key: ACCESS_KEY_ID
+      secretAccessKey:
+        name: aws-creds-envs
+        key: ACCESS_SECRET_KEY
+    wal:
+      compression: gzip
