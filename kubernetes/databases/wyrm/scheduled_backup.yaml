@@ -9,3 +9,6 @@ spec:
   backupOwnerReference: cluster
   cluster:
     name: wyrm-postgres
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io

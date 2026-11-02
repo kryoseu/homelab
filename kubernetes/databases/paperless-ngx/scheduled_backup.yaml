@@ -8,3 +8,6 @@ spec:
   backupOwnerReference: cluster
   cluster:
     name: paperless-postgres
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io
