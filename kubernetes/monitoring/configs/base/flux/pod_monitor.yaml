@@ -5,7 +5,6 @@ metadata:
   namespace: monitoring
   labels:
     app.kubernetes.io/part-of: flux
-    app.kubernetes.io/component: monitoring
 spec:
   namespaceSelector:
     matchNames:

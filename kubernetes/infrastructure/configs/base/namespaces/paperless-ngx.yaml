@@ -4,4 +4,3 @@ metadata:
   name: paperless-ngx
   labels:
     cnpg-backups: "true"
-    app.kubernetes.io/component: monitoring

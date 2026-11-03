@@ -4,4 +4,3 @@ metadata:
   name: lemmy
   labels:
     cnpg-backups: "true"
-    app.kubernetes.io/component: monitoring

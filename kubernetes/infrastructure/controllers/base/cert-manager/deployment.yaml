@@ -12,14 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: cert-manager
-  labels:
-    app.kubernetes.io/component: monitoring
-
----
 # Source: cert-manager/templates/crds.yaml
 #
 # START crd
