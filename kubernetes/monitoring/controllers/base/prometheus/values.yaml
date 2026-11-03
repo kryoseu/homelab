@@ -319,9 +319,7 @@ prometheus:
     retention: 14d
 
     # Watch only namespaces with this label
-    podMonitorNamespaceSelector:
-      matchLabels:
-        app.kubernetes.io/component: monitoring
+    podMonitorNamespaceSelector: {}
 
     # But allow ServiceMonitors from any namespace
     serviceMonitorNamespaceSelector: {}
