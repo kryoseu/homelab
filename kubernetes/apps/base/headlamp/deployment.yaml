@@ -3,14 +3,13 @@ apiVersion: v1
 metadata:
   name: headlamp
   namespace: kube-system
+  labels:
+    app.kubernetes.io/name: headlamp
 spec:
   ports:
     - name: http
       port: 80
       targetPort: 4466
-    - name: metrics
-      port: 9090
-      targetPort: 9090
   selector:
     app.kubernetes.io/name: headlamp
 ---
@@ -45,8 +44,6 @@ spec:
           ports:
             - containerPort: 4466
               name: http
-            - containerPort: 9090
-              name: metrics
           readinessProbe:
             httpGet:
               scheme: HTTP
