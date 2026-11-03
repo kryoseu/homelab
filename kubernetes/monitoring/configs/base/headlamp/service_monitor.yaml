@@ -8,7 +8,7 @@ spec:
     matchLabels:
       app.kubernetes.io/name: headlamp
   endpoints:
-    - port: metrics
+    - port: http
       path: /metrics
   namespaceSelector:
     matchNames:
