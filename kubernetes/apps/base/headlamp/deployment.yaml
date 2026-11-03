@@ -5,8 +5,12 @@ metadata:
   namespace: kube-system
 spec:
   ports:
-    - port: 80
+    - name: http
+      port: 80
       targetPort: 4466
+    - name: metrics
+      port: 9090
+      targetPort: 9090
   selector:
     app.kubernetes.io/name: headlamp
 ---
@@ -33,15 +37,11 @@ spec:
             - "-plugins-dir=/headlamp/plugins"
           env:
             - name: HEADLAMP_CONFIG_TRACING_ENABLED
-              value: "true"
+              value: "false"
             - name: HEADLAMP_CONFIG_METRICS_ENABLED
               value: "true"
-            - name: HEADLAMP_CONFIG_OTLP_ENDPOINT
-              value: "otel-collector:4317"
             - name: HEADLAMP_CONFIG_SERVICE_NAME
               value: "headlamp"
-            - name: HEADLAMP_CONFIG_SERVICE_VERSION
-              value: "latest"
           ports:
             - containerPort: 4466
               name: http
