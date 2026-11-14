@@ -18,6 +18,7 @@ spec:
 
   storage:
     size: 30Gi
+    storageClass: longhorn-single
 
   externalClusters:
     - name: clusterBackup
@@ -28,15 +29,24 @@ spec:
           serverName: lemmy-postgres
 
   bootstrap:
-    recovery:
-      source: clusterBackup
+    initdb:
       database: lemmy
       owner: lemmy
       secret:
         name: lemmy-creds
 
+  # For a future restore: swap initdb for this, and bump the
+  # plugins serverName above to lemmy-postgres-v3.
+  # externalClusters:
+  #   - name: clusterBackup
+  #     plugin:
+  #       name: barman-cloud.cloudnative-pg.io
+  #       parameters:
+  #         barmanObjectName: paperless-ngx-backup
+  #         serverName: lemmy-postgres-v2
   # bootstrap:
-  #   initdb:
+  #   recovery:
+  #     source: clusterBackup
   #     database: lemmy
   #     owner: lemmy
   #     secret:
