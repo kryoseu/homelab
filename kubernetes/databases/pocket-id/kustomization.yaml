@@ -4,3 +4,4 @@ namespace: pocket-id
 resources:
   - objectstore.yaml
   - database.yaml
+  - schedule_backup.yaml
