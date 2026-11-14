@@ -20,6 +20,7 @@ spec:
 
   storage:
     size: 3Gi
+    storageClass: longhorn-single
 
   externalClusters:
     - name: clusterBackup
@@ -37,13 +38,30 @@ spec:
       secret:
         name: whoops-creds
 
-  # (optional) For development
-  # managed:
-  #   services:
-  #     additional:
-  #       - selectorType: ro
-  #         serviceTemplate:
-  #           metadata:
-  #             name: "whoop-db"
-  #           spec:
-  #             type: LoadBalancer
+# For a future restore: swap initdb for this, and bump the
+# plugins serverName above to whoops-postgres-v3.
+# externalClusters:
+#   - name: clusterBackup
+#     plugin:
+#       name: barman-cloud.cloudnative-pg.io
+#       parameters:
+#         barmanObjectName: whoops-backup
+#         serverName: whoops-postgres-v2
+# bootstrap:
+#   recovery:
+#     source: clusterBackup
+#     database: whoops
+#     owner: whoops
+#     secret:
+#       name: whoops-creds
+
+# (optional) For development
+# managed:
+#   services:
+#     additional:
+#       - selectorType: ro
+#         serviceTemplate:
+#           metadata:
+#             name: "whoop-db"
+#           spec:
+#             type: LoadBalancer
