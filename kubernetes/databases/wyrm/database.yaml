@@ -6,7 +6,7 @@ metadata:
   # annotations:
   #   cnpg.io/skipEmptyWalArchiveCheck: "enabled"
 spec:
-  instances: 1
+  instances: 3
   imageName: ghcr.io/cloudnative-pg/postgresql:18
   imagePullPolicy: IfNotPresent
 
@@ -15,10 +15,11 @@ spec:
       isWALArchiver: true
       parameters:
         barmanObjectName: wyrm-backup
-        serverName: wyrm-postgres-v2
+        serverName: wyrm-postgres-v3
 
   storage:
-    size: 10Gi
+    size: 5Gi
+    storageClass: longhorn-single
 
   externalClusters:
     - name: clusterBackup
@@ -26,7 +27,7 @@ spec:
         name: barman-cloud.cloudnative-pg.io
         parameters:
           barmanObjectName: wyrm-backup
-          serverName: wyrm-postgres
+          serverName: wyrm-postgres-v2
 
   bootstrap:
     recovery:
@@ -36,8 +37,18 @@ spec:
       secret:
         name: wyrm-creds
 
+  # For a future restore: swap initdb for this, and bump the
+  # plugins serverName above to pocket-id-postgres-v4.
+  # externalClusters:
+  #   - name: clusterBackup
+  #     plugin:
+  #       name: barman-cloud.cloudnative-pg.io
+  #       parameters:
+  #         barmanObjectName: wyrm-backup
+  #         serverName: wyrm-postgres-v3
   # bootstrap:
-  #   initdb:
+  #   recovery:
+  #     source: clusterBackup
   #     database: wyrm
   #     owner: wyrm
   #     secret:
