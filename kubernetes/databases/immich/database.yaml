@@ -27,6 +27,7 @@ spec:
 
   storage:
     size: 5Gi
+    storageClass: longhorn-single
 
   managed:
     roles:
@@ -43,9 +44,25 @@ spec:
           serverName: immich-postgres
 
   bootstrap:
-    recovery:
-      source: clusterBackup
+    initdb:
       database: immich
       owner: immich
       secret:
-        name: immich-db-creds
+        name: immich
+
+  # For a future restore: swap initdb for this, and bump the
+  # plugins serverName above to immich-postgres-v3
+  # externalClusters:
+  #   - name: clusterBackup
+  #     plugin:
+  #       name: barman-cloud.cloudnative-pg.io
+  #       parameters:
+  #         barmanObjectName: immich-backup
+  #         serverName: immich-postgres-v2
+  # bootstrap:
+  #   recovery:
+  #     source: clusterBackup
+  #     database: immich
+  #     owner: immich
+  #     secret:
+  #       name: immich
