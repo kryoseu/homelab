@@ -1,0 +1,44 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: pocket-id-postgres
+  namespace: pocket-id
+spec:
+  instances: 3
+  imageName: ghcr.io/cloudnative-pg/postgresql:18
+  imagePullPolicy: IfNotPresent
+
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: pocket-id-backup
+        serverName: pocket-id-postgres
+
+  storage:
+    size: 5Gi
+    storageClass: longhorn-single
+
+  bootstrap:
+    initdb:
+      database: pocket_id
+      owner: pocket_id
+      secret:
+        name: pocket-id
+
+  # For a future restore: swap initdb for this, and bump the
+  # plugins serverName above to pocket-id-postgres-v2.
+  # externalClusters:
+  #   - name: clusterBackup
+  #     plugin:
+  #       name: barman-cloud.cloudnative-pg.io
+  #       parameters:
+  #         barmanObjectName: pocket-id-backup
+  #         serverName: pocket-id-postgres
+  # bootstrap:
+  #   recovery:
+  #     source: clusterBackup
+  #     database: pocket_id
+  #     owner: pocket_id
+  #     secret:
+  #       name: pocket-id-creds
