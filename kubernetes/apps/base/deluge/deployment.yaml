@@ -54,6 +54,9 @@ spec:
         - name: gluetun
           image: qmcgaw/gluetun:v3.41.3
           restartPolicy: Always
+          securityContext:
+            capabilities:
+              add: ["NET_ADMIN"]
           startupProbe: # deluge won't start until this passes
             exec:
               command: ["/gluetun-entrypoint", "healthcheck"]
@@ -94,8 +97,6 @@ spec:
                   key: WIREGUARD_PRIVATE_KEY
             - name: WIREGUARD_ADDRESSES
               value: "10.2.0.2/32"
-          securityContext:
-            privileged: true
       containers:
         - name: deluge
           image: linuxserver/deluge:2.2.0-ls377
