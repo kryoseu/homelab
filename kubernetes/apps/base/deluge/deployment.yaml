@@ -50,9 +50,24 @@ spec:
       dnsConfig:
         nameservers:
           - 10.2.0.1
-      containers:
+      initContainers:
         - name: gluetun
           image: qmcgaw/gluetun:v3.41.3
+          restartPolicy: Always
+          startupProbe: # deluge won't start until this passes
+            exec:
+              command: ["/gluetun-entrypoint", "healthcheck"]
+            periodSeconds: 5
+            failureThreshold: 60
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  [
+                    "/bin/sh",
+                    "-c",
+                    "(ip rule del table 51820; ip -6 rule del table 51820) || true",
+                  ]
           env:
             - name: DNS_UPSTREAM_RESOLVERS
               value: "cloudflare,google"
@@ -81,6 +96,7 @@ spec:
               value: "10.2.0.2/32"
           securityContext:
             privileged: true
+      containers:
         - name: deluge
           image: linuxserver/deluge:2.2.0-ls377
           imagePullPolicy: Always
